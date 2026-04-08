@@ -61,7 +61,7 @@ _Reference: `private_dot_config/nvim/lua/config/autocmds.lua:1`_
 | `linting.lua` | nvim-lint | Linting |
 | `lualine.lua` | lualine.nvim | UI/Statusline |
 | `noice.lua` | noice.nvim | UI/Cmdline |
-| `obsidian.lua` | obsidian.nvim | Notes |
+| `obsidian.lua` | obsidian.nvim | Notes (`~/dev/personal/golden-vault`) |
 | `oil.lua` | oil.nvim | File explorer |
 | `origami.lua` | nvim-origami | Folding |
 | `render-markdown.lua` | render-markdown.nvim | Markdown |

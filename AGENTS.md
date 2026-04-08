@@ -70,6 +70,8 @@ recipient, or maintainer token material.
 | `literal_bin/`        | `~/bin/`                            | Shell utility scripts        |
 | `private_dot_config/` | `~/.config/`                        | App configs                  |
 | `private_dot_config/abook/` | `~/.config/abook/`            | Abook config                 |
+| `dev/personal/golden-vault/dot_obsidian/` | `~/dev/personal/golden-vault/.obsidian/` | Obsidian vault config applied into the separate notes repo |
+| `dev/personal/golden-vault/dot_gitignore` | `~/dev/personal/golden-vault/.gitignore` | Keeps the notes repo focused on note content instead of dotfiles-owned vault config |
 | `private_dot_config/zsh/` | `~/.config/zsh/`                | Zsh config via `ZDOTDIR`     |
 | `private_dot_local/private_share/colima/` | `~/.local/share/colima/` | Colima config + state |
 | `.chezmoiscripts/`    | _(lifecycle scripts, not deployed)_ | Before/after scripts         |
@@ -90,7 +92,7 @@ Supports chezmoi template conditionals for OS-specific ignores.
 - When adding new data keys in `.chezmoi.toml.tmpl`, keep templates compatible with existing keys (for example `.profile`) until `chezmoi init` has been run everywhere.
 - For non-interactive checks, prefer `chezmoi apply --dry-run --force`; without `--force`, changed files may trigger TTY prompts and fail in headless shells.
 - In this repo, `chezmoi diff` is most reliable with absolute target paths (for example `~/.config/git/config`) when diffing a single file.
-- `Documents/notes/.obsidian/workspace.json` is volatile UI state (recent files/workspace layout) and should stay ignored to avoid noisy churn and accidental overwrite.
+- `dev/personal/golden-vault/.obsidian/workspace.json` is volatile UI state (recent files/workspace layout) and should stay ignored to avoid noisy churn and accidental overwrite.
 - Any new repo-only directory (like `docs/`) must be added to `.chezmoiignore` or chezmoi will deploy it to `~/`. The ignore file uses target-state paths, so `docs/` not `literal_docs/`.
 
 ## Shell Script Conventions

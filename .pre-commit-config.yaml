@@ -6,7 +6,7 @@ repos:
       - id: trailing-whitespace
         exclude: '\.age$'
       - id: end-of-file-fixer
-        exclude: '\.age$'
+        exclude: '(\.age$|dev/personal/golden-vault/dot_obsidian/(app|appearance|core-plugins)\.json$)'
       - id: check-yaml
         args: [--allow-multiple-documents]
         exclude: '(private_dot_config/nvim/test/|private_dot_config/nvim/test/helm)'
