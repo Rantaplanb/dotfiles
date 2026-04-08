@@ -1,6 +1,6 @@
 [user]
-    email = {{ .email }}
-    name = {{ .name }}
+    email = {{ .git_profiles.personal.email }}
+    name = {{ .git_profiles.personal.name }}
 
 [include]
     path = ~/.config/delta/themes/catppuccin.gitconfig
@@ -8,6 +8,7 @@
 [core]
     pager = delta
     editor = nvim
+    sshCommand = ssh -o IdentitiesOnly=yes -i {{ .git_profiles.personal.ssh_identity_file }}
 
 [pager]
     diff = diffnav
@@ -48,3 +49,6 @@
 [merge]
     tool = nvim
     conflictstyle = zdiff3
+
+[includeIf "gitdir:{{ .chezmoi.homeDir }}/dev/work/"]
+    path = ~/.config/git/sitecore-work.inc

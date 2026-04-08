@@ -19,13 +19,15 @@ alias reload="exec zsh" # Replace shell with fresh instance
 alias r="reload"
 alias zsh-profile="ZSHRC_PROFILE=1 zsh -i -c exit"
 alias zsh-time="time (zsh -i -c exit)"
+alias gs="git status"
 
 # Vim
 alias v="nvim"
 alias vi="nvim"
 alias vim="nvim"
 
-# Lazygit
+# Apps
+alias c="cursor"
 alias lg="lazygit"
 
 # Bat

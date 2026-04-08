@@ -122,8 +122,8 @@ _Reference: `private_dot_config/zsh/tools.zsh:1`_
 |---|---|
 | Navigation | `..` = `cd ..` |
 | Listing (eza) | `l`, `ls`, `ll`, `la`, `ld`, `lda`, `lgit` |
-| Shell | `reload`/`r` = `exec zsh`, `zsh-profile`, `zsh-time` |
-| Apps | `v`/`vi`/`vim` = `nvim`, `lg` = `lazygit`, `b` = `bat`, `oc` = `opencode`, `oca` = `opencode` (auto-allow all), `occ` = `opencode --continue` |
+| Shell | `reload`/`r` = `exec zsh`, `zsh-profile`, `zsh-time`, `gs` = `git status` |
+| Apps | `c` = `cursor`, `v`/`vi`/`vim` = `nvim`, `lg` = `lazygit`, `b` = `bat`, `oc` = `opencode`, `oca` = `opencode` (auto-allow all), `occ` = `opencode --continue` |
 | Mail | `nm` = `neomutt`, `msync` = `mail-sync`, `ab` = `abook` with XDG config/data paths |
 | Tmux | `ta` = `tmux attach`, `td` = `tmux detach`, `tls` = `tmux ls` |
 | Kubernetes | `k` = `kubectl`, `ctx` = `kubectx`, `ns` = `kubens` |

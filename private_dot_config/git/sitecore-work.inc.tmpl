@@ -1,0 +1,6 @@
+[user]
+    email = {{ .git_profiles.sitecore.email }}
+    name = {{ .git_profiles.sitecore.name }}
+
+[core]
+    sshCommand = ssh -o IdentitiesOnly=yes -i {{ .git_profiles.sitecore.ssh_identity_file }}
