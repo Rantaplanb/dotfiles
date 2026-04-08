@@ -3,7 +3,7 @@
 ## Install
 
 ```bash
-sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply mbastakis
+sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply <fork-owner>
 ```
 
 ## Commands
@@ -20,12 +20,8 @@ chezmoi ignored            # List all ignored files
 chezmoi forget FILE        # Stop managing a file
 ```
 
-### aws-login repositories
-
-`mr checkout` in `~/dev/personal/dev-tools` clones:
-
-- `git@github.com:mbastakis/aws-login.git`
-- `git@github.com:mbastakis/homebrew-tap.git`
+The sanitized `lpersonal` baseline does not ship bundled personal or work
+workspace checkout definitions. Add your own `mrconfig` files later as needed.
 
 ### Pre-commit hooks
 
@@ -43,54 +39,41 @@ Pre-push: `chezmoi apply --dry-run --force`.
 
 ```
 1. Read source + destination state
-2. Compute target state (templates, encrypted files)
+2. Compute target state (templates and target-state paths)
 3. Before scripts (alphabetical):
-   00-decrypt-private-key  → key.txt.age → ~/.config/chezmoi/key.txt (passphrase, once)
-   01-install-bws          → installs bws CLI (run_once)
    02-install-packages     → brew bundle from Brewfile (run_onchange)
 4. File operations (alphabetical by target):
-   - Decrypt encrypted_ files (age identity, no prompt)
    - Render .tmpl templates (bitwardenSecrets → chezmoi-bws → bws CLI)
    - Deploy files, directories, symlinks
 5. After scripts (alphabetical):
    03-setup                → bat cache, yazi plugins, carapace sync (run_once)
    05-ghostty-tmux         → installs LaunchAgent for tmux startup (run_onchange)
    06-ghostty-hide-shortcut → clears global Hide overrides, remaps Ghostty hide (run_once)
+   07-mail-setup           → creates runtime directories for the mail stack (run_once)
+   07-mail-maildirs        → creates Maildir roots for enabled accounts (run_onchange)
+   08-mail-sync            → reloads mail LaunchAgent when mail scheduling is enabled (run_onchange)
    macos-settings          → macOS defaults (run_once)
 ```
 
-## Encryption
+## Secrets
 
-Single age keypair, passphrase-protected. Passphrase only needed on first `chezmoi init`.
-
-```
-key.txt.age (in repo, passphrase-encrypted)
-    ↓ decrypted once by run_onchange_before_00
-~/.config/chezmoi/key.txt (plaintext identity)
-    ↓ used by chezmoi builtin age (no further prompts)
-    ├── ~/.ssh/id_ed25519
-    ├── ~/.supermaven/config.json
-    └── ~/.local/share/bws/token → chezmoi-bws → Bitwarden Secrets Manager
-                                      └── API keys rendered into ~/.config/zsh/local.zsh
-```
+The `lpersonal` baseline keeps Bitwarden template support dormant for later mail
+and secret rendering, but it does not ship any live encrypted payloads, age
+recipient, or maintainer token material.
 
 ## Key Paths
 
 | Source (chezmoi)      | Target                              | Notes                        |
 | --------------------- | ----------------------------------- | ---------------------------- |
-| `.chezmoi.toml.tmpl`  | `~/.config/chezmoi/chezmoi.toml`    | Config, profile, encryption  |
-| `key.txt.age`         | _(ignored, source-only)_            | Passphrase-encrypted age key |
-| `bin/chezmoi-bws`     | _(ignored, source-only)_            | BWS token wrapper            |
-| `dev/personal/dev-tools/dot_mrconfig` | `~/dev/personal/dev-tools/.mrconfig` | Personal dev-tools workspace repos |
+| `.chezmoi.toml.tmpl`  | `~/.config/chezmoi/chezmoi.toml`    | Config, `lpersonal` profile, placeholder identity |
+| `bin/chezmoi-bws`     | _(ignored, source-only)_            | Dormant Bitwarden helper for future secret rendering |
 | `literal_bin/`        | `~/bin/`                            | Shell utility scripts        |
-| `private_dot_ssh/`    | `~/.ssh/`                           | SSH keys (encrypted)         |
 | `private_dot_config/` | `~/.config/`                        | App configs                  |
 | `private_dot_config/abook/` | `~/.config/abook/`            | Abook config                 |
 | `private_dot_config/zsh/` | `~/.config/zsh/`                | Zsh config via `ZDOTDIR`     |
-| `private_dot_local/private_share/abook/` | `~/.local/share/abook/` | Abook data          |
 | `private_dot_local/private_share/colima/` | `~/.local/share/colima/` | Colima config + state |
 | `.chezmoiscripts/`    | _(lifecycle scripts, not deployed)_ | Before/after scripts         |
-| `.chezmoidata.yaml`   | _(template data)_                   | Catppuccin Mocha colors      |
+| `.chezmoidata.yaml`   | _(template data)_                   | Catppuccin Mocha colors and zero-account mail defaults |
 
 ## .chezmoiignore
 
@@ -106,9 +89,8 @@ Supports chezmoi template conditionals for OS-specific ignores.
 - `.chezmoiignore` is rendered as a template for many commands (`add`, `status`, `apply`); missing data keys in conditions can break unrelated commands.
 - When adding new data keys in `.chezmoi.toml.tmpl`, keep templates compatible with existing keys (for example `.profile`) until `chezmoi init` has been run everywhere.
 - For non-interactive checks, prefer `chezmoi apply --dry-run --force`; without `--force`, changed files may trigger TTY prompts and fail in headless shells.
-- In this repo, `chezmoi diff` is most reliable with absolute target paths (for example `/Users/mbastakis/.config/git/config`) when diffing a single file.
+- In this repo, `chezmoi diff` is most reliable with absolute target paths (for example `~/.config/git/config`) when diffing a single file.
 - `Documents/notes/.obsidian/workspace.json` is volatile UI state (recent files/workspace layout) and should stay ignored to avoid noisy churn and accidental overwrite.
-- `glab` rewrites `last_update_check_timestamp` in `.config/glab-cli/config.yml`; expect frequent drift unless that field is ignored or normalized.
 - Any new repo-only directory (like `docs/`) must be added to `.chezmoiignore` or chezmoi will deploy it to `~/`. The ignore file uses target-state paths, so `docs/` not `literal_docs/`.
 
 ## Shell Script Conventions
@@ -183,13 +165,11 @@ exit 0
 | ----------------------------------- | -------------------------------------- |
 | `{{ .chezmoi.os }}`                 | OS detection (`darwin`/`linux`)        |
 | `{{ .chezmoi.sourceDir }}`          | Chezmoi source directory path          |
-| `{{ .profile }}`                    | `personal` or `dt-work`                |
-| `{{ .dtWork }}`                     | Toggle DT work-only config             |
+| `{{ .profile }}`                    | Active profile (`lpersonal`)           |
 | `{{ .email }}`, `{{ .name }}`       | User data from config                  |
 | `{{ bitwardenSecrets "uuid" }}`     | Fetch secret from BWS                  |
 | `{{ include "file" \| sha256sum }}` | File content hash for change detection |
 | `{{ env "VAR" }}`                   | Read environment variable              |
-| `{{ promptChoiceOnce ... }}`        | Interactive prompt (cached)            |
 | `{{ value \| quote }}`              | Quote for TOML output                  |
 | `{{ value \| trim }}`               | Trim whitespace from secrets           |
 
@@ -229,7 +209,7 @@ cd ~/.local/share/chezmoi/private_dot_config/private_karabiner && ./build.sh
 
 ## Documentation (`docs/`)
 
-Docsify site deployed to GitHub Pages at `https://mbastakis.github.io/dotfiles/`.
+Docsify site is served from `docs/` as a zero-build SPA via `docs/index.html`.
 Source lives in `docs/`; served as a zero-build SPA via `docs/index.html`.
 
 ### Docs Maintenance Rule

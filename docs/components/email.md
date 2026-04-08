@@ -2,7 +2,9 @@
 
 Terminal Gmail stack managed by chezmoi: `NeoMutt` + `mbsync` + `msmtp` + `notmuch` + `abook`.
 
-Current rollout supports multiple enabled accounts rendered from `.chezmoidata.yaml`, with LaunchAgent automation active.
+The sanitized baseline keeps the full terminal Gmail stack, but starts with
+`mail.accounts: []` and no secrets. LaunchAgent automation stays inactive until
+you add at least one enabled account.
 
 ## Architecture
 
@@ -14,7 +16,7 @@ Current rollout supports multiple enabled accounts rendered from `.chezmoidata.y
 | Client | `NeoMutt` | Mail UI, mailbox views, compose flow | `~/.config/neomutt/` |
 | Contacts | `abook` | Local contact store + completion | `~/.config/abook/abookrc`, `~/.local/share/abook/addressbook` |
 | Orchestration | `mail-sync` | Locking, logging, sync + index pipeline | `~/bin/mail-sync` |
-| Scheduling | `launchd` LaunchAgent | Run `mail-sync --quiet` at login + interval | `~/Library/LaunchAgents/com.mbastakis.mail-sync.plist` |
+| Scheduling | `launchd` LaunchAgent | Run `mail-sync --quiet` at login + interval | `~/Library/LaunchAgents/com.lpersonal.mail-sync.plist` |
 
 ## Why App Passwords In v1
 
@@ -50,21 +52,21 @@ neomutt -n -F "$HOME/.config/neomutt/neomuttrc" -D
 | `nm` | Open NeoMutt |
 | `msync` | Run sync/index pipeline now |
 | `mail-sync --dry-run` | Preview IMAP sync without index mutation |
-| `mail-sync --account mbastakis` | Sync a single account/channel |
+| `mail-sync --account <account-id>` | Sync a single account/channel |
 | `ab` | Open `abook` contact editor |
 
 Useful notmuch checks:
 
 ```bash
 notmuch search 'tag:inbox and not tag:spam and not tag:trash'
-notmuch search 'tag:acct-mbastakis and tag:inbox'
+notmuch search 'tag:acct-<account-id> and tag:inbox'
 ```
 
 ## NeoMutt Mailbox Workflow
 
 - Unified inbox is a notmuch virtual mailbox over all enabled account inboxes: `tag:inbox and not tag:spam and not tag:trash`.
-- Per-account inboxes are shown once in the sidebar as numbered physical Maildir rows (for example `[1] mbastakis Inbox`) so the visible label matches `i1`..`i9`.
-- Per-account virtual mailboxes use account tags from `post-new` (for example `acct-mbastakis`) for sent/drafts/spam/trash views without duplicating inbox rows.
+- Per-account inboxes are shown once in the sidebar as numbered physical Maildir rows (for example `[1] personal Inbox`) so the visible label matches `i1`..`i9`.
+- Per-account virtual mailboxes use account tags from `post-new` (for example `acct-<account-id>`) for sent/drafts/spam/trash views without duplicating inbox rows.
 - NeoMutt hides noisy backend tags (for example account and role tags), keeps attachment/user labels visible, and appends transformed notmuch tags to the index when they matter.
 - Folder/send hooks in `accounts.muttrc.tmpl` switch identity + `msmtp --account=<id>` and keep current-account mailbox targets in sync for role-jump macros.
 - Local sent-copy duplication is disabled (`set record=""`) to avoid double-sent artifacts with Gmail.
@@ -140,7 +142,7 @@ Behavior:
 | SMTP failures | Run `msmtp --serverinfo --account=<id>` |
 | Unified inbox empty/stale | Run `mail-sync` and verify `notmuch config list` + `notmuch new` |
 | `notmuch new` prints `.uidvalidity` notices | Safe Maildir metadata; `new.ignore=.uidvalidity` suppresses the noise |
-| LaunchAgent not running | `plutil -lint ~/Library/LaunchAgents/com.mbastakis.mail-sync.plist` and `launchctl print gui/$(id -u)/com.mbastakis.mail-sync` |
+| LaunchAgent not running | `plutil -lint ~/Library/LaunchAgents/com.lpersonal.mail-sync.plist` and `launchctl print gui/$(id -u)/com.lpersonal.mail-sync` |
 | Contacts completion mismatch | Ensure `~/.config/abook/abookrc` and `~/.local/share/abook/addressbook` exist and `query_command` still points to both explicit paths |
 
 Operational notes:
@@ -175,4 +177,4 @@ Revisit OAuth2 only if app passwords become unavailable/unstable or Google Conta
 - `private_dot_config/neomutt/mailcap`
 - `literal_bin/executable_mail-view-image`
 - `literal_bin/executable_mail-sync.tmpl`
-- `private_Library/LaunchAgents/com.mbastakis.mail-sync.plist.tmpl`
+- `private_Library/LaunchAgents/com.lpersonal.mail-sync.plist.tmpl`

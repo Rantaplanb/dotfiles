@@ -1,6 +1,9 @@
 return {
   "obsidian-nvim/obsidian.nvim",
   version = "*",
+  enabled = function()
+    return vim.fn.isdirectory(vim.fn.expand("~/Documents/notes")) == 1
+  end,
   event = "BufReadPre */Documents/notes/*.md",
   dependencies = { "nvim-telescope/telescope.nvim" },
   opts = {

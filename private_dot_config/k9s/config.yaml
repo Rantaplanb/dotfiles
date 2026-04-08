@@ -1,6 +1,6 @@
 k9s:
   liveViewAutoRefresh: false
-  screenDumpDir: /Users/A200407315/Library/Application Support/k9s/screen-dumps
+  screenDumpDir: ~/.local/state/k9s/screen-dumps
   refreshRate: 2
   apiServerTimeout: 15s
   maxConnRetry: 5

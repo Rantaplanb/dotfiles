@@ -1,6 +1,9 @@
 # Account-aware identity, mailbox targets, and send settings.
 
 {{ $primaryAccount := .mail.defaults.primary_account -}}
+{{- if eq (len .mail.accounts) 0 }}
+# No mail accounts are configured yet. Add enabled entries to .chezmoidata.yaml.
+{{- else }}
 {{ range .mail.accounts -}}
 {{ if and .enabled (eq .id $primaryAccount) -}}
 {{ $inboxMailbox := printf "+%s/%s" .id .folders.inbox -}}
@@ -89,3 +92,4 @@ send-hook '~f {{ .address }}' 'set my_account="{{ .id }}" from={{ .address | quo
 
 {{ end -}}
 {{ end -}}
+{{- end }}

@@ -13,8 +13,8 @@ Use this skill to create new Linear issues from scoped requests.
 
 Default assumptions unless user says otherwise:
 
-- Team: `Mbast`
-- Assignee: `mbastakis`
+- Team: user-provided
+- Assignee: user-provided
 - Priority: `3` (normal)
 
 ## Pre-Create Checks
@@ -24,17 +24,17 @@ Default assumptions unless user says otherwise:
 linear-cli whoami
 
 # Quick duplicate scan
-linear-cli i list -t Mbast --output json --compact
+linear-cli i list -t <TEAM_KEY> --output json --compact
 ```
 
 ## Create Flow
 
 ```bash
 # 1) Create issue
-linear-cli i create "<title>" -t Mbast -p 3 --output json --compact
+linear-cli i create "<title>" -t <TEAM_KEY> -p 3 --output json --compact
 
 # 2) Assign owner
-linear-cli i assign <ID> "mbastakis" --output json --compact
+linear-cli i assign <ID> "<ASSIGNEE>" --output json --compact
 
 # 3) Set initial status/labels if needed
 linear-cli i update <ID> -s "Todo" -l "enhancement" --output json --compact

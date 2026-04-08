@@ -12,9 +12,6 @@ docs/
 ai-docs/
 specs/
 
-# Age encryption key (decrypted by run_onchange_before script)
-key.txt.age
-
 # Keep repo helper scripts out of target ~/bin
 bin/chezmoi-bws
 
@@ -38,9 +35,7 @@ Cargo.lock
 .cache/
 .config/zsh/.zcompdump
 .config/zsh/.zcompdump-*
-.config/aws-login/cache/**
 .config/carapace/.versions
-.config/glab-cli/recover/**
 .config/navi/navi.log
 .config/nvim/lazy-lock.json
 .config/opencode/package.json
@@ -85,12 +80,9 @@ Documents/notes/.trash/
 .ssh/known_hosts
 .ssh/known_hosts.old
 
-{{- if and (ne .profile "dt-work") (ne .profile "work") }}
-# DT work-specific config
-.config/glab-cli/
-.config/git/.gitconfig-work
-.ssh/gitlab-telekom
-.ssh/gitlab-telekom.pub
+{{- if eq (len .mail.accounts) 0 }}
+# Mail scheduling stays disabled until at least one enabled account exists.
+Library/LaunchAgents/com.lpersonal.mail-sync.plist
 {{- end }}
 
 {{- if ne .chezmoi.os "darwin" }}
@@ -99,7 +91,7 @@ Documents/notes/.trash/
 .config/karabiner/
 .config/finicky/
 .config/sketchybar/
-Library/LaunchAgents/com.mbastakis.ghostty-tmux.plist
-Library/LaunchAgents/com.mbastakis.mail-sync.plist
+Library/LaunchAgents/com.lpersonal.ghostty-tmux.plist
+Library/LaunchAgents/com.lpersonal.mail-sync.plist
 bin/switch-input-source
 {{- end }}

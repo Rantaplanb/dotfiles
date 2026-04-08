@@ -34,7 +34,7 @@ linear-cli i update <ID> -s "Todo" --output json --compact
 linear-cli i update <ID> -l "bug,urgent" --output json --compact
 
 # Reassign
-linear-cli i assign <ID> "mbastakis" --output json --compact
+linear-cli i assign <ID> "<ASSIGNEE>" --output json --compact
 
 # Add context
 linear-cli i comment <ID> -b "<update note>" --output json --compact

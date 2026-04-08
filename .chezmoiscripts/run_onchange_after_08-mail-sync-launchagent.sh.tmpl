@@ -1,6 +1,6 @@
 #!/bin/bash
 # Keep mail-sync LaunchAgent loaded after config changes.
-# hash-plist: {{ include "private_Library/LaunchAgents/com.mbastakis.mail-sync.plist.tmpl" | sha256sum }}
+# hash-plist: {{ include "private_Library/LaunchAgents/com.lpersonal.mail-sync.plist.tmpl" | sha256sum }}
 # interval-seconds: {{ mul .mail.defaults.sync_interval_minutes 60 }}
 
 {{- if ne .chezmoi.os "darwin" }}
@@ -10,7 +10,7 @@ exit 0
 set -euo pipefail
 
 domain="gui/$(id -u)"
-label="com.mbastakis.mail-sync"
+label="com.lpersonal.mail-sync"
 plist="$HOME/Library/LaunchAgents/${label}.plist"
 
 if [[ ! -f "$plist" ]]; then

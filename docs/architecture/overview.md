@@ -45,7 +45,7 @@ Chezmoi translates source-state file names to target paths using naming conventi
 | `private_dot_config/terraform/terraform.rc` | `~/.config/terraform/terraform.rc` | Terraform CLI defaults |
 | `private_dot_local/private_share/abook/` | `~/.local/share/abook/` | Abook data |
 | `private_dot_local/private_share/colima/` | `~/.local/share/colima/` | Colima config and state |
-| `private_Library/LaunchAgents/com.mbastakis.mail-sync.plist.tmpl` | `~/Library/LaunchAgents/com.mbastakis.mail-sync.plist` | Mail sync scheduler |
+| `private_Library/LaunchAgents/com.lpersonal.mail-sync.plist.tmpl` | `~/Library/LaunchAgents/com.lpersonal.mail-sync.plist` | Mail sync scheduler (ignored until accounts are configured) |
 | `literal_bin/executable_mail-*` | `~/bin/mail-*` | Mail helper scripts (`mail-sync`, `mail-open`) |
 | `.chezmoiscripts/` | _(lifecycle scripts)_ | Before/after scripts (e.g. LaunchAgent reload, Ghostty-only Cmd+H override), not deployed |
 | `.chezmoidata.yaml` | _(template data)_ | Catppuccin Mocha color palette |
@@ -73,39 +73,29 @@ The `.chezmoiignore` file uses **target-state paths** (not source-state names) a
 
 - **Build artifacts:** `node_modules/`, `target/`, `__pycache__/`, lock files
 - **Caches:** `.cache/`, `.config/carapace/.versions`, `lazy-lock.json`, yazi plugins
-- **Runtime state:** `glab-cli/recover/`, `.obsidian/`, `.DS_Store`
+- **Runtime state:** `.obsidian/`, `.DS_Store`
 - **Obsidian vault generated files:** Plugin binaries (`main.js`, `manifest.json`, `styles.css`), themes, icons, and `workspace.json` under `Documents/notes/.obsidian/` are ignored — only settings JSONs and plugin `data.json` files are managed
-- **Profile-conditional:** DT work configs (glab, git work config, GitLab SSH keys) excluded when profile is not `dt-work`
+- **Mail-conditional:** mail LaunchAgent is ignored until at least one enabled account exists
 - **OS-conditional:** macOS-only configs (Aerospace, Karabiner, Finicky, SketchyBar, Ghostty LaunchAgent, mail LaunchAgent) excluded on Linux
 
 _Reference: `.chezmoiignore:19`, `.chezmoiignore:54`_
 
 ## Profile System
 
-The config template (`.chezmoi.toml.tmpl`) determines the active profile at `chezmoi init` time:
+The config template (`.chezmoi.toml.tmpl`) hardcodes a single active profile:
 
-1. Check `CHEZMOI_PROFILE` env var (`dt-work`, `work`, or `personal`).
-2. If unset, prompt interactively via `promptChoiceOnce`.
-3. Profile sets `.profile` and `.dtWork` template variables.
-4. These variables control conditional ignores, template rendering, and secret fetching.
+1. `profile = "lpersonal"`
+2. Placeholder `name` and `email` values are rendered until you replace them.
+3. Bitwarden template support remains available for future secrets, but no live encrypted payloads ship in the baseline.
 
 _Reference: `.chezmoi.toml.tmpl:1`_
 
-## Encryption Model
+## Secrets Baseline
 
-A single age keypair protects all sensitive files. The passphrase is only needed once during `chezmoi init`:
-
-```mermaid
-flowchart TD
-  A[key.txt.age<br/>in repo, passphrase-encrypted] -->|decrypted once by script 00| B[~/.config/chezmoi/key.txt<br/>plaintext identity]
-  B -->|age decrypt| C[~/.ssh/id_ed25519]
-  B -->|age decrypt| D[~/.supermaven/config.json]
-  B -->|age decrypt| E[~/.local/share/bws/token]
-  E -->|chezmoi-bws wrapper| F[Bitwarden Secrets Manager]
-  F -->|bitwardenSecrets template func| G[API keys in ~/.config/zsh/local.zsh]
-```
-
-_Reference: `AGENTS.md:62`_
+The `lpersonal` baseline ships without the original maintainer's encrypted files,
+SSH material, mail credentials, or Bitwarden token. Reintroduce age recipients,
+encrypted files, and personal secret rendering only after generating your own
+keys and tokens.
 
 ## References
 

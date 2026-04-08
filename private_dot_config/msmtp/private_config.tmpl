@@ -6,6 +6,9 @@ tls on
 tls_starttls on
 logfile ~/.local/state/mail/log/msmtp.log
 
+{{- if eq (len .mail.accounts) 0 }}
+# Configure one or more enabled Gmail accounts in .chezmoidata.yaml to activate msmtp.
+{{- else }}
 {{ range .mail.accounts -}}
 {{ if .enabled -}}
 {{ $appPassword := ((bitwardenSecrets .secrets.app_password_uuid).value | trim) -}}
@@ -18,4 +21,7 @@ password {{ $appPassword | quote }}
 
 {{ end -}}
 {{ end -}}
+{{- if ne .mail.defaults.primary_account "" }}
 account default : {{ .mail.defaults.primary_account }}
+{{- end }}
+{{- end }}

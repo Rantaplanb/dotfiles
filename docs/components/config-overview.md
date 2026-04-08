@@ -34,7 +34,6 @@ Summary of notable config areas managed by chezmoi, with links to dedicated docs
 | Finicky | `private_dot_config/finicky/` | -- | macOS browser routing (Darwin only) |
 | SketchyBar | `private_dot_config/sketchybar/` | -- | macOS status bar (Darwin only) |
 | Raycast | `private_dot_config/raycast/` | -- | macOS launcher (partial, extensions ignored) |
-| glab CLI | `private_dot_config/glab-cli/` | -- | GitLab CLI (DT work profile only) |
 | Diffnav | `private_dot_config/diffnav/` | -- | Git diff TUI pager (file tree + delta rendering) |
 | gh-dash | `private_dot_config/gh-dash/` | -- | GitHub dashboard TUI (`gh` extension, Catppuccin Mocha Mauve) |
 
@@ -78,10 +77,9 @@ _Reference: `private_dot_config/sesh/sesh.toml:1`_
 
 ## Git
 
-Git configuration with optional work profile:
+Git configuration for the sanitized baseline:
 
 - Base config at `~/.config/git/config`
-- Work-specific config at `~/.config/git/.gitconfig-work` (DT work profile only, conditional include)
 - Uses diffnav as `git diff`/`git show` pager (TUI with file tree, powered by delta underneath)
 - Delta remains as `core.pager` for non-diff git output (log, blame) and as interactive diffFilter
 - Catppuccin Mocha theme via delta's `[delta]` config section
@@ -92,7 +90,8 @@ _Reference: `private_dot_config/git/`_
 
 Homebrew Brewfile at `~/.config/brew/Brewfile`. Managed by the lifecycle script `02-install-packages` which runs `brew bundle` when the Brewfile content changes.
 
-`aws-login` is installed from the private tap `mbastakis/tap` (formula `mbastakis/tap/aws-login`) instead of being compiled from dotfiles source.
+The Brewfile intentionally excludes personal taps, AWS wrapper tooling, and
+work-specific GitLab CLI config from the `lpersonal` baseline.
 
 _Reference: `private_dot_config/brew/Brewfile`_
 

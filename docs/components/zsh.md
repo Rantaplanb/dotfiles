@@ -111,7 +111,6 @@ Tool initialization for interactive shells:
 | Zoxide | `zoxide init --cmd cd zsh` | Replaces `cd`; unaliases `zi` to avoid zinit conflict |
 | Direnv | `direnv hook zsh` | Per-directory environment variables |
 | Starship | `starship init zsh` | Prompt |
-| aws-login | `aws-login init zsh` | Defines `aws-login` and `aws-login-exec` shell functions |
 
 Atuin is loaded in `fzf.zsh` (after fzf setup) so it can take over `Ctrl-R`, and Atuin AI shell integration is loaded there too.
 

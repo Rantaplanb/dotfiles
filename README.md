@@ -1,17 +1,21 @@
-# mbastakis dotfiles (chezmoi)
+# lpersonal dotfiles (chezmoi)
 
 ## Install
 
 ```bash
-sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply mbastakis
+sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply <fork-owner>
 ```
 
-This single command installs chezmoi, clones the repo, installs all
-prerequisites (Homebrew, age, bws) via chezmoi `before` scripts, decrypts
-encrypted files, and applies everything. You will be prompted for:
+The sanitized `lpersonal` baseline installs chezmoi, clones the repo, runs the
+package bootstrap, and applies the reusable workstation config without
+requiring the original maintainer's secrets, SSH material, or mail accounts.
 
-1. **DT work config** — `yes` or `no` (personal baseline is always enabled)
-2. **Age passphrase** — the single unlock secret for all encrypted files
+Follow-up setup happens later:
+
+1. Replace placeholder name/email values with your own identity.
+2. Add your own SSH config and keys.
+3. Add your Gmail accounts and app-password/secret wiring.
+4. Generate your own age keypair and reintroduce encrypted files when ready.
 
 ## Daily use
 

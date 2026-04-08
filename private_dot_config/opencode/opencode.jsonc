@@ -11,8 +11,6 @@
       "/tmp/*": "allow",
       "~/.config/opencode/*": "allow",
       "~/.config/opencode/**/*": "allow",
-      "/Users/mbastakis/.config/opencode/*": "allow",
-      "/Users/mbastakis/.config/opencode/**/*": "allow",
     },
     "bash": {
       // IMPORTANT: This MUST be first - last matching rule wins!

@@ -40,7 +40,7 @@ linear-cli p members "<name>" --output json --compact
 linear-cli t list --output json --compact
 
 # Current cycle for a team
-linear-cli c current -t Mbast --output json --compact
+linear-cli c current -t <TEAM_KEY> --output json --compact
 
 # Labels
 linear-cli l list --output json --compact

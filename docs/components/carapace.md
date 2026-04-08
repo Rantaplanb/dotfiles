@@ -48,8 +48,6 @@ Written manually when no bridge type works:
 | Tool | Why Native |
 |---|---|
 | `bw` (Bitwarden CLI) | No standard completion interface |
-| `aws-login` | Custom subcommands + dynamic profile completion via `--list-profiles` |
-
 Native specs follow the carapace YAML spec format with positional args, flags, and subcommands.
 
 _Reference: `private_dot_config/carapace/AGENTS.md:30`_
@@ -122,5 +120,4 @@ _Reference: `private_dot_config/carapace/AGENTS.md:60`_
 - AGENTS: `private_dot_config/carapace/AGENTS.md:1`
 - Config: `private_dot_config/carapace/config.yaml:1`
 - Tools registry: `private_dot_config/carapace/tools.yaml:1`
-- Native specs: `private_dot_config/carapace/specs/aws-login.yaml:1`
 - Zsh integration: `private_dot_config/zsh/dot_zshrc:37`

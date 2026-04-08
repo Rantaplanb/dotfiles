@@ -1,30 +1,11 @@
-{{- $profileEnv := env "CHEZMOI_PROFILE" -}}
-{{- $dtWork := false -}}
-{{- if or (eq $profileEnv "dt-work") (eq $profileEnv "work") -}}
-{{-   $dtWork = true -}}
-{{- else if eq $profileEnv "personal" -}}
-{{-   $dtWork = false -}}
-{{- else -}}
-{{-   $dtWorkChoice := promptChoiceOnce . "dt-work" "Enable DT work configuration?" (list "no" "yes") -}}
-{{-   $dtWork = eq $dtWorkChoice "yes" -}}
-{{- end -}}
-{{- $profile := "personal" -}}
-{{- if $dtWork -}}
-{{-   $profile = "dt-work" -}}
-{{- end -}}
-
-encryption = "age"
-
-[age]
-    identity = "~/.config/chezmoi/key.txt"
-    recipient = "age1sgju3gp8hzxqprzhh4hlcq43see0yel3hus6zp8tkgqu3che2gnqkeq2jl"
-
 [data]
-    profile = {{ $profile | quote }}
-    dtWork = {{ $dtWork }}
-    email = "mbastakis@gmail.com"
-    name = "Michail Bastakis"
+    profile = "lpersonal"
+    email = "user@example.com"
+    name = "Lpersonal User"
 
+# Future work:
+# - add your own [age] section after generating a new recipient/keypair
+# - keep Bitwarden integration dormant until you add your own token and secrets
 [bitwardenSecrets]
     command = "{{ .chezmoi.sourceDir }}/bin/chezmoi-bws"
 

@@ -25,6 +25,8 @@ else
     echo "Non-interactive shell detected. Skipping Mac App Store installs during chezmoi apply."
     # Skip all MAS app IDs in Brewfile to avoid interactive App Store password prompts.
     export HOMEBREW_BUNDLE_MAS_SKIP="${HOMEBREW_BUNDLE_MAS_SKIP:-937984704 1352778147 1452453066 1635403801 985367838 6740142714 1639306886}"
+    # Skip casks that install signed .pkg payloads and prompt for sudo.
+    export HOMEBREW_BUNDLE_CASK_SKIP="${HOMEBREW_BUNDLE_CASK_SKIP:-font-sf-pro karabiner-elements}"
     brew bundle --file="$BREWFILE_PATH"
     echo "To install Mac App Store apps later, run this in an interactive terminal:"
     echo "  brew bundle --file=\$HOME/.config/brew/Brewfile"

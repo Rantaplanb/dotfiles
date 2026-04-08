@@ -114,16 +114,9 @@ _Reference: `private_dot_config/opencode/README.md:24`_
 
 ## Skills
 
-### aws-login
-
-Bundled skill for safe AWS and kubectl usage through the `aws-login` CLI wrapper:
-
-- Defines required command pattern: `aws-login exec <env> -- <tool> <command>`
-- Documents environment mapping for `playground`, `dev`, and `prod`
-- Enforces a preflight protocol (context check, history check, context alignment)
-- Includes examples for both `kubectl` and `aws` commands
-
-_Reference: `private_dot_config/opencode/skill/aws-login/SKILL.md`_
+The sanitized baseline keeps OpenCode agents, commands, and Linear helpers, but
+excludes the original maintainer's AWS wrapper integration and identity-specific
+defaults.
 
 ### crawl4ai
 

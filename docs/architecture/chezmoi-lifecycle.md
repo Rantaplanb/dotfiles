@@ -1,6 +1,7 @@
 # Chezmoi Lifecycle
 
-How `chezmoi apply` transforms source state into target state, including script execution order, template rendering, and encryption.
+How `chezmoi apply` transforms source state into target state in the sanitized
+`lpersonal` baseline.
 
 ## Apply Phases
 
@@ -11,13 +12,10 @@ flowchart TD
   C --> D[4. File operations<br/>alphabetical by target]
   D --> E[5. After scripts<br/>alphabetical order]
 
-  C --> C1[00 - decrypt age key<br/>run_onchange]
-  C --> C2[01 - install bws CLI<br/>run_once]
-  C --> C3[02 - install packages<br/>run_onchange]
+  C --> C1[02 - install packages<br/>run_onchange]
 
-  D --> D1[Decrypt encrypted_ files]
-  D --> D2[Render .tmpl templates]
-  D --> D3[Deploy files, dirs, symlinks]
+  D --> D1[Render .tmpl templates]
+  D --> D2[Deploy files, dirs, symlinks]
 
   E --> E1[03 - setup tasks<br/>run_once]
   E --> E2[05 - ghostty-tmux agent<br/>run_onchange]
@@ -34,18 +32,6 @@ _Reference: `AGENTS.md:42`_
 
 Executed alphabetically before any file operations. All scripts have Darwin-only OS guards.
 
-### 00 - Decrypt Private Key (`run_onchange`)
-
-Decrypts `key.txt.age` to `~/.config/chezmoi/key.txt` using `chezmoi age decrypt --passphrase`. This is the **only passphrase prompt** in the entire workflow. Re-runs when the age file content hash changes.
-
-_Reference: `.chezmoiscripts/run_onchange_before_00-decrypt-private-key.sh.tmpl:1`_
-
-### 01 - Install BWS CLI (`run_once`)
-
-Installs the Bitwarden Secrets Manager CLI if not already present. Runs once, ever. Guards on `command -v bws`.
-
-_Reference: `.chezmoiscripts/run_once_before_01-install-bws.sh.tmpl:1`_
-
 ### 02 - Install Packages (`run_onchange`)
 
 Runs `brew bundle` from the Brewfile. Re-runs when Brewfile content hash changes. Self-bootstraps Homebrew if missing. Detects non-interactive shells and skips Mac App Store installs (avoids password prompts in headless sessions).
@@ -56,9 +42,8 @@ _Reference: `.chezmoiscripts/run_onchange_before_02-install-packages.sh.tmpl:1`_
 
 After before scripts complete, chezmoi processes files alphabetically by target path:
 
-1. **Decrypt** `encrypted_` prefixed files using the age identity at `~/.config/chezmoi/key.txt`. No further passphrase prompts.
-2. **Render** `.tmpl` templates using chezmoi data (`.chezmoi.toml.tmpl` data section, `.chezmoidata.yaml`) and the `bitwardenSecrets` function (which calls `chezmoi-bws` -> `bws` CLI).
-3. **Deploy** files, directories, and symlinks to their target paths.
+1. **Render** `.tmpl` templates using chezmoi data (`.chezmoi.toml.tmpl` data section, `.chezmoidata.yaml`) and the dormant `bitwardenSecrets` function when enabled mail accounts exist.
+2. **Deploy** files, directories, and symlinks to their target paths.
 
 ## After Scripts
 
@@ -77,7 +62,7 @@ _Reference: `.chezmoiscripts/run_once_after_03-setup.sh.tmpl:1`_
 
 ### 05 - Ghostty-tmux LaunchAgent (`run_onchange`)
 
-Manages the macOS LaunchAgent for Ghostty+tmux auto-start. Removes the legacy `Tmux.Start.plist` agent and reloads the new `com.mbastakis.ghostty-tmux` agent via `launchctl bootstrap`. Guards on plist file existence and GUI domain availability.
+Manages the macOS LaunchAgent for Ghostty+tmux auto-start. Removes the legacy `Tmux.Start.plist` agent and reloads the new `com.lpersonal.ghostty-tmux` agent via `launchctl bootstrap`. Guards on plist file existence and GUI domain availability.
 
 _Reference: `.chezmoiscripts/run_onchange_after_05-ghostty-tmux-launchagent.sh.tmpl:1`_
 
@@ -111,7 +96,7 @@ _Reference: `.chezmoiscripts/run_onchange_after_07-mail-maildirs.sh.tmpl:1`_
 
 ### 08 - Mail Sync LaunchAgent Reload (`run_onchange`)
 
-Reloads `com.mbastakis.mail-sync` LaunchAgent when plist template content or configured sync interval changes. Guards on plist existence and GUI domain availability, then uses `launchctl bootout` + `launchctl bootstrap`.
+Reloads `com.lpersonal.mail-sync` LaunchAgent when plist template content or configured sync interval changes. Guards on plist existence and GUI domain availability, then uses `launchctl bootout` + `launchctl bootstrap`.
 
 _Reference: `.chezmoiscripts/run_onchange_after_08-mail-sync-launchagent.sh.tmpl:1`_
 
@@ -145,13 +130,12 @@ Hash comments use the pattern `# hash: {{ include "path" | sha256sum }}` to trac
 |---|---|
 | `{{ .chezmoi.os }}` | OS detection (`darwin`/`linux`) |
 | `{{ .chezmoi.sourceDir }}` | Chezmoi source directory path |
-| `{{ .profile }}` | Active profile (`personal` or `dt-work`) |
+| `{{ .profile }}` | Active profile (`lpersonal`) |
 | `{{ .dtWork }}` | Boolean toggle for DT work config |
 | `{{ .email }}`, `{{ .name }}` | User identity from config |
 | `{{ bitwardenSecrets "uuid" }}` | Fetch secret value from BWS |
 | `{{ include "file" \| sha256sum }}` | File content hash for change detection |
 | `{{ env "VAR" }}` | Read environment variable |
-| `{{ promptChoiceOnce ... }}` | Interactive prompt with cached result |
 | `{{ value \| quote }}` | Quote value for TOML output |
 | `{{ value \| trim }}` | Trim whitespace from secrets |
 

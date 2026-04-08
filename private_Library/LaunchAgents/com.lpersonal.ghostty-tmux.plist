@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
     <key>Label</key>
-    <string>com.mbastakis.ghostty-tmux</string>
+    <string>com.lpersonal.ghostty-tmux</string>
     <key>ProgramArguments</key>
     <array>
         <string>/usr/bin/open</string>

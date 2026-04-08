@@ -152,6 +152,11 @@ if [[ ! -f "$NOTMUCH_CONFIG" ]]; then
     exit 1
 fi
 
+if ! grep -q '^Channel ' "$mbsync_config"; then
+    log_line "INFO" "No enabled mail accounts configured; skipping sync."
+    exit 0
+fi
+
 mbsync_cmd=(mbsync -c "$mbsync_config")
 if [[ "$dry_run" == "true" ]]; then
     mbsync_cmd+=(--dry-run)

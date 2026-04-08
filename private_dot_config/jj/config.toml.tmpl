@@ -7,17 +7,8 @@
 # Must duplicate user settings here with path-based conditionals.
 
 [user]
-name = "Michail Bastakis"
-email = "mbastakis@gmail.com"
-
-{{- if or (eq .profile "dt-work") (eq .profile "work") }}
-# DT work override: repos under ~/dev/work use work identity
-[[--scope]]
---when.repositories = ["~/dev/work"]
-[--scope.user]
-name = "Michail Bastakis"
-email = "Michail.Bastakis@telekom.com"
-{{- end }}
+name = "Lpersonal User"
+email = "user@example.com"
 
 # =============================================================================
 # UI Settings

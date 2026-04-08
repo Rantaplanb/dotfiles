@@ -34,10 +34,10 @@ linear-cli i get MBA-123 --output json --compact
 
 ```bash
 # List by team
-linear-cli i list -t Mbast --output json --compact
+linear-cli i list -t <TEAM_KEY> --output json --compact
 
 # List by status
-linear-cli i list -t Mbast -s "In Progress" --output json --compact
+linear-cli i list -t <TEAM_KEY> -s "In Progress" --output json --compact
 
 # List your in-progress work
 linear-cli i list --mine -s "In Progress" --output json --compact
@@ -50,7 +50,7 @@ linear-cli i list --mine -s "In Progress" --output json --compact
 linear-cli t list --output json --compact
 
 # Current cycle for team
-linear-cli c current -t Mbast --output json --compact
+linear-cli c current -t <TEAM_KEY> --output json --compact
 
 # Labels
 linear-cli l list --output json --compact
