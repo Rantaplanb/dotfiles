@@ -6187,7 +6187,7 @@
             ]
           },
           {
-            "description": "Change hyper+hjkl to arrow keys and navigation",
+            "description": "Change hyper+hctns to arrows/navigation for Dvorak home cluster",
             "manipulators": [
               {
                 "conditions": [
@@ -6247,6 +6247,37 @@
                 "to": [
                   {
                     "key_code": "escape"
+                  }
+                ],
+                "type": "basic"
+              },
+              {
+                "conditions": [
+                  {
+                    "name": "hyper_caps_lock",
+                    "type": "variable_if",
+                    "value": 1
+                  },
+                  {
+                    "type": "device_if",
+                    "identifiers": [
+                      {
+                        "is_built_in_keyboard": true
+                      }
+                    ]
+                  }
+                ],
+                "from": {
+                  "key_code": "i",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "up_arrow"
                   }
                 ],
                 "type": "basic"
@@ -6339,7 +6370,7 @@
                 },
                 "to": [
                   {
-                    "key_code": "up_arrow"
+                    "key_code": "right_arrow"
                   }
                 ],
                 "type": "basic"
@@ -6438,7 +6469,7 @@
                 },
                 "to": [
                   {
-                    "key_code": "right_arrow"
+                    "key_code": "left_option"
                   }
                 ],
                 "type": "basic"

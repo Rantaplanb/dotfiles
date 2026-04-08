@@ -88,6 +88,22 @@ Rules are numbered and processed in order. Rules 03-10 are **generated** by `bui
 
 _Reference: `private_dot_config/private_karabiner/src/rules/`_
 
+## Hyper Navigation
+
+Caps-hold navigation follows the Dvorak cluster `h c t n`, which maps to physical `j i k l` on a US keyboard:
+
+| Dvorak Key | Physical QWERTY Key | Action |
+|---|---|---|
+| `h` | `j` | Left |
+| `c` | `i` | Up |
+| `t` | `k` | Down |
+| `n` | `l` | Right |
+| `s` | `;` | Command |
+
+The old `s`/`;` right-arrow slot is reused as a held Command key while Caps is active.
+
+_Reference: `private_dot_config/private_karabiner/src/rules/15-hyper-navigation.json:1`_
+
 ## HRM Template
 
 Each HRM key gets 3 manipulators generated from `src/templates/hrm.json`:

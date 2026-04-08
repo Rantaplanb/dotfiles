@@ -48,7 +48,7 @@ echo "Building karabiner.json..."
 # ============================================================================
 is_all_devices_rule() {
     local filename="$1"
-    for rule in "${ALL_DEVICES_RULES[@]}"; do
+    for rule in "${ALL_DEVICES_RULES[@]-}"; do
         [[ "$filename" == "$rule" ]] && return 0
     done
     return 1
