@@ -1,0 +1,6 @@
+# Compatibility shim for tools that still source ~/.zshrc directly.
+export ZDOTDIR="${ZDOTDIR:-$HOME/.config/zsh}"
+
+if [[ "${DOTFILES_ZSHRC_SOURCED:-0}" != "1" && -f "$ZDOTDIR/.zshrc" ]]; then
+  source "$ZDOTDIR/.zshrc"
+fi

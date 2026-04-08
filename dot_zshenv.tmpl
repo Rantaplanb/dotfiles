@@ -23,6 +23,7 @@ unset VIMINIT
 
 # Zsh config directory (zsh reads .zshrc/.zprofile from here instead of $HOME)
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
+[[ -x "/bin/zsh" ]] && export SHELL="/bin/zsh"
 
 # Disable Apple Terminal shell session files under $HOME.
 export SHELL_SESSIONS_DISABLE=1

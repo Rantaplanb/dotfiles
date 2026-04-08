@@ -1,5 +1,27 @@
 # Enable profiling: ZSHRC_PROFILE=1 zsh -i -c exit
 [[ -n "$ZSHRC_PROFILE" ]] && zmodload zsh/zprof
+export DOTFILES_ZSHRC_SOURCED=1
+
+# Ghostty automatic shell injection only applies to the initial shell.
+# Source the integration manually so tmux shells inherit prompt marks/features.
+if [[ -n "${GHOSTTY_RESOURCES_DIR:-}" ]]; then
+  _ghostty_integration="$GHOSTTY_RESOURCES_DIR/shell-integration/zsh/ghostty-integration"
+  [[ -r "$_ghostty_integration" ]] && builtin source "$_ghostty_integration"
+  unset _ghostty_integration
+fi
+
+# VS Code/Cursor automatic injection can be skipped when ZDOTDIR is forced in .zshenv.
+# Load shell integration manually in editor terminals when it was not injected.
+if [[ "${TERM_PROGRAM:-}" == "vscode" && -z "${VSCODE_SHELL_INTEGRATION:-}" ]]; then
+  for _vscode_integration in \
+    "/Applications/Cursor.app/Contents/Resources/app/out/vs/workbench/contrib/terminal/common/scripts/shellIntegration-rc.zsh" \
+    "/Applications/Visual Studio Code.app/Contents/Resources/app/out/vs/workbench/contrib/terminal/common/scripts/shellIntegration-rc.zsh"; do
+    [[ -r "$_vscode_integration" ]] || continue
+    builtin source "$_vscode_integration"
+    break
+  done
+  unset _vscode_integration
+fi
 
 # ZSH configuration - main entry point
 # shellcheck disable=SC1091
