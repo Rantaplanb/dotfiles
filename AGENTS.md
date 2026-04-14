@@ -52,6 +52,7 @@ Pre-push: `chezmoi apply --dry-run --force`.
    07-mail-setup           → creates runtime directories for the mail stack (run_once)
    07-mail-maildirs        → creates Maildir roots for enabled accounts (run_onchange)
    08-mail-sync            → reloads mail LaunchAgent when mail scheduling is enabled (run_onchange)
+   09-obsidian-community-plugins → ensures required community plugin runtime files exist for managed vaults (run)
    macos-settings          → macOS defaults (run_once)
 ```
 
@@ -72,6 +73,7 @@ recipient, or maintainer token material.
 | `private_dot_config/abook/` | `~/.config/abook/`            | Abook config                 |
 | `dev/personal/golden-vault/dot_obsidian/` | `~/dev/personal/golden-vault/.obsidian/` | Obsidian vault config applied into the separate notes repo |
 | `dev/personal/golden-vault/dot_gitignore` | `~/dev/personal/golden-vault/.gitignore` | Keeps the notes repo focused on note content instead of dotfiles-owned vault config |
+| `private_Documents/NotesOfTheGods/dot_obsidian/` | `~/Documents/NotesOfTheGods/.obsidian/` | Restores config for the legacy local vault without touching note content |
 | `private_dot_config/zsh/` | `~/.config/zsh/`                | Zsh config via `ZDOTDIR`     |
 | `private_dot_local/private_share/colima/` | `~/.local/share/colima/` | Colima config + state |
 | `.chezmoiscripts/`    | _(lifecycle scripts, not deployed)_ | Before/after scripts         |
@@ -93,6 +95,7 @@ Supports chezmoi template conditionals for OS-specific ignores.
 - For non-interactive checks, prefer `chezmoi apply --dry-run --force`; without `--force`, changed files may trigger TTY prompts and fail in headless shells.
 - In this repo, `chezmoi diff` is most reliable with absolute target paths (for example `~/.config/git/config`) when diffing a single file.
 - `dev/personal/golden-vault/.obsidian/workspace.json` is volatile UI state (recent files/workspace layout) and should stay ignored to avoid noisy churn and accidental overwrite.
+- `Documents/NotesOfTheGods/.obsidian/workspace.json` is also volatile UI state; the legacy local vault follows the same ignore rules as `golden-vault`.
 - Any new repo-only directory (like `docs/`) must be added to `.chezmoiignore` or chezmoi will deploy it to `~/`. The ignore file uses target-state paths, so `docs/` not `literal_docs/`.
 
 ## Shell Script Conventions

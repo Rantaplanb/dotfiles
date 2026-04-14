@@ -23,7 +23,8 @@ flowchart TD
   E --> E4[07 - mail runtime dirs<br/>run_once]
   E --> E5[07 - mail maildirs<br/>run_onchange]
   E --> E6[08 - mail-sync LaunchAgent reload<br/>run_onchange]
-  E --> E7[macos-settings<br/>run_once]
+  E --> E7[09 - Obsidian plugin bootstrap<br/>run]
+  E --> E8[macos-settings<br/>run_once]
 ```
 
 _Reference: `AGENTS.md:42`_
@@ -99,6 +100,14 @@ _Reference: `.chezmoiscripts/run_onchange_after_07-mail-maildirs.sh.tmpl:1`_
 Reloads `com.lpersonal.mail-sync` LaunchAgent when plist template content or configured sync interval changes. Guards on plist existence and GUI domain availability, then uses `launchctl bootout` + `launchctl bootstrap`.
 
 _Reference: `.chezmoiscripts/run_onchange_after_08-mail-sync-launchagent.sh.tmpl:1`_
+
+### 09 - Obsidian Community Plugin Bootstrap (`run`)
+
+Ensures managed vaults have the runtime files required by selected community plugins that are intentionally not tracked in the dotfiles repo (`main.js`, `styles.css`). Currently bootstraps `obsidian-kanban` and `dataview` into `~/dev/personal/golden-vault/.obsidian/plugins/` and `~/Documents/NotesOfTheGods/.obsidian/plugins/` when those plugins are enabled in `community-plugins.json`.
+
+The script is idempotent and writes a small `.dotfiles-plugin-lock.json` stamp inside each installed plugin directory so future applies skip redundant downloads.
+
+_Reference: `.chezmoiscripts/run_after_09-obsidian-community-plugins.sh.tmpl:1`_
 
 ### macOS Settings (`run_once`)
 

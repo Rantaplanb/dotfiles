@@ -56,13 +56,22 @@ dev/personal/golden-vault/.obsidian/workspace.json
 dev/personal/golden-vault/.obsidian/workspace-mobile.json
 dev/personal/golden-vault/.obsidian/cache/
 dev/personal/golden-vault/.obsidian/updates.json
+Documents/NotesOfTheGods/.obsidian/workspace.json
+Documents/NotesOfTheGods/.obsidian/workspace-mobile.json
+Documents/NotesOfTheGods/.obsidian/cache/
+Documents/NotesOfTheGods/.obsidian/updates.json
 # Obsidian — auto-downloaded plugin code (reinstalled by Obsidian)
 dev/personal/golden-vault/.obsidian/plugins/*/main.js
 dev/personal/golden-vault/.obsidian/plugins/*/styles.css
 dev/personal/golden-vault/.obsidian/plugins/*/cache/
 dev/personal/golden-vault/.obsidian/plugins/*/.cache/
+Documents/NotesOfTheGods/.obsidian/plugins/*/main.js
+Documents/NotesOfTheGods/.obsidian/plugins/*/styles.css
+Documents/NotesOfTheGods/.obsidian/plugins/*/cache/
+Documents/NotesOfTheGods/.obsidian/plugins/*/.cache/
 # Obsidian — trash
 dev/personal/golden-vault/.trash/
+Documents/NotesOfTheGods/.trash/
 
 # Karabiner — only deploy karabiner.json, build system stays in source only
 .config/karabiner/automatic_backups/

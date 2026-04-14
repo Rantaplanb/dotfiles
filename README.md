@@ -14,7 +14,7 @@ Follow-up setup happens later:
 
 1. Replace placeholder name/email values with your own identity.
 2. Add your own SSH config and keys.
-3. Add your Gmail accounts and app-password/secret wiring. 
+3. Add your Gmail accounts and app-password/secret wiring.
 4. Generate your own age keypair and reintroduce encrypted files when ready.
 
 ## Daily use

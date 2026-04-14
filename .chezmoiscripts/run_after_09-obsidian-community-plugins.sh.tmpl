@@ -1,0 +1,105 @@
+#!/bin/bash
+
+{{- if ne .chezmoi.os "darwin" }}
+exit 0
+{{- end }}
+
+set -euo pipefail
+
+if ! command -v python3 &>/dev/null; then
+    echo "Warning: skipping Obsidian community plugin bootstrap because python3 is missing" >&2
+    exit 0
+fi
+
+python3 <<'PY'
+from __future__ import annotations
+
+import json
+import sys
+import urllib.error
+import urllib.request
+from pathlib import Path
+
+VAULTS = [
+    Path.home() / "dev/personal/golden-vault",
+    Path.home() / "Documents/NotesOfTheGods",
+]
+
+PLUGINS = {
+    "obsidian-kanban": {
+        "assets": {
+            "manifest.json": "https://github.com/obsidian-community/obsidian-kanban/releases/download/2.0.51/manifest.json",
+            "main.js": "https://github.com/obsidian-community/obsidian-kanban/releases/download/2.0.51/main.js",
+            "styles.css": "https://github.com/obsidian-community/obsidian-kanban/releases/download/2.0.51/styles.css",
+        }
+    },
+    "dataview": {
+        "assets": {
+            "manifest.json": "https://github.com/blacksmithgu/obsidian-dataview/releases/download/0.5.70/manifest.json",
+            "main.js": "https://github.com/blacksmithgu/obsidian-dataview/releases/download/0.5.70/main.js",
+            "styles.css": "https://github.com/blacksmithgu/obsidian-dataview/releases/download/0.5.70/styles.css",
+        }
+    },
+}
+
+
+def read_json(path: Path):
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
+def write_bytes(path: Path, data: bytes) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_bytes(data)
+
+
+failures = []
+
+for vault in VAULTS:
+    obsidian_dir = vault / ".obsidian"
+    community_plugins_path = obsidian_dir / "community-plugins.json"
+    if not community_plugins_path.exists():
+        continue
+
+    try:
+        enabled_plugins = set(read_json(community_plugins_path))
+    except Exception as exc:  # pragma: no cover - runtime guard
+        failures.append(f"{vault}: failed to parse community-plugins.json ({exc})")
+        continue
+
+    for plugin_id, spec in PLUGINS.items():
+        if plugin_id not in enabled_plugins:
+            continue
+
+        plugin_dir = obsidian_dir / "plugins" / plugin_id
+        lock_path = plugin_dir / ".dotfiles-plugin-lock.json"
+        desired_lock = {"assets": spec["assets"]}
+        assets_present = all((plugin_dir / asset_name).exists() for asset_name in spec["assets"])
+
+        if assets_present and lock_path.exists():
+            try:
+                if read_json(lock_path) == desired_lock:
+                    continue
+            except Exception:
+                pass
+
+        try:
+            for asset_name, asset_url in spec["assets"].items():
+                with urllib.request.urlopen(asset_url) as response:
+                    write_bytes(plugin_dir / asset_name, response.read())
+
+            lock_path.write_text(json.dumps(desired_lock, indent=2), encoding="utf-8")
+            print(f"Installed {plugin_id} into {vault}")
+        except urllib.error.URLError as exc:
+            missing_assets = [asset_name for asset_name in spec["assets"] if not (plugin_dir / asset_name).exists()]
+            if missing_assets:
+                failures.append(
+                    f"{vault}: failed to install {plugin_id} ({exc}); missing assets: {', '.join(missing_assets)}"
+                )
+            else:
+                print(f"Warning: could not refresh {plugin_id} in {vault}: {exc}", file=sys.stderr)
+
+if failures:
+    for failure in failures:
+        print(f"Error: {failure}", file=sys.stderr)
+    sys.exit(1)
+PY

@@ -165,6 +165,13 @@ Prefix: **`Ctrl-a`**
 | `/`              | Accept and continue into subdirectory | `private_dot_config/zsh/fzf-tab.zsh:53`   |
 | `Tab` (in ftext) | Insert filename (instead of opening)  | `private_dot_config/zsh/functions.zsh:81`  |
 
+## Obsidian (Vault Layer)
+
+| Key     | Action                   | Source |
+| ------- | ------------------------ | ------ |
+| `Cmd+O` | Open quick file switcher | `dev/personal/golden-vault/dot_obsidian/hotkeys.json:11` |
+| `Cmd+O` | Open quick file switcher | `private_Documents/NotesOfTheGods/dot_obsidian/hotkeys.json:11` |
+
 ## NeoMutt (Mail Layer)
 
 Custom NeoMutt bindings are defined in the template layer and rendered for enabled mail accounts.
