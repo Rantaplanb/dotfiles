@@ -42,7 +42,3 @@ git_profiles:
     name: "Loukas Mertzanis"
     email: "loukas.mertzanis@gmail.com"
     ssh_identity_file: "~/.ssh/id-personal-github"
-  sitecore:
-    name: "Loukas Mertzanis"
-    email: "loukas.mertzanis@sitecore.com"
-    ssh_identity_file: "~/.ssh/id_ed25519"
