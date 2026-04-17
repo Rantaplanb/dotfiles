@@ -73,9 +73,9 @@ HRM_CONFIG=(
 
 ### Device Filtering
 
-By default, all rules apply only to the **built-in keyboard**. This prevents home row mods from interfering with external keyboards.
+By default, all rules apply to **any keyboard device**. This keeps the home row mods and hyper layer consistent across built-in and external keyboards.
 
-To make a rule work on **all devices**, add its filename to `ALL_DEVICES_RULES` in `build.sh`:
+To make a rule work on **all devices** (not just keyboards), add its filename to `ALL_DEVICES_RULES` in `build.sh`:
 
 ```bash
 ALL_DEVICES_RULES=(
@@ -83,7 +83,7 @@ ALL_DEVICES_RULES=(
 )
 ```
 
-Rules in this array skip the `device_if` condition and work on any keyboard.
+Rules in this array skip the default keyboard-only `device_if` condition and work on any device type.
 
 ## Home Row Mods Layout (GASC)
 

@@ -110,7 +110,7 @@ brew "rust"
 brew "serie"
 brew "shellcheck"
 brew "sesh"
-brew "sketchybar"
+brew "felixkratz/formulae/sketchybar"
 brew "sops"
 brew "sshs"
 brew "starship"
@@ -135,7 +135,7 @@ brew "zoxide"
 # -----------------------------------------------------------------------------
 # Casks (GUI Applications)
 # -----------------------------------------------------------------------------
-cask "aerospace"
+cask "nikitabobko/tap/aerospace"
 cask "alt-tab"
 cask "appcleaner"
 cask "betterdisplay"

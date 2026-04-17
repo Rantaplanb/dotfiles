@@ -1,3 +1,5 @@
+sourceDir = "{{ .chezmoi.sourceDir }}"
+
 [data]
     profile = "lpersonal"
     email = "user@example.com"
@@ -10,7 +12,7 @@
     command = "{{ .chezmoi.sourceDir }}/bin/chezmoi-bws"
 
 [diff]
-    pager = "diffnav"
+    pager = "{{ .chezmoi.sourceDir }}/bin/chezmoi-diff-pager"
 
 [edit]
     command = "nvim"

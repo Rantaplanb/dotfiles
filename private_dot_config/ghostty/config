@@ -4,7 +4,7 @@
 # ============================================================================
 # Appearance & Theming
 # ============================================================================
-theme = catppuccin-mocha
+theme = Catppuccin Mocha
 background-opacity = 0.85
 background-blur = 16
 custom-shader = ~/.config/ghostty/shader.glsl

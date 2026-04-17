@@ -35,7 +35,9 @@ Executed alphabetically before any file operations. All scripts have Darwin-only
 
 ### 02 - Install Packages (`run_onchange`)
 
-Runs `brew bundle` from the Brewfile. Re-runs when Brewfile content hash changes. Self-bootstraps Homebrew if missing. Detects non-interactive shells and skips Mac App Store installs (avoids password prompts in headless sessions).
+Runs `brew bundle` from the Brewfile. Re-runs when Brewfile content hash changes. Self-bootstraps Homebrew if missing, explicitly taps third-party repos declared in the Brewfile before running `brew bundle`, and preflights formula/cask availability so stale or tap-missing entries fail early with a clear summary instead of producing a partial install.
+
+Detects non-interactive shells and additionally skips Mac App Store installs plus casks that prompt for sudo (`font-sf-pro`, `karabiner-elements`) to avoid blocking headless bootstrap runs.
 
 _Reference: `.chezmoiscripts/run_onchange_before_02-install-packages.sh.tmpl:1`_
 

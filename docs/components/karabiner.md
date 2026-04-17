@@ -118,7 +118,7 @@ _Reference: `private_dot_config/private_karabiner/src/templates/hrm.json:1`_
 
 ## Device Filtering
 
-All rules get a `device_if: built_in_keyboard` condition by default. Rules in the `ALL_DEVICES_RULES` array bypass this filter and apply to all keyboards.
+All rules get a `device_if: is_keyboard` condition by default, so the generated HRM and hyper rules work on built-in and external keyboards alike. Rules in the `ALL_DEVICES_RULES` array bypass this filter and apply to all device types.
 
 The base config defines 3 device entries:
 - Built-in keyboard (active)

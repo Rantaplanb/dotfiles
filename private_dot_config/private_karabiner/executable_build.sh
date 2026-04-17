@@ -11,7 +11,7 @@ SRC_DIR="$SCRIPT_DIR/src"
 OUTPUT_FILE="$SCRIPT_DIR/private_karabiner.json"
 HRM_TEMPLATE="$SRC_DIR/templates/hrm.json"
 
-# Rules that work on ALL devices (not just built-in keyboard)
+# Rules that work on all devices, not just keyboard devices
 ALL_DEVICES_RULES=()
 
 # ============================================================================
@@ -30,8 +30,8 @@ HRM_CONFIG=(
     "semicolon|right_control|pinky|right|160|200|200|120|1"
 )
 
-# Device condition for built-in keyboard
-DEVICE_CONDITION='{"type": "device_if", "identifiers": [{"is_built_in_keyboard": true}]}'
+# Default device condition for any keyboard
+DEVICE_CONDITION='{"type": "device_if", "identifiers": [{"is_keyboard": true}]}'
 
 # ============================================================================
 # Validation

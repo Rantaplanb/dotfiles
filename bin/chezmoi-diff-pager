@@ -1,0 +1,8 @@
+#!/bin/bash
+set -euo pipefail
+
+if command -v diffnav &>/dev/null; then
+    exec diffnav "$@"
+fi
+
+exec cat "$@"

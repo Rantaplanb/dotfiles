@@ -66,6 +66,7 @@ These directories exist in the repo but are never deployed to the target filesys
 | `ai-docs/` | Crawled documentation for AI agents |
 | `code-portable-data/` | VS Code portable data |
 | `bin/chezmoi-bws` | BWS helper (used during template rendering only) |
+| `bin/chezmoi-diff-pager` | Chezmoi diff pager wrapper (uses `diffnav`, falls back to `cat`) |
 | `docs/` | This documentation tree |
 
 _Reference: `.chezmoiignore:11`_
@@ -89,7 +90,10 @@ The config template (`.chezmoi.toml.tmpl`) hardcodes a single active profile:
 
 1. `profile = "lpersonal"`
 2. Placeholder `name` and `email` values are rendered until you replace them.
-3. Bitwarden template support remains available for future secrets, but no live encrypted payloads ship in the baseline.
+3. Chezmoi's diff pager points to a source-only helper that uses `diffnav` when available and falls back to `cat` during first bootstrap.
+4. Bitwarden template support remains available for future secrets, but no live encrypted payloads ship in the baseline.
+
+The package bootstrap script pre-taps any third-party Brewfile taps before `brew bundle` runs and validates every Brewfile formula/cask up front, so renamed or tap-missing entries fail fast with a clear summary instead of leaving a fresh machine partially configured.
 
 _Reference: `.chezmoi.toml.tmpl:1`_
 

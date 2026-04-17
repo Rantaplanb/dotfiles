@@ -13,6 +13,7 @@ Summary of notable config areas managed by chezmoi, with links to dedicated docs
 | **Karabiner** | `private_dot_config/private_karabiner/` | [karabiner.md](karabiner.md) | Keyboard remapping (generated config) |
 | **Carapace** | `private_dot_config/carapace/` | [carapace.md](carapace.md) | Shell completion framework |
 | **Zsh** | `private_dot_config/zsh/`, `dot_zshenv.tmpl` | [zsh.md](zsh.md) | Shell bootstrap plus XDG-aware tool/runtime environment |
+| VS Code | `private_Library/Application Support/Code/User/private_settings.json.tmpl` | -- | Integrated terminal profile pinned to dotfiles-managed `zsh` |
 | **Atuin** | `private_dot_config/private_atuin/private_config.toml` | -- | Shell history search, sync, and AI settings |
 | Terraform CLI | `private_dot_config/terraform/terraform.rc` | -- | CLI defaults (for example checkpoint suppression) |
 | **NeoMutt** | `private_dot_config/neomutt/` | [email.md](email.md) | Terminal mail client config and custom mailbox bindings |
@@ -88,7 +89,7 @@ _Reference: `private_dot_config/git/`_
 
 ## Brew
 
-Homebrew Brewfile at `~/.config/brew/Brewfile`. Managed by the lifecycle script `02-install-packages` which runs `brew bundle` when the Brewfile content changes.
+Homebrew Brewfile at `~/.config/brew/Brewfile`. Managed by the lifecycle script `02-install-packages` which runs `brew bundle` when the Brewfile content changes. The bootstrap pre-taps third-party repos declared in the Brewfile and validates every formula/cask before install so a fresh-machine apply fails clearly instead of silently drifting when an upstream tap package changes.
 
 The Brewfile intentionally excludes personal taps, AWS wrapper tooling, and
 work-specific GitLab CLI config from the `lpersonal` baseline.
