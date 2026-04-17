@@ -48,10 +48,8 @@
       // === ALLOW: Development tools ===
       "uvx*": "allow",
       "python*": "allow",
-      "node*": "allow",
       // === ASK: Package managers ===
       "npm*": "ask",
-      "bun*": "ask",
       // === ALLOW: Git read-only ===
       "git status*": "allow",
       "git diff*": "allow",

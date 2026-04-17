@@ -148,7 +148,7 @@ _Reference: `private_dot_config/opencode/skill/linear-list/SKILL.md`_
 - Agent markdown files use YAML frontmatter delimiters (`---`); syntax must be exact.
 - Model IDs must match the provider's exact format (e.g., `amazon-bedrock/anthropic.claude-opus-4-5-...`).
 - Granular bash patterns in YAML frontmatter work correctly (confirmed via OpenCode source).
-- `package.json` and `bun.lock` under `.config/opencode/` are repo-ignored artifacts and should stay in `.chezmoiignore`.
+- `package.json` under `.config/opencode/` is a repo-ignored runtime artifact and should stay in `.chezmoiignore`.
 
 _Reference: `private_dot_config/opencode/README.md:131`_
 

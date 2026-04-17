@@ -17,14 +17,11 @@ bin/chezmoi-bws
 bin/chezmoi-diff-pager
 
 # Build artifacts and generated files
-node_modules/
-**/node_modules/**
 **/target/**
 *.pyc
 __pycache__/
 **/__pycache__/
 .ruff_cache/
-bun.lock
 package-lock.json
 Cargo.lock
 
@@ -38,13 +35,10 @@ Cargo.lock
 .config/zsh/.zcompdump-*
 .config/carapace/.versions
 .config/navi/navi.log
-.config/nvim/lazy-lock.json
 .config/opencode/package.json
-.config/opencode/bun.lock
 .local/share/go/
 .local/state/atuin/logs/
 .local/state/mcp-auth/
-.local/state/vim/
 .config/yazi/plugins/**
 .kube/cache/
 .kube/http-cache/

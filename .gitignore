@@ -13,21 +13,12 @@ key.txt
 *.swo
 *~
 
-# Node
-node_modules/
-
 # Python
 __pycache__/
 *.pyc
 
-# Rust build artifacts (nvim test fixtures)
-private_dot_config/nvim/test/rust/target/
-
 # Karabiner automatic backups (machine-generated)
 private_dot_config/private_karabiner/private_automatic_backups/
-
-# Lock files that are machine-specific
-private_dot_config/opencode/bun.lock
 
 # AWS login caches
 private_dot_config/aws-login/private_cache/

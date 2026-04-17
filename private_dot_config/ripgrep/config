@@ -34,7 +34,6 @@ shell:*.{sh,bash,zsh,fish}
 --glob=!.jj/**
 
 # Package managers / dependencies
---glob=!**/node_modules/**
 --glob=!**/.venv/**
 --glob=!**/__pycache__/**
 --glob=!.cache/**
@@ -70,7 +69,6 @@ shell:*.{sh,bash,zsh,fish}
 --glob=!*.lock
 --glob=!package-lock.json
 --glob=!yarn.lock
---glob=!bun.lock
 --glob=!pnpm-lock.yaml
 --glob=!Cargo.lock
 --glob=!poetry.lock

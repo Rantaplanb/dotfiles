@@ -8,7 +8,6 @@ Summary of notable config areas managed by chezmoi, with links to dedicated docs
 
 | Component | Source Path | Dedicated Doc | Description |
 |---|---|---|---|
-| **Neovim** | `private_dot_config/nvim/` | [nvim.md](nvim.md) | Editor with lazy.nvim, LSP, custom keymaps |
 | **OpenCode** | `private_dot_config/opencode/` | [opencode.md](opencode.md) | Primary AI CLI profile with agents, commands, and skills |
 | **Karabiner** | `private_dot_config/private_karabiner/` | [karabiner.md](karabiner.md) | Keyboard remapping (generated config) |
 | **Carapace** | `private_dot_config/carapace/` | [carapace.md](carapace.md) | Shell completion framework |
@@ -22,7 +21,7 @@ Summary of notable config areas managed by chezmoi, with links to dedicated docs
 | **isync (mbsync)** | `private_dot_config/isyncrc.tmpl` | [email.md](email.md) | IMAP sync channels and Maildir mapping |
 | **abook** | `private_dot_config/abook/`, `private_dot_local/private_share/abook/` | [email.md](email.md) | Local address book split across XDG config/data paths |
 | Colima | `private_dot_local/private_share/colima/` | -- | Container runtime config and VM state |
-| Mise | `private_dot_config/mise/` | -- | Tool/version manager config (`linear-cli`) |
+| Mise | `private_dot_config/mise/` | -- | Tool/version manager config (`linear-cli` via the cargo backend) |
 | Ghostty | `private_dot_config/ghostty/` | -- | Terminal emulator |
 | tmux | `private_dot_config/tmux/` | -- | Terminal multiplexer |
 | Starship | `private_dot_config/starship.toml` | -- | Prompt theme |
@@ -98,7 +97,6 @@ _Reference: `private_dot_config/brew/Brewfile`_
 
 ## References
 
-- Neovim AGENTS: `private_dot_config/nvim/AGENTS.md:1`
 - OpenCode README: `private_dot_config/opencode/README.md:1`
 - Email stack doc: `docs/components/email.md:1`
 - mbsync template: `private_dot_config/isyncrc.tmpl:1`

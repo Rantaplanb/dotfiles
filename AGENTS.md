@@ -182,14 +182,6 @@ exit 0
 
 Always use `{{-` and `-}}` to trim surrounding whitespace in template tags.
 
-## Neovim Config (private_dot_config/nvim/)
-
-- **2-space indent**, double quotes, trailing commas
-- Plugin specs: `return { "author/plugin", opts = { ... } }` (lazy.nvim)
-- Keymaps: `vim.keymap.set("n", "<leader>key", func, { desc = "Category: Action" })`
-- LSP configs: `after/lsp/<server>.lua` with `vim.lsp.config()`
-- Formatter: stylua. Linter: selene (permissive, `std = "lua51"`)
-
 ## Zsh Config (private_dot_config/zsh/)
 
 `dot_zshenv.tmpl` still renders to `~/.zshenv`; interactive/login zsh config lives in `private_dot_config/zsh/` and is loaded via `ZDOTDIR=~/.config/zsh`.
@@ -225,7 +217,6 @@ Source lives in `docs/`; served as a zero-build SPA via `docs/index.html`.
 | ---------------------------------------------------------- | ------------------------------------------------------------------------- |
 | `.chezmoiscripts/`, `.chezmoi.toml.tmpl`, `.chezmoiignore` | `docs/architecture/chezmoi-lifecycle.md`, `docs/architecture/overview.md` |
 | `private_dot_config/zsh/`, `dot_zshenv.tmpl`               | `docs/components/zsh.md`                                                  |
-| `private_dot_config/nvim/`                                 | `docs/components/nvim.md`                                                 |
 | `private_dot_config/opencode/`                             | `docs/components/opencode.md`                                             |
 | `private_dot_config/carapace/`                             | `docs/components/carapace.md`                                             |
 | `private_dot_config/private_karabiner/`                    | `docs/components/karabiner.md`                                            |

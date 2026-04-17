@@ -15,8 +15,5 @@ sourceDir = "{{ .chezmoi.sourceDir }}"
     pager = "{{ .chezmoi.sourceDir }}/bin/chezmoi-diff-pager"
 
 [edit]
-    command = "nvim"
-
-[merge]
-    command = "nvim"
-    args = ["-d"]
+    command = "cursor"
+    args = ["--wait"]

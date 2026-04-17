@@ -3,4 +3,4 @@ name: build_apps.sh
 description: Build all TUI apps in the apps/ workspace
 flags:
   -h, --help: Show help message
-  -f, --force: Remove node_modules and bun.lock before installing
+  -f, --force: Remove dependency install artifacts before installing

@@ -9,10 +9,9 @@ repos:
         exclude: '(\.age$|dev/personal/golden-vault/dot_obsidian/(app|appearance|community-plugins|core-plugins)\.json$|private_Documents/NotesOfTheGods/dot_obsidian/(app|appearance|community-plugins|core-plugins)\.json$)'
       - id: check-yaml
         args: [--allow-multiple-documents]
-        exclude: '(private_dot_config/nvim/test/|private_dot_config/nvim/test/helm)'
       - id: check-toml
       - id: check-json
-        exclude: 'private_dot_config/(nvim/test/|private_karabiner/src/templates/)'
+        exclude: 'private_dot_config/private_karabiner/src/templates/'
       - id: check-merge-conflict
       - id: check-added-large-files
         args: [--maxkb=500]
@@ -25,8 +24,8 @@ repos:
     hooks:
       - id: shellcheck
         args: [-x, -e, "SC1091"]
-        # Only lint bash scripts; exclude zsh, templates, and nvim test fixtures
-        exclude: '(\.zsh$|\.tmpl$|private_dot_config/nvim/test/)'
+        # Only lint bash scripts; exclude zsh and templates
+        exclude: '(\.zsh$|\.tmpl$)'
 
   # Secrets detection
   - repo: https://github.com/gitleaks/gitleaks
@@ -40,7 +39,7 @@ repos:
     hooks:
       - id: yamllint
         args: [-d, relaxed]
-        exclude: '(private_dot_config/nvim/test/|private_dot_config/k9s/|private_dot_config/carapace/specs/)'
+        exclude: '(private_dot_config/k9s/|private_dot_config/carapace/specs/)'
 
   # Pre-push: validate chezmoi dry-run
   - repo: local

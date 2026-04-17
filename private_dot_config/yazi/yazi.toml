@@ -29,7 +29,7 @@ ueberzug_scale = 1
 ueberzug_offset = [0, 0, 0, 0]
 
 [opener]
-edit = [{ run = 'nvim %s', block = true, desc = "Neovim" }]
+edit = [{ run = 'cursor --wait %s', block = true, desc = "Editor" }]
 open = [
   { run = 'xdg-open %s', desc = "Open", for = "linux" },
   { run = 'open %s', desc = "Open", for = "macos" },
@@ -58,13 +58,7 @@ play = [
 [open]
 rules = [
   # Folder
-  { url = "*/", use = [
-    "edit",
-    "open",
-    "reveal",
-    "render_markdown",
-    "terminal",
-  ] },
+  { url = "*/", use = ["open", "reveal", "render_markdown", "terminal"] },
   # Text
   { mime = "text/*", use = [
     "edit",
@@ -147,14 +141,12 @@ run = "git"
 spotters = [
   { name = "*/", run = "folder" },
   # Code
-  { mime = "text/*", run = "nvim" },
-  { mime = "application/{mbox,javascript,wine-extension-ini}", run = "nvim" },
+  { mime = "text/*", run = "code" },
+  { mime = "application/{mbox,javascript,wine-extension-ini}", run = "code" },
   # Image
   { mime = "image/{avif,hei?,jxl}", run = "magick" },
   { mime = "image/svg+xml", run = "svg" },
   { mime = "image/*", run = "image" },
-  # Video
-  { mime = "video/*", run = "video" },
   # Fallback
   { name = "*", run = "file" },
 ]
@@ -163,8 +155,6 @@ preloaders = [
   { mime = "image/{avif,hei?,jxl}", run = "magick" },
   { mime = "image/svg+xml", run = "svg" },
   { mime = "image/*", run = "image" },
-  # Video
-  { mime = "video/*", run = "video" },
   # PDF
   { mime = "application/pdf", run = "pdf" },
   # Font
@@ -174,16 +164,14 @@ preloaders = [
 previewers = [
   { name = "*/", run = "folder" },
   # Code
-  { mime = "text/*", run = "nvim" },
-  { mime = "application/{mbox,javascript,wine-extension-ini}", run = "nvim" },
+  { mime = "text/*", run = "code" },
+  { mime = "application/{mbox,javascript,wine-extension-ini}", run = "code" },
   # JSON
   { mime = "application/{json,ndjson}", run = "json" },
   # Image
   { mime = "image/{avif,hei?,jxl}", run = "magick" },
   { mime = "image/svg+xml", run = "svg" },
   { mime = "image/*", run = "image" },
-  # Video
-  { mime = "video/*", run = "video" },
   # PDF
   { mime = "application/pdf", run = "pdf" },
   # Archive

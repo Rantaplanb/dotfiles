@@ -56,15 +56,15 @@ AGENTS.md files can exist at any directory level. When an agent reads a file, an
 
 **Good** (non-obvious, actionable):
 ```
-## Neovim LSP
-- `after/lsp/*.lua` files auto-loaded by nvim-lspconfig - don't require explicit imports
-- Mason installs to ~/.local/share/nvim/mason/bin - add to PATH for CLI usage
+## Mail Sync
+- `mail-sync` sets its own PATH/XDG env internally, so the LaunchAgent doesn't depend on shell startup order
+- New maildir roots are created by `07-mail-maildirs` before the sync LaunchAgent reloads
 ```
 
 **Bad** (obvious or verbose):
 ```
-## Neovim
-- Neovim is a text editor (obvious)
-- The configuration is written in Lua (standard knowledge)
+## Mail
+- NeoMutt is an email client (obvious)
+- The config uses templates (standard knowledge)
 - I spent 30 minutes debugging this issue... (session-specific)
 ```

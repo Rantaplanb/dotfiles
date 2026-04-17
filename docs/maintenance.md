@@ -12,7 +12,6 @@ Update the corresponding doc when any of the following change:
 | New source-to-target mapping or `.chezmoiignore` entry | [overview.md](architecture/overview.md) |
 | Zsh module added/removed/reordered | [zsh.md](components/zsh.md) |
 | New `~/.config/` component managed by chezmoi | [config-overview.md](components/config-overview.md) |
-| Neovim plugin added/removed, LSP server changed | [nvim.md](components/nvim.md) |
 | OpenCode agent/command/MCP change | [opencode.md](components/opencode.md) |
 | Carapace spec added or bridge type changed | [carapace.md](components/carapace.md) |
 | Karabiner rule file added or HRM config changed | [karabiner.md](components/karabiner.md) |

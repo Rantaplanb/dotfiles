@@ -146,9 +146,6 @@ untracked = ":${count} "
 [buf]
 symbol = " "
 
-[bun]
-symbol = " "
-
 [c]
 symbol = " "
 style = "bg:green"
@@ -237,9 +234,6 @@ symbol = " "
 style = "bg:green"
 format = '[[ $symbol( $version) ](fg:crust bg:green)]($style)'
 
-[lua]
-symbol = " "
-
 [memory_usage]
 symbol = "󰍛 "
 
@@ -251,11 +245,6 @@ symbol = "󰆥 "
 
 [nix_shell]
 symbol = " "
-
-[nodejs]
-symbol = " "
-style = "bg:green"
-format = '[[ $symbol( $version) ](fg:crust bg:green)]($style)'
 
 [ocaml]
 symbol = " "

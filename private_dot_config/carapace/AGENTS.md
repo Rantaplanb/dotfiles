@@ -61,7 +61,7 @@ Match bridge to the tool's completion framework - check output of `<tool> comple
 - **Zsh init cache NOT invalidated by spec changes** - `~/.cache/carapace-init.zsh` only regenerates when carapace binary changes, not when specs in `~/.config/carapace/specs/` change. Run `carapace-sync --clean` or delete cache manually after adding/editing specs.
 - **`.versions` must be tracked in git** - if gitignored, `carapace-sync` regenerates specs on every run (cached version is empty → always differs from current)
 - **`carapace export` returns empty even when working** - don't use for debugging; test with actual TAB completion or `CARAPACE_COMPLINE="tool " carapace tool bash`
-- **Built-in completers (669+) override custom specs** - check `carapace --list | grep <tool>` before creating specs; tools like `bun`, `git`, `docker` don't need specs
+- **Built-in completers (669+) override custom specs** - check `carapace --list | grep <tool>` before creating specs; tools like `git` and `docker` don't need specs
 - **Zsh shell bridges require setup** - register completions in `bridge/zsh/.zshrc` with both `eval` and explicit `compdef`
 - **Version matters** - bridges broken in 1.5.5, fixed in 1.6.0+
 - **bw.yaml is NOT auto-generated** - it's a 300-line native spec; handle with care

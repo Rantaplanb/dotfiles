@@ -7,7 +7,7 @@
 
 [core]
     pager = delta
-    editor = nvim
+    editor = cursor --wait
     sshCommand = ssh -o IdentitiesOnly=yes -i {{ .git_profiles.personal.ssh_identity_file }}
 
 [pager]
@@ -43,9 +43,5 @@
 [init]
     defaultBranch = master
 
-[diff]
-    tool = nvim
-
 [merge]
-    tool = nvim
     conflictstyle = zdiff3

@@ -10,11 +10,9 @@ flowchart LR
   G --> T[tmux]
   G --> Z[zsh]
   T --> Z
-  Z --> N[Neovim]
   Z --> M[Mail Stack\nNeoMutt + mbsync + msmtp + notmuch + abook]
   Z --> O[OpenCode CLI]
   C[chezmoi lifecycle] --> Z
-  C --> N
   C --> M
   C --> O
   C --> K
@@ -22,7 +20,7 @@ flowchart LR
   C --> T
 ```
 
-Input flows from the physical keyboard through Karabiner (home row mods, hyper key), into Ghostty (terminal keybindings), then into tmux (prefix commands) or directly to zsh (shell keybindings). From zsh, input reaches Neovim, OpenCode, and NeoMutt. Chezmoi manages configuration for all layers, including the mail stack and its launchd automation.
+Input flows from the physical keyboard through Karabiner (home row mods, hyper key), into Ghostty (terminal keybindings), then into tmux (prefix commands) or directly to zsh (shell keybindings). From zsh, input reaches OpenCode, NeoMutt, and other terminal tools managed by the repo. Chezmoi manages configuration for all layers, including the mail stack and its launchd automation.
 
 ## Source-to-Target Mapping
 

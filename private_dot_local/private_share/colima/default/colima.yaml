@@ -210,7 +210,7 @@ cpuType: ""
 # EXAMPLE - script executed as root
 # provision:
 #   - mode: system
-#     script: apt-get install htop vim
+#     script: apt-get install htop nano
 #
 # EXAMPLE - script executed as user
 # provision:

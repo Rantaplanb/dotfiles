@@ -17,7 +17,6 @@ Custom commands, agents, and skills for OpenCode AI assistant.
 | ------------- | -------------------- |
 | `opencode`    | Start OpenCode       |
 | `oc`          | Alias for opencode   |
-| `bun install` | Install dependencies |
 
 ## Custom Commands
 
@@ -166,5 +165,4 @@ skill/<name>/
 - Commands use YAML frontmatter — `---` delimiters required
 - Model IDs must match provider format exactly (e.g., `amazon-bedrock/anthropic.claude-opus-4-20250514-v1:0`)
 - Skills loaded via the `skill` tool — agents need `skill: allow` in permission
-- `node_modules/` is gitignored — run `bun install` after clone
 - **Bash pattern bug** ([#6676](https://github.com/anomalyco/opencode/issues/6676)): Flags like `-p` are stripped during permission matching, so `mkdir -p foo` matches `mkdir`, not `mkdir -p *`

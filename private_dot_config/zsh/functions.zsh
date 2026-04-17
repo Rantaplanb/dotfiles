@@ -47,8 +47,10 @@ function y() {
 _ftext_open_editor() {
   local file="$1" line="$2"
   if [[ -n "$VISUAL" ]]; then
-    if [[ "$VISUAL" == *"code"* ]]; then
-      code --user-data-dir ~/.vscode --goto "${file}:${line}"
+    if [[ "$VISUAL" == *"cursor"* ]]; then
+      eval "$VISUAL --goto \"${file}:${line}\""
+    elif [[ "$VISUAL" == *"code"* ]]; then
+      eval "$VISUAL --goto \"${file}:${line}\""
     else
       eval "$VISUAL \"+${line}\" \"${file}\""
     fi
