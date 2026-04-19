@@ -127,21 +127,21 @@ alt-ctrl-f = 'layout floating tiling'
 
 alt-ctrl-h = 'join-with left'
 alt-ctrl-t = 'join-with down'
-alt-ctrl-n = 'join-with up'
-alt-ctrl-s = 'join-with right'
+alt-ctrl-c = 'join-with up'
+alt-ctrl-n = 'join-with right'
 
 alt-slash = 'layout tiles horizontal vertical'
 alt-comma = 'layout accordion horizontal vertical'
 
 alt-h = 'focus left'
 alt-t = 'focus down'
-alt-n = 'focus up'
-alt-s = 'focus right'
+alt-c = 'focus up'
+alt-n = 'focus right'
 
 alt-shift-h = 'move left'
 alt-shift-t = 'move down'
-alt-shift-n = 'move up'
-alt-shift-s = 'move right'
+alt-shift-c = 'move up'
+alt-shift-n = 'move right'
 
 alt-minus = 'resize smart -50'
 alt-equal = 'resize smart +50'

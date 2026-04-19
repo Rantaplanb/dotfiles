@@ -38,6 +38,46 @@ See rule file for hyper+key combinations (navigation, window management).
 
 _Reference: `private_dot_config/private_karabiner/src/rules/15-hyper-navigation.json:1`_
 
+## AeroSpace (Window Manager)
+
+AeroSpace uses the Dvorak key preset and a directional cluster of `h / t / c / n` for `left / down / up / right`.
+
+| Key | Action | Source |
+| --- | --- | --- |
+| `Alt+H` | Focus left | `private_dot_config/aerospace/aerospace.toml:136` |
+| `Alt+T` | Focus down | `private_dot_config/aerospace/aerospace.toml:137` |
+| `Alt+C` | Focus up | `private_dot_config/aerospace/aerospace.toml:138` |
+| `Alt+N` | Focus right | `private_dot_config/aerospace/aerospace.toml:139` |
+| `Alt+Shift+H` | Move window left | `private_dot_config/aerospace/aerospace.toml:141` |
+| `Alt+Shift+T` | Move window down | `private_dot_config/aerospace/aerospace.toml:142` |
+| `Alt+Shift+C` | Move window up | `private_dot_config/aerospace/aerospace.toml:143` |
+| `Alt+Shift+N` | Move window right | `private_dot_config/aerospace/aerospace.toml:144` |
+| `Alt+Ctrl+H` | Join with left neighbor | `private_dot_config/aerospace/aerospace.toml:128` |
+| `Alt+Ctrl+T` | Join with lower neighbor | `private_dot_config/aerospace/aerospace.toml:129` |
+| `Alt+Ctrl+C` | Join with upper neighbor | `private_dot_config/aerospace/aerospace.toml:130` |
+| `Alt+Ctrl+N` | Join with right neighbor | `private_dot_config/aerospace/aerospace.toml:131` |
+| `Alt+/` | Cycle tiled layouts | `private_dot_config/aerospace/aerospace.toml:133` |
+| `Alt+,` | Cycle accordion layouts | `private_dot_config/aerospace/aerospace.toml:134` |
+| `Alt+-` / `Alt+=` | Resize current container | `private_dot_config/aerospace/aerospace.toml:146` |
+| `Alt+A / O / E / U / J` | Switch to named workspace | `private_dot_config/aerospace/aerospace.toml:149` |
+| `Alt+1..4` | Switch to numbered workspace | `private_dot_config/aerospace/aerospace.toml:154` |
+| `Alt+Shift+A / O / E / U / J` | Move window to named workspace and follow it | `private_dot_config/aerospace/aerospace.toml:159` |
+| `Alt+Shift+1..4` | Move window to numbered workspace and follow it | `private_dot_config/aerospace/aerospace.toml:164` |
+| `Alt+Tab` | Toggle between recent workspaces | `private_dot_config/aerospace/aerospace.toml:169` |
+| `Alt+Shift+Tab` | Move current workspace to the next monitor | `private_dot_config/aerospace/aerospace.toml:170` |
+| `Alt+Ctrl+F` | Toggle floating/tiling | `private_dot_config/aerospace/aerospace.toml:126` |
+| `Alt+Ctrl+Shift+F` | Fullscreen window | `private_dot_config/aerospace/aerospace.toml:125` |
+| `Alt+Shift+;` | Enter service mode | `private_dot_config/aerospace/aerospace.toml:172` |
+
+### AeroSpace Service Mode
+
+| Key | Action | Source |
+| --- | --- | --- |
+| `Esc` | Reload config and return to main mode | `private_dot_config/aerospace/aerospace.toml:175` |
+| `R` | Flatten/reset the current workspace tree | `private_dot_config/aerospace/aerospace.toml:176` |
+| `F` | Toggle floating/tiling and return to main mode | `private_dot_config/aerospace/aerospace.toml:177` |
+| `Backspace` | Close all windows except the current one | `private_dot_config/aerospace/aerospace.toml:181` |
+
 ## Ghostty (Terminal Layer)
 
 | Key              | Action                               | Source                                  |
