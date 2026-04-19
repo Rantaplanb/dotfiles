@@ -1,0 +1,53 @@
+#!/bin/bash
+# Install Mac App Store apps after Homebrew has provisioned mas.
+
+{{- if ne .chezmoi.os "darwin" }}
+exit 0
+{{- end }}
+
+set -euo pipefail
+
+BREWFILE_PATH="{{ .chezmoi.sourceDir }}/private_dot_config/brew/Brewfile"
+
+log_info() {
+    printf '\033[1;34m==>\033[0m %s\n' "$*"
+}
+
+log_warning() {
+    printf '\033[1;33mWarning:\033[0m %s\n' "$*" >&2
+}
+
+if ! command -v mas &>/dev/null; then
+    exit 0
+fi
+
+if ! mas list >/dev/null 2>&1; then
+    log_info "Skipping Mac App Store installs until the App Store is signed in."
+    exit 0
+fi
+
+installed_ids="$(mas list | awk '{print $1}')"
+
+while IFS= read -r line; do
+    if [[ ! "$line" =~ ^mas[[:space:]]+\"([^\"]+)\"[[:space:]]*,[[:space:]]*id:[[:space:]]*([0-9]+) ]]; then
+        continue
+    fi
+
+    app_name="${BASH_REMATCH[1]}"
+    app_id="${BASH_REMATCH[2]}"
+
+    if grep -Fxq "$app_id" <<<"$installed_ids"; then
+        continue
+    fi
+
+    log_info "Installing App Store app ${app_name} (${app_id})..."
+
+    if sudo mas get "$app_id"; then
+        installed_ids="${installed_ids:+$installed_ids"$'\n'"}$app_id"
+        continue
+    fi
+
+    log_warning "Falling back to 'mas install' for ${app_name} (${app_id})..."
+    sudo mas install "$app_id"
+    installed_ids="${installed_ids:+$installed_ids"$'\n'"}$app_id"
+done < "$BREWFILE_PATH"

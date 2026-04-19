@@ -23,6 +23,10 @@ log_error() {
     printf '\033[1;31mError:\033[0m %s\n' "$*" >&2
 }
 
+set_bundle_defaults() {
+    export HOMEBREW_CURL_RETRIES="${HOMEBREW_CURL_RETRIES:-5}"
+}
+
 append_skip_values() {
     local var_name="$1"
     shift
@@ -41,6 +45,57 @@ append_skip_values() {
     done
 
     export "$var_name=$current_value"
+}
+
+skip_default_mas_apps() {
+    append_skip_values HOMEBREW_BUNDLE_MAS_SKIP \
+        937984704 \
+        1352778147 \
+        1452453066 \
+        1635403801 \
+        985367838 \
+        6740142714 \
+        1639306886
+}
+
+skip_default_sudo_casks() {
+    append_skip_values HOMEBREW_BUNDLE_CASK_SKIP font-sf-pro karabiner-elements
+}
+
+should_skip_mas_installs() {
+    if ! command -v mas &>/dev/null; then
+        return 0
+    fi
+
+    if ! mas account >/dev/null 2>&1; then
+        return 0
+    fi
+
+    return 1
+}
+
+run_brew_bundle() {
+    local attempt
+    local max_attempts=3
+    local delay_seconds=5
+    local status=0
+
+    for ((attempt = 1; attempt <= max_attempts; attempt++)); do
+        if brew bundle --file="$BREWFILE_PATH"; then
+            return 0
+        fi
+
+        status=$?
+
+        if (( attempt == max_attempts )); then
+            return "$status"
+        fi
+
+        log_warning "brew bundle failed (attempt ${attempt}/${max_attempts}, exit ${status}). Retrying in ${delay_seconds}s..."
+        sleep "$delay_seconds"
+    done
+
+    return "$status"
 }
 
 pre_tap_brewfile_repos() {
@@ -104,6 +159,7 @@ require_available_brewfile_entries() {
 }
 
 log_info "Installing packages from Brewfile..."
+set_bundle_defaults()
 
 if ! command -v brew &>/dev/null; then
     log_info "Installing Homebrew..."
@@ -114,22 +170,20 @@ fi
 pre_tap_brewfile_repos
 require_available_brewfile_entries
 
+if should_skip_mas_installs; then
+    log_info "Skipping Mac App Store installs until mas is available and signed in."
+    skip_default_mas_apps
+fi
+
 if [[ -t 0 && -t 1 ]]; then
-    brew bundle --file="$BREWFILE_PATH"
+    run_brew_bundle
 else
     log_info "Non-interactive shell detected. Skipping Mac App Store installs during chezmoi apply."
     # Skip all MAS app IDs in Brewfile to avoid interactive App Store password prompts.
-    append_skip_values HOMEBREW_BUNDLE_MAS_SKIP \
-        937984704 \
-        1352778147 \
-        1452453066 \
-        1635403801 \
-        985367838 \
-        6740142714 \
-        1639306886
+    skip_default_mas_apps
     # Skip casks that install signed .pkg payloads and prompt for sudo.
-    append_skip_values HOMEBREW_BUNDLE_CASK_SKIP font-sf-pro karabiner-elements
-    brew bundle --file="$BREWFILE_PATH"
+    skip_default_sudo_casks
+    run_brew_bundle
     log_info "To install Mac App Store apps later, run this in an interactive terminal:"
     log_info "  brew bundle --file=\$HOME/.config/brew/Brewfile"
 fi

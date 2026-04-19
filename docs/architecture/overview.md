@@ -76,7 +76,7 @@ The `.chezmoiignore` file uses **target-state paths** (not source-state names) a
 - **Build artifacts:** `node_modules/`, `target/`, `__pycache__/`, lock files
 - **Caches:** `.cache/`, `.config/carapace/.versions`, `lazy-lock.json`, yazi plugins
 - **Runtime state:** `.obsidian/`, `.DS_Store`
-- **Obsidian vault generated files:** Plugin runtime files (`main.js`, `styles.css`), plugin caches, and `workspace.json` under both `dev/personal/golden-vault/.obsidian/` and `Documents/NotesOfTheGods/.obsidian/` are ignored — settings JSONs, manifests, themes, icons, and plugin `data.json` files remain managed. The required runtime assets for `obsidian-kanban` and `dataview` are bootstrapped after apply by `.chezmoiscripts/run_after_09-obsidian-community-plugins.sh.tmpl`
+- **Obsidian vault generated files:** Plugin runtime files (`main.js`, `styles.css`), plugin caches, and `workspace.json` under both `dev/personal/golden-vault/.obsidian/` and `Documents/NotesOfTheGods/.obsidian/` are ignored — settings JSONs, manifests, themes, icons, and plugin `data.json` files remain managed. The required runtime assets for `obsidian-kanban`, `dataview`, and `quick-tagger` are bootstrapped after apply by `.chezmoiscripts/run_after_09-obsidian-community-plugins.sh.tmpl`
 - **Mail-conditional:** mail LaunchAgent is ignored until at least one enabled account exists
 - **OS-conditional:** macOS-only configs (Aerospace, Karabiner, Finicky, SketchyBar, Ghostty LaunchAgent, mail LaunchAgent) excluded on Linux
 

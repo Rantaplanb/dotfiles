@@ -44,6 +44,10 @@ if.app-name-regex-substring = 'Code'
 run = 'move-node-to-workspace o'
 
 [[on-window-detected]]
+if.app-name-regex-substring = 'Cursor'
+run = 'move-node-to-workspace o'
+
+[[on-window-detected]]
 if.app-name-regex-substring = 'Warp'
 run = 'move-node-to-workspace o'
 
