@@ -24,8 +24,8 @@ A keystroke passes through each layer in sequence. Karabiner processes physical 
 | `a` | a   | Ctrl    |
 | `s` | s   | Option  |
 | `d` | d   | Command |
-| `f` | f   | Shift   |
-| `j` | j   | Shift   |
+| `f` | f   | None    |
+| `j` | j   | None    |
 | `k` | k   | Command |
 | `l` | l   | Option  |
 | `;` | ;   | Ctrl    |
@@ -34,7 +34,7 @@ _Reference: `private_dot_config/private_karabiner/executable_build.sh:20`_
 
 ### Hyper Key Navigation
 
-See rule file for hyper+key combinations (navigation, window management).
+See rule file for the full hyper layer. Notable bindings: `Caps+h` and `Caps+o` send `Option+Space` for Raycast, `Caps+g` sends Enter, and `Caps+j/i/k/l` sends left/up/down/right.
 
 _Reference: `private_dot_config/private_karabiner/src/rules/15-hyper-navigation.json:1`_
 
@@ -44,39 +44,39 @@ AeroSpace uses the Dvorak key preset and a directional cluster of `h / t / c / n
 
 | Key | Action | Source |
 | --- | --- | --- |
-| `Alt+H` | Focus left | `private_dot_config/aerospace/aerospace.toml:136` |
-| `Alt+T` | Focus down | `private_dot_config/aerospace/aerospace.toml:137` |
-| `Alt+C` | Focus up | `private_dot_config/aerospace/aerospace.toml:138` |
-| `Alt+N` | Focus right | `private_dot_config/aerospace/aerospace.toml:139` |
-| `Alt+Shift+H` | Move window left | `private_dot_config/aerospace/aerospace.toml:141` |
-| `Alt+Shift+T` | Move window down | `private_dot_config/aerospace/aerospace.toml:142` |
-| `Alt+Shift+C` | Move window up | `private_dot_config/aerospace/aerospace.toml:143` |
-| `Alt+Shift+N` | Move window right | `private_dot_config/aerospace/aerospace.toml:144` |
-| `Alt+Ctrl+H` | Join with left neighbor | `private_dot_config/aerospace/aerospace.toml:128` |
-| `Alt+Ctrl+T` | Join with lower neighbor | `private_dot_config/aerospace/aerospace.toml:129` |
-| `Alt+Ctrl+C` | Join with upper neighbor | `private_dot_config/aerospace/aerospace.toml:130` |
-| `Alt+Ctrl+N` | Join with right neighbor | `private_dot_config/aerospace/aerospace.toml:131` |
-| `Alt+/` | Cycle tiled layouts | `private_dot_config/aerospace/aerospace.toml:133` |
-| `Alt+,` | Cycle accordion layouts | `private_dot_config/aerospace/aerospace.toml:134` |
-| `Alt+-` / `Alt+=` | Resize current container | `private_dot_config/aerospace/aerospace.toml:146` |
-| `Alt+A / O / E / U / J` | Switch to named workspace | `private_dot_config/aerospace/aerospace.toml:149` |
-| `Alt+1..4` | Switch to numbered workspace | `private_dot_config/aerospace/aerospace.toml:154` |
-| `Alt+Shift+A / O / E / U / J` | Move window to named workspace and follow it | `private_dot_config/aerospace/aerospace.toml:159` |
-| `Alt+Shift+1..4` | Move window to numbered workspace and follow it | `private_dot_config/aerospace/aerospace.toml:164` |
-| `Alt+Tab` | Toggle between recent workspaces | `private_dot_config/aerospace/aerospace.toml:169` |
-| `Alt+Shift+Tab` | Move current workspace to the next monitor | `private_dot_config/aerospace/aerospace.toml:170` |
-| `Alt+Ctrl+F` | Toggle floating/tiling | `private_dot_config/aerospace/aerospace.toml:126` |
-| `Alt+Ctrl+Shift+F` | Fullscreen window | `private_dot_config/aerospace/aerospace.toml:125` |
-| `Alt+Shift+;` | Enter service mode | `private_dot_config/aerospace/aerospace.toml:172` |
+| `Alt+H` | Focus left | `private_dot_config/aerospace/aerospace.toml:156` |
+| `Alt+T` | Focus down | `private_dot_config/aerospace/aerospace.toml:157` |
+| `Alt+C` | Focus up | `private_dot_config/aerospace/aerospace.toml:158` |
+| `Alt+N` | Focus right | `private_dot_config/aerospace/aerospace.toml:159` |
+| `Alt+Shift+H` | Move window left | `private_dot_config/aerospace/aerospace.toml:161` |
+| `Alt+Shift+T` | Move window down | `private_dot_config/aerospace/aerospace.toml:162` |
+| `Alt+Shift+C` | Move window up | `private_dot_config/aerospace/aerospace.toml:163` |
+| `Alt+Shift+N` | Move window right | `private_dot_config/aerospace/aerospace.toml:164` |
+| `Alt+Ctrl+H` | Join with left neighbor | `private_dot_config/aerospace/aerospace.toml:148` |
+| `Alt+Ctrl+T` | Join with lower neighbor | `private_dot_config/aerospace/aerospace.toml:149` |
+| `Alt+Ctrl+C` | Join with upper neighbor | `private_dot_config/aerospace/aerospace.toml:150` |
+| `Alt+Ctrl+N` | Join with right neighbor | `private_dot_config/aerospace/aerospace.toml:151` |
+| `Alt+/` | Cycle tiled layouts | `private_dot_config/aerospace/aerospace.toml:153` |
+| `Alt+,` | Cycle accordion layouts | `private_dot_config/aerospace/aerospace.toml:154` |
+| `Alt+-` / `Alt+=` | Resize current container | `private_dot_config/aerospace/aerospace.toml:166` |
+| `Alt+A / O / E / U / J` | Switch to named workspace | `private_dot_config/aerospace/aerospace.toml:169` |
+| `Alt+1..4` | Switch to numbered workspace | `private_dot_config/aerospace/aerospace.toml:174` |
+| `Alt+Shift+A / O / E / U / J` | Move window to named workspace and follow it | `private_dot_config/aerospace/aerospace.toml:179` |
+| `Alt+Shift+1..4` | Move window to numbered workspace and follow it | `private_dot_config/aerospace/aerospace.toml:184` |
+| `Alt+Tab` | Toggle between recent workspaces | `private_dot_config/aerospace/aerospace.toml:189` |
+| `Alt+Shift+Tab` | Move current workspace to the next monitor | `private_dot_config/aerospace/aerospace.toml:190` |
+| `Alt+Ctrl+F` | Toggle floating/tiling | `private_dot_config/aerospace/aerospace.toml:146` |
+| `Alt+Ctrl+Shift+F` | Fullscreen window | `private_dot_config/aerospace/aerospace.toml:145` |
+| `Alt+Shift+;` | Enter service mode | `private_dot_config/aerospace/aerospace.toml:192` |
 
 ### AeroSpace Service Mode
 
 | Key | Action | Source |
 | --- | --- | --- |
-| `Esc` | Reload config and return to main mode | `private_dot_config/aerospace/aerospace.toml:175` |
-| `R` | Flatten/reset the current workspace tree | `private_dot_config/aerospace/aerospace.toml:176` |
-| `F` | Toggle floating/tiling and return to main mode | `private_dot_config/aerospace/aerospace.toml:177` |
-| `Backspace` | Close all windows except the current one | `private_dot_config/aerospace/aerospace.toml:181` |
+| `Esc` | Reload config and return to main mode | `private_dot_config/aerospace/aerospace.toml:195` |
+| `R` | Flatten/reset the current workspace tree | `private_dot_config/aerospace/aerospace.toml:196` |
+| `F` | Toggle floating/tiling and return to main mode | `private_dot_config/aerospace/aerospace.toml:197` |
+| `Backspace` | Close all windows except the current one | `private_dot_config/aerospace/aerospace.toml:201` |
 
 ## Ghostty (Terminal Layer)
 
@@ -92,7 +92,7 @@ AeroSpace uses the Dvorak key preset and a directional cluster of `h / t / c / n
 | `Cmd+L`          | Next tmux window (`prefix`, `n`)     | `private_dot_config/ghostty/config:76`  |
 | `Cmd+R`          | Rename tmux window (`prefix`, `,`)   | `private_dot_config/ghostty/config:77`  |
 | `Cmd+Shift+R`    | Rename tmux session (`prefix`, `R`)  | `private_dot_config/ghostty/config:78`  |
-| `Cmd+O`          | OpenCode split (`prefix`, `o`)       | `private_dot_config/ghostty/config:80`  |
+| `Cmd+O`          | Codex split (`prefix`, `o`)          | `private_dot_config/ghostty/config:76`  |
 | `Cmd+G`          | Lazygit popup (`prefix`, `G`)        | `private_dot_config/ghostty/config:81`  |
 | `Cmd+Shift+T`    | New Ghostty OS window                | `private_dot_config/ghostty/config:84`  |
 | `Cmd+Shift+W`    | Close Ghostty OS window              | `private_dot_config/ghostty/config:85`  |
@@ -121,7 +121,7 @@ Prefix: **`Ctrl-a`**
 | `prefix + c`         | New window             | `private_dot_config/tmux/tmux.conf:26` |
 | `prefix + x`         | Kill pane (no confirm) | `private_dot_config/tmux/tmux.conf:27` |
 | `prefix + p`         | Previous window        | `private_dot_config/tmux/tmux.conf:28` |
-| `prefix + o`         | OpenCode split | `private_dot_config/tmux/tmux.conf:29` |
+| `prefix + o`         | Codex split           | `private_dot_config/tmux/tmux.conf:31` |
 | `prefix + G`         | Lazygit popup (90% overlay) | `private_dot_config/tmux/tmux.conf:30` |
 | `Ctrl+Tab`           | Next window            | `private_dot_config/tmux/tmux.conf:11` |
 | `Ctrl+Shift+Tab`     | Previous window        | `private_dot_config/tmux/tmux.conf:12` |
@@ -203,6 +203,13 @@ Prefix: **`Ctrl-a`**
 | `<` / `>`        | Switch completion group               | `private_dot_config/zsh/fzf-tab.zsh:20`   |
 | `/`              | Accept and continue into subdirectory | `private_dot_config/zsh/fzf-tab.zsh:53`   |
 | `Tab` (in ftext) | Insert filename (instead of opening)  | `private_dot_config/zsh/functions.zsh:81`  |
+
+## Cursor (Editor Layer)
+
+| Key     | Action                    | Source |
+| ------- | ------------------------- | ------ |
+| `Cmd+P` | Open Command Palette      | `private_Library/Application Support/Cursor/User/private_keybindings.json:1` |
+| `Cmd+O` | Open Quick Open file search | `private_Library/Application Support/Cursor/User/private_keybindings.json:1` |
 
 ## Obsidian (Vault Layer)
 

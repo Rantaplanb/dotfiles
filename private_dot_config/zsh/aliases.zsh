@@ -15,11 +15,13 @@ alias lda="ld --git-ignore --all"
 alias lgit="eza --long --git"
 
 # Utilities
+alias cls="clear"
 alias reload="exec zsh" # Replace shell with fresh instance
 alias r="reload"
 alias zsh-profile="ZSHRC_PROFILE=1 zsh -i -c exit"
 alias zsh-time="time (zsh -i -c exit)"
 alias gs="git status"
+alias g2="git add . && git commit -m"
 
 # Apps
 alias c="cursor"

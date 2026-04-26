@@ -1,0 +1,118 @@
+#!/bin/bash
+set -euo pipefail
+
+tmp_config="$(mktemp)"
+trap 'rm -f "$tmp_config"' EXIT
+cat >"$tmp_config"
+
+if [[ ! -s "$tmp_config" ]]; then
+    cat <<'EOF'
+approval_policy = "never"
+sandbox_mode = "danger-full-access"
+
+[notice]
+hide_full_access_warning = true
+EOF
+    exit 0
+fi
+
+awk '
+function config_key(line, copy) {
+    copy = line
+    sub(/^[[:space:]]*/, "", copy)
+    if (copy !~ /^[A-Za-z0-9_.-]+[[:space:]]*=/) {
+        return ""
+    }
+    sub(/[[:space:]]*=.*/, "", copy)
+    return copy
+}
+
+function emit_missing_top(  i, key) {
+    for (i = 1; i <= top_key_count; i++) {
+        key = top_keys[i]
+        if (!seen_top[key]) {
+            print top_lines[key]
+            seen_top[key] = 1
+        }
+    }
+}
+
+function emit_missing_notice() {
+    if (!seen_notice) {
+        print notice_line
+        seen_notice = 1
+    }
+}
+
+BEGIN {
+    top_key_count = 2
+    top_keys[1] = "approval_policy"
+    top_keys[2] = "sandbox_mode"
+    top_lines["approval_policy"] = "approval_policy = \"never\""
+    top_lines["sandbox_mode"] = "sandbox_mode = \"danger-full-access\""
+    notice_line = "hide_full_access_warning = true"
+}
+
+{
+    key = config_key($0)
+
+    if ($0 ~ /^[[:space:]]*\[/) {
+        if (!left_top) {
+            emit_missing_top()
+            left_top = 1
+        }
+        if (in_notice) {
+            emit_missing_notice()
+            in_notice = 0
+        }
+        if ($0 ~ /^[[:space:]]*\[notice\][[:space:]]*$/) {
+            in_notice = 1
+            had_notice = 1
+        }
+        print
+        next
+    }
+
+    if (!left_top && key == "approval_policy") {
+        if (!seen_top[key]) {
+            print top_lines[key]
+            seen_top[key] = 1
+        }
+        next
+    }
+
+    if (!left_top && key == "sandbox_mode") {
+        if (!seen_top["approval_policy"]) {
+            print top_lines["approval_policy"]
+            seen_top["approval_policy"] = 1
+        }
+        if (!seen_top[key]) {
+            print top_lines[key]
+            seen_top[key] = 1
+        }
+        next
+    }
+
+    if (in_notice && key == "hide_full_access_warning") {
+        print notice_line
+        seen_notice = 1
+        next
+    }
+
+    print
+}
+
+END {
+    if (!left_top) {
+        emit_missing_top()
+    }
+    if (in_notice) {
+        emit_missing_notice()
+    }
+    if (!had_notice) {
+        print ""
+        print "[notice]"
+        print notice_line
+    }
+}
+' "$tmp_config"

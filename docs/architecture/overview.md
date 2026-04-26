@@ -11,16 +11,18 @@ flowchart LR
   G --> Z[zsh]
   T --> Z
   Z --> M[Mail Stack\nNeoMutt + mbsync + msmtp + notmuch + abook]
+  Z --> X[Codex CLI]
   Z --> O[OpenCode CLI]
   C[chezmoi lifecycle] --> Z
   C --> M
+  C --> X
   C --> O
   C --> K
   C --> G
   C --> T
 ```
 
-Input flows from the physical keyboard through Karabiner (home row mods, hyper key), into Ghostty (terminal keybindings), then into tmux (prefix commands) or directly to zsh (shell keybindings). From zsh, input reaches OpenCode, NeoMutt, and other terminal tools managed by the repo. Chezmoi manages configuration for all layers, including the mail stack and its launchd automation.
+Input flows from the physical keyboard through Karabiner (home row mods, hyper key), into Ghostty (terminal keybindings), then into tmux (prefix commands) or directly to zsh (shell keybindings). From zsh, input reaches Codex, OpenCode, NeoMutt, and other terminal tools managed by the repo. Chezmoi manages configuration for all layers, including the mail stack and its launchd automation.
 
 ## Source-to-Target Mapping
 
@@ -34,6 +36,7 @@ Chezmoi translates source-state file names to target paths using naming conventi
 | `literal_bin/` | `~/bin/` | Shell utility scripts |
 | `private_dot_ssh/` | `~/.ssh/` | SSH keys (encrypted) |
 | `private_dot_config/` | `~/.config/` | Application configs |
+| `private_dot_codex/modify_private_config.toml.tmpl` | `~/.codex/config.toml` | Codex CLI defaults merged into existing runtime config |
 | `private_dot_config/isyncrc.tmpl` | `~/.config/isyncrc` | mbsync/isync config |
 | `private_dot_config/msmtp/private_config.tmpl` | `~/.config/msmtp/config` | SMTP account config |
 | `private_dot_config/notmuch/default/config.tmpl` | `~/.config/notmuch/default/config` | notmuch profile config |

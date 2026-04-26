@@ -28,7 +28,27 @@
                 "key_code": "h",
                 "modifiers": { "optional": ["any"] }
             },
-            "to": [{ "key_code": "escape" }],
+            "to": [
+                {
+                    "key_code": "spacebar",
+                    "modifiers": ["left_option"]
+                }
+            ],
+            "type": "basic"
+        },
+        {
+            "conditions": [
+                {
+                    "name": "hyper_caps_lock",
+                    "type": "variable_if",
+                    "value": 1
+                }
+            ],
+            "from": {
+                "key_code": "g",
+                "modifiers": { "optional": ["any"] }
+            },
+            "to": [{ "key_code": "return_or_enter" }],
             "type": "basic"
         },
         {
@@ -203,7 +223,12 @@
                 "key_code": "o",
                 "modifiers": { "optional": ["any"] }
             },
-            "to": [{ "key_code": "end" }],
+            "to": [
+                {
+                    "key_code": "spacebar",
+                    "modifiers": ["left_option"]
+                }
+            ],
             "type": "basic"
         },
         {

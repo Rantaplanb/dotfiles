@@ -30,7 +30,7 @@ Rules sorted alphabetically by filename. Prefix with numbers for order:
 00-common-words.json
 01-bilateral-cancellation.json
 02-crossover-timing.json
-03-10: HRM rules (generated from HRM_CONFIG)
+03-08: HRM rules (generated from HRM_CONFIG)
 11-typing-mode-toggle.json
 ...
 15-hyper-navigation.json
@@ -40,7 +40,7 @@ Rules sorted alphabetically by filename. Prefix with numbers for order:
 
 ### HRM Rules Generation
 
-Home row mod rules (03-10) are **generated dynamically** from:
+Home row mod rules (03-08) are **generated dynamically** from:
 - `HRM_CONFIG` array in `build.sh` (timing parameters per key)
 - `src/templates/hrm.json` (JSON structure with placeholders)
 
@@ -61,7 +61,7 @@ HRM_CONFIG=(
 
 | Parameter       | Description                                          |
 | --------------- | ---------------------------------------------------- |
-| `key_code`      | Karabiner key code (a, s, d, f, j, k, l, semicolon)  |
+| `key_code`      | Karabiner key code (a, s, d, k, l, semicolon; f/j currently disabled) |
 | `modifier`      | Modifier to activate (left_control, left_shift, etc) |
 | `finger`        | Finger name (pinky, ring, middle, index)             |
 | `hand`          | Hand (left, right)                                   |
@@ -92,7 +92,7 @@ Rules in this array skip the default keyboard-only `device_if` condition and wor
 | A   | Ctrl     | ;   | Ctrl     |
 | S   | Option   | L   | Option   |
 | D   | Command  | K   | Command  |
-| F   | Shift    | J   | Shift    |
+| F   | None     | J   | None     |
 
 ## Anti-Misfire Protection
 
@@ -133,7 +133,7 @@ Example - make pinky keys faster:
 ## Gotchas
 
 - **NEVER** edit `karabiner.json` directly — changes overwritten by build
-- **HRM rules are generated** — don't create 03-10 JSON files
+- **HRM rules are generated** — don't create 03-08 JSON files
 - **HRM timing**: Edit `HRM_CONFIG` in `build.sh`
 - **HRM structure**: Edit `src/templates/hrm.json`
 - Each rule file contains a single rule object (not an array)

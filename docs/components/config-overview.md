@@ -2,12 +2,13 @@
 
 Summary of notable config areas managed by chezmoi, with links to dedicated docs for larger components.
 
-**Source:** `private_dot_config/` -> `~/.config/`, `private_dot_local/private_share/` -> `~/.local/share/`
+**Source:** `private_dot_config/` -> `~/.config/`, `private_dot_codex/` -> `~/.codex/`, `private_dot_local/private_share/` -> `~/.local/share/`
 
 ## Managed Components
 
 | Component | Source Path | Dedicated Doc | Description |
 |---|---|---|---|
+| **Codex** | `private_dot_codex/` | -- | OpenAI Codex CLI defaults, including full-access/no-approval mode |
 | **OpenCode** | `private_dot_config/opencode/` | [opencode.md](opencode.md) | Primary AI CLI profile with agents, commands, and skills |
 | **Karabiner** | `private_dot_config/private_karabiner/` | [karabiner.md](karabiner.md) | Keyboard remapping (generated config) |
 | **Carapace** | `private_dot_config/carapace/` | [carapace.md](carapace.md) | Shell completion framework |
@@ -58,6 +59,7 @@ Terminal multiplexer with Catppuccin theme and plugin ecosystem.
 - **Prefix:** `Ctrl-a`
 - **Plugins (TPM):** vim-tmux-navigator, catppuccin, tmux-smooth-scroll, tmux-yank, tmux-resurrect, tmux-continuum, tmux-floax, tmux-harpoon
 - **Session picker:** `prefix + s` opens a `sesh` + `gum` popup helper
+- **AI split:** `prefix + o` opens Codex in a horizontal split rooted at the current pane path
 - **Session persistence:** Resurrect + Continuum (auto-save every 15min, restore on start)
 - **Status line:** Top position, oasis-style mode indicator with per-mode colors/icons
 - **History:** 100,000 lines, mouse enabled, base-index 1
@@ -65,6 +67,17 @@ Terminal multiplexer with Catppuccin theme and plugin ecosystem.
 Custom keybindings are documented in [shortcuts.md](../shortcuts.md).
 
 _Reference: `private_dot_config/tmux/tmux.conf:1`_
+
+## Codex
+
+OpenAI Codex CLI config is managed as a chezmoi modify script so project trust,
+plugin, and marketplace runtime state can remain in `~/.codex/config.toml`.
+
+- **Approval policy:** `never`
+- **Sandbox mode:** `danger-full-access`
+- **Notice:** full-access warning acknowledgement is preserved as `true`
+
+_Reference: `private_dot_codex/modify_private_config.toml.tmpl:1`_
 
 ## sesh
 
@@ -80,6 +93,7 @@ _Reference: `private_dot_config/sesh/sesh.toml:1`_
 Git configuration for the sanitized baseline:
 
 - Base config at `~/.config/git/config`
+- `git push` auto-sets upstream on the first push of a new branch via `push.autoSetupRemote = true`
 - Uses diffnav as `git diff`/`git show` pager (TUI with file tree, powered by delta underneath)
 - Delta remains as `core.pager` for non-diff git output (log, blame) and as interactive diffFilter
 - Catppuccin Mocha theme via delta's `[delta]` config section

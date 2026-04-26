@@ -19,15 +19,16 @@ ALL_DEVICES_RULES=()
 # ============================================================================
 HRM_CONFIG=(
     # Left hand: a=ctrl, s=opt, d=cmd, f=shift
-    "a|left_control|pinky|left|160|200|200|120|1"
-    "s|left_option|ring|left|160|200|200|120|0"
-    "d|left_command|middle|left|160|200|200|120|1"
-    "f|left_shift|index|left|50|120|150|120|1"
+    "a|left_control|pinky|left|160|165|200|120|1"
+    "s|left_option|ring|left|160|165|200|120|0"
+    "d|left_command|middle|left|160|165|200|120|1"
+    # Shift home row mods disabled: keep f/j as plain letters unless re-enabled.
+    # "f|left_shift|index|left|50|120|150|120|1"
     # Right hand: j=shift, k=cmd, l=opt, ;=ctrl
-    "j|right_shift|index|right|50|120|150|120|1"
-    "k|right_command|middle|right|160|200|200|120|1"
-    "l|right_option|ring|right|160|200|200|120|1"
-    "semicolon|right_control|pinky|right|160|200|200|120|1"
+    # "j|right_shift|index|right|50|120|150|120|1"
+    "k|right_command|middle|right|160|165|200|120|1"
+    "l|right_option|ring|right|160|165|200|120|1"
+    "semicolon|right_control|pinky|right|160|165|200|120|1"
 )
 
 # Default device condition for any keyboard
