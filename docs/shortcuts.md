@@ -34,7 +34,7 @@ _Reference: `private_dot_config/private_karabiner/executable_build.sh:20`_
 
 ### Hyper Key Navigation
 
-See rule file for the full hyper layer. Notable bindings: `Caps+h` and `Caps+o` send `Option+Space` for Raycast, `Caps+g` sends Enter, and `Caps+j/i/k/l` sends left/up/down/right.
+See rule file for the full hyper layer. Notable bindings: `Caps+h` and `Caps+g` send Enter, `Caps+o` sends `Option+Space` for Raycast, and `Caps+j/i/k/l` sends left/up/down/right.
 
 _Reference: `private_dot_config/private_karabiner/src/rules/15-hyper-navigation.json:1`_
 

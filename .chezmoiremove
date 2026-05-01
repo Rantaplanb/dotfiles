@@ -2,3 +2,4 @@
 .zsh
 .abook
 .colima
+.local/share/colima

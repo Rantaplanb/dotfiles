@@ -41,7 +41,7 @@ Pre-push: `chezmoi apply --dry-run --force`.
 1. Read source + destination state
 2. Compute target state (templates and target-state paths)
 3. Before scripts (alphabetical):
-   02-install-packages     → brew bundle from Brewfile (run_onchange)
+   02-install-packages     → brew bundle --no-upgrade from Brewfile (run_onchange)
 4. File operations (alphabetical by target):
    - Render .tmpl templates (bitwardenSecrets → chezmoi-bws → bws CLI)
    - Deploy files, directories, symlinks
@@ -75,7 +75,7 @@ recipient, or maintainer token material.
 | `dev/personal/golden-vault/dot_gitignore` | `~/dev/personal/golden-vault/.gitignore` | Keeps the notes repo focused on note content instead of dotfiles-owned vault config |
 | `private_Documents/NotesOfTheGods/dot_obsidian/` | `~/Documents/NotesOfTheGods/.obsidian/` | Restores config for the legacy local vault without touching note content |
 | `private_dot_config/zsh/` | `~/.config/zsh/`                | Zsh config via `ZDOTDIR`     |
-| `private_dot_local/private_share/colima/` | `~/.local/share/colima/` | Colima config + state |
+| `private_dot_config/brew/Brewfile` | `~/.config/brew/Brewfile` | Homebrew bundle |
 | `.chezmoiscripts/`    | _(lifecycle scripts, not deployed)_ | Before/after scripts         |
 | `.chezmoidata.yaml`   | _(template data)_                   | Catppuccin Mocha colors and zero-account mail defaults |
 

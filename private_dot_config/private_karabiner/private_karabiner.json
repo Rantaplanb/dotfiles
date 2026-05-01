@@ -5807,10 +5807,7 @@
                 },
                 "to": [
                   {
-                    "key_code": "spacebar",
-                    "modifiers": [
-                      "left_option"
-                    ]
+                    "key_code": "return_or_enter"
                   }
                 ],
                 "type": "basic"

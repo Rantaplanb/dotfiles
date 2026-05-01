@@ -81,11 +81,14 @@ run_brew_bundle() {
     local status=0
 
     for ((attempt = 1; attempt <= max_attempts; attempt++)); do
-        if brew bundle --file="$BREWFILE_PATH"; then
+        set +e
+        brew bundle --file="$BREWFILE_PATH" --no-upgrade
+        status=$?
+        set -e
+
+        if [[ "$status" -eq 0 ]]; then
             return 0
         fi
-
-        status=$?
 
         if (( attempt == max_attempts )); then
             return "$status"
@@ -117,7 +120,7 @@ pre_tap_brewfile_repos() {
         else
             log_warning "Failed to tap $tap. Brewfile validation will report any affected packages."
         fi
-    done < <(awk '$1=="tap" {gsub(/"/, "", $2); print $2}' "$BREWFILE_PATH")
+    done < <(awk '$1=="tap" {if (match($0, /"[^"]+"/)) print substr($0, RSTART + 1, RLENGTH - 2)}' "$BREWFILE_PATH")
 }
 
 require_available_brewfile_entries() {
@@ -131,14 +134,14 @@ require_available_brewfile_entries() {
         if ! HOMEBREW_NO_AUTO_UPDATE=1 brew info --formula "$formula" >/dev/null 2>&1; then
             unavailable_formulae+=("$formula")
         fi
-    done < <(awk '$1=="brew" {gsub(/"/, "", $2); print $2}' "$BREWFILE_PATH")
+    done < <(awk '$1=="brew" {if (match($0, /"[^"]+"/)) print substr($0, RSTART + 1, RLENGTH - 2)}' "$BREWFILE_PATH")
 
     while IFS= read -r cask; do
         [[ -z "$cask" ]] && continue
         if ! HOMEBREW_NO_AUTO_UPDATE=1 brew info --cask "$cask" >/dev/null 2>&1; then
             unavailable_casks+=("$cask")
         fi
-    done < <(awk '$1=="cask" {gsub(/"/, "", $2); print $2}' "$BREWFILE_PATH")
+    done < <(awk '$1=="cask" {if (match($0, /"[^"]+"/)) print substr($0, RSTART + 1, RLENGTH - 2)}' "$BREWFILE_PATH")
 
     if [[ "${#unavailable_formulae[@]}" -eq 0 && "${#unavailable_casks[@]}" -eq 0 ]]; then
         return 0

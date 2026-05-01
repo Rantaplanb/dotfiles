@@ -35,7 +35,7 @@ Executed alphabetically before any file operations. All scripts have Darwin-only
 
 ### 02 - Install Packages (`run_onchange`)
 
-Runs `brew bundle` from the Brewfile. Re-runs when Brewfile content hash changes. Self-bootstraps Homebrew if missing, explicitly taps third-party repos declared in the Brewfile before running `brew bundle`, and preflights formula/cask availability so stale or tap-missing entries fail early with a clear summary instead of producing a partial install.
+Runs `brew bundle --no-upgrade` from the Brewfile. Re-runs when Brewfile content hash changes. Self-bootstraps Homebrew if missing, explicitly taps third-party repos declared in the Brewfile before running `brew bundle`, and preflights formula/cask availability so stale or tap-missing entries fail early with a clear summary instead of producing a partial install.
 
 Detects non-interactive shells and additionally skips Mac App Store installs plus casks that prompt for sudo (`font-sf-pro`, `karabiner-elements`) to avoid blocking headless bootstrap runs.
 

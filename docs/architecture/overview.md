@@ -45,7 +45,7 @@ Chezmoi translates source-state file names to target paths using naming conventi
 | `private_dot_config/abook/` | `~/.config/abook/` | Abook config |
 | `private_dot_config/terraform/terraform.rc` | `~/.config/terraform/terraform.rc` | Terraform CLI defaults |
 | `private_dot_local/private_share/abook/` | `~/.local/share/abook/` | Abook data |
-| `private_dot_local/private_share/colima/` | `~/.local/share/colima/` | Colima config and state |
+| `private_dot_config/brew/Brewfile` | `~/.config/brew/Brewfile` | Homebrew bundle |
 | `dev/personal/golden-vault/dot_obsidian/` | `~/dev/personal/golden-vault/.obsidian/` | Obsidian vault config for the separate notes repo |
 | `dev/personal/golden-vault/dot_gitignore` | `~/dev/personal/golden-vault/.gitignore` | Notes repo ignore policy; keeps `.obsidian/` owned by dotfiles |
 | `private_Documents/NotesOfTheGods/dot_obsidian/` | `~/Documents/NotesOfTheGods/.obsidian/` | Legacy local vault config restored via dotfiles; note content remains in place |
@@ -94,7 +94,7 @@ The config template (`.chezmoi.toml.tmpl`) hardcodes a single active profile:
 3. Chezmoi's diff pager points to a source-only helper that uses `diffnav` when available and falls back to `cat` during first bootstrap.
 4. Bitwarden template support remains available for future secrets, but no live encrypted payloads ship in the baseline.
 
-The package bootstrap script pre-taps any third-party Brewfile taps before `brew bundle` runs and validates every Brewfile formula/cask up front, so renamed or tap-missing entries fail fast with a clear summary instead of leaving a fresh machine partially configured.
+The package bootstrap script pre-taps any third-party Brewfile taps before `brew bundle --no-upgrade` runs and validates every Brewfile formula/cask up front, so renamed or tap-missing entries fail fast with a clear summary instead of leaving a fresh machine partially configured.
 
 _Reference: `.chezmoi.toml.tmpl:1`_
 

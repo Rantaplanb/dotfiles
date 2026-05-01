@@ -21,7 +21,6 @@ Summary of notable config areas managed by chezmoi, with links to dedicated docs
 | **msmtp** | `private_dot_config/msmtp/private_config.tmpl` | [email.md](email.md) | SMTP account config rendered from Bitwarden secrets |
 | **isync (mbsync)** | `private_dot_config/isyncrc.tmpl` | [email.md](email.md) | IMAP sync channels and Maildir mapping |
 | **abook** | `private_dot_config/abook/`, `private_dot_local/private_share/abook/` | [email.md](email.md) | Local address book split across XDG config/data paths |
-| Colima | `private_dot_local/private_share/colima/` | -- | Container runtime config and VM state |
 | Mise | `private_dot_config/mise/` | -- | Tool/version manager config (`linear-cli` via the cargo backend) |
 | Ghostty | `private_dot_config/ghostty/` | -- | Terminal emulator |
 | tmux | `private_dot_config/tmux/` | -- | Terminal multiplexer |

@@ -28,12 +28,7 @@
                 "key_code": "h",
                 "modifiers": { "optional": ["any"] }
             },
-            "to": [
-                {
-                    "key_code": "spacebar",
-                    "modifiers": ["left_option"]
-                }
-            ],
+            "to": [{ "key_code": "return_or_enter" }],
             "type": "basic"
         },
         {

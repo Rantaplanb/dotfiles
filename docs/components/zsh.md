@@ -47,7 +47,7 @@ _Reference: `private_dot_config/zsh/dot_zshrc:8`_
 
 ### .zshenv (templated)
 
-`dot_zshenv.tmpl` is the global bootstrap for every shell type. It defines the XDG base dirs, exports `ZDOTDIR`, and relocates tool/runtime state such as Colima, CDK, `mcp-remote`, Go, and shell history before interactive config loads. It also sets the repo-wide default editor to `cursor --wait` so Git, chezmoi, NeoMutt, Yazi, and shell helpers all block until the edit session is finished.
+`dot_zshenv.tmpl` is the global bootstrap for every shell type. It defines the XDG base dirs, exports `ZDOTDIR`, and relocates tool/runtime state such as Docker CLI config, CDK, `mcp-remote`, Go, and shell history before interactive config loads. It also sets the repo-wide default editor to `cursor --wait` so Git, chezmoi, NeoMutt, Yazi, and shell helpers all block until the edit session is finished.
 
 On macOS it also maps `XDG_RUNTIME_DIR` to `TMPDIR` and disables Apple Terminal shell-session files with `SHELL_SESSIONS_DISABLE=1`.
 
@@ -122,9 +122,10 @@ _Reference: `private_dot_config/zsh/tools.zsh:1`_
 | Listing (eza) | `l`, `ls`, `ll`, `la`, `ld`, `lda`, `lgit` |
 | Shell | `cls` = `clear`, `reload`/`r` = `exec zsh`, `zsh-profile`, `zsh-time`, `gs` = `git status`, `g2 "<msg>"` = `git add . && git commit -m "<msg>"` |
 | Apps | `c` = `cursor`, `lg` = `lazygit`, `b` = `bat`, `oc` = `opencode`, `oca` = `opencode` (auto-allow all), `occ` = `opencode --continue`, `ghostty-settings` = `cursor --wait ~/.config/ghostty/config` |
+| Docker | `d` = `docker` |
 | Mail | `nm` = `neomutt`, `msync` = `mail-sync`, `ab` = `abook` with XDG config/data paths |
 | Tmux | `ta` = `tmux attach`, `td` = `tmux detach`, `tls` = `tmux ls` |
-| Kubernetes | `k` = `kubectl`, `ctx` = `kubectx`, `ns` = `kubens` |
+| Kubernetes | `k` = `kubectl`, `kgp` = `kubectl get pods`, `ctx` = `kubectx`, `ns` = `kubens` |
 | Chezmoi | `cz` = `chezmoi` |
 
 _Reference: `private_dot_config/zsh/aliases.zsh:1`_
