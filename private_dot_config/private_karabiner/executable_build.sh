@@ -113,7 +113,7 @@ generate_hrm_rule() {
     [[ "$finger" == "index" ]] && streak_suffix=" (shorter window for shift)"
 
     local hyper_condition=""
-    [[ "$has_hyper" == "1" ]] && hyper_condition='{ "type": "variable_if", "name": "hyper_caps_lock", "value": 0 },'
+    [[ "$has_hyper" == "1" ]] && hyper_condition=', { "type": "variable_if", "name": "hyper_caps_lock", "value": 0 }'
 
     # Substitute placeholders in template
     sed -e "s/{{KEY_CODE}}/$key_code/g" \

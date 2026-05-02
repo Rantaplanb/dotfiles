@@ -48,7 +48,7 @@ _Reference: `private_dot_config/private_karabiner/AGENTS.md:24`_
 
 ## Anti-Misfire Protection
 
-Five layers prevent accidental modifier activation during normal typing:
+Four layers prevent accidental modifier activation during normal typing:
 
 ```mermaid
 flowchart LR
@@ -56,8 +56,7 @@ flowchart LR
   B --> C[Layer 2<br/>Bilateral Cancel]
   C --> D[Layer 3<br/>Crossover Timing]
   D --> E[Layer 4<br/>Streak Detection]
-  E --> F[Layer 5<br/>Typing Mode]
-  F --> G{Modifier<br/>or Letter?}
+  E --> F{Modifier<br/>or Letter?}
 ```
 
 | Layer | Rule File | Purpose |
@@ -66,7 +65,6 @@ flowchart LR
 | 2. Bilateral Cancellation | `01-bilateral-cancellation.json` | Same-hand combos always produce letters |
 | 3. Crossover Timing | `02-crossover-timing.json` | Cross-hand timing enforcement |
 | 4. Streak Detection | _(generated, rules 03-08)_ | Recent typing disables mod behavior (per-finger timeouts) |
-| 5. Typing Mode Toggle | `11-typing-mode-toggle.json` | Manual mod disable toggle |
 
 _Reference: `private_dot_config/private_karabiner/AGENTS.md:40`_
 
@@ -80,7 +78,6 @@ Rules are numbered and processed in order. Rules 03-08 are **generated** by `bui
 | 01 | `01-bilateral-cancellation.json` | Static | Same-hand letter output |
 | 02 | `02-crossover-timing.json` | Static | Cross-hand timing |
 | 03-08 | _(generated)_ | Generated | Per-key HRM rules (6 active home row mod keys) |
-| 11 | `11-typing-mode-toggle.json` | Static | Typing mode toggle |
 | 12 | `12-typing-activity-tracking.json` | Static | Typing activity tracking |
 | 13 | `13-hyper-key.json` | Static | Hyper key setup |
 | 14 | `14-double-tap-caps.json` | Static | Double-tap caps lock behavior |

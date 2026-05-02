@@ -8,8 +8,7 @@
                     "type": "expression_if",
                     "expression": "last_keypress_time > system.now.milliseconds - {{STREAK_MS}}"
                 },
-                { "type": "variable_unless", "name": "{{OPPOSITE_MOD_ACTIVE}}", "value": 1 },
-                { "type": "variable_if", "name": "typing_mode", "value": 0 }
+                { "type": "variable_unless", "name": "{{OPPOSITE_MOD_ACTIVE}}", "value": 1 }
             ],
             "from": {
                 "key_code": "{{KEY_CODE}}",
@@ -30,8 +29,7 @@
             "description": "Same-hand stacking - instant mod when {{HAND}} mod IS ACTIVE (not just pressed)",
             "conditions": [
                 { "type": "variable_if", "name": "{{OPPOSITE_MOD_ACTIVE}}", "value": 1 },
-                { "type": "variable_if", "name": "{{OPPOSITE_HRM}}", "value": 0 },
-                { "type": "variable_if", "name": "typing_mode", "value": 0 }
+                { "type": "variable_if", "name": "{{OPPOSITE_HRM}}", "value": 0 }
             ],
             "from": {
                 "key_code": "{{KEY_CODE}}",
@@ -61,9 +59,7 @@
         {
             "description": "Default HRM - tap for '{{KEY_DISPLAY}}', hold for {{MOD_FULL}}",
             "conditions": [
-                { "type": "variable_if", "name": "{{OPPOSITE_HRM}}", "value": 0 },
-                {{HYPER_CONDITION}}
-                { "type": "variable_if", "name": "typing_mode", "value": 0 }
+                { "type": "variable_if", "name": "{{OPPOSITE_HRM}}", "value": 0 }{{HYPER_CONDITION}}
             ],
             "from": {
                 "key_code": "{{KEY_CODE}}",

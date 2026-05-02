@@ -59,11 +59,6 @@
                 ],
                 "conditions": [
                   {
-                    "type": "variable_if",
-                    "name": "typing_mode",
-                    "value": 0
-                  },
-                  {
                     "type": "device_if",
                     "identifiers": [
                       {
@@ -114,11 +109,6 @@
                 ],
                 "conditions": [
                   {
-                    "type": "variable_if",
-                    "name": "typing_mode",
-                    "value": 0
-                  },
-                  {
                     "type": "device_if",
                     "identifiers": [
                       {
@@ -168,11 +158,6 @@
                   }
                 ],
                 "conditions": [
-                  {
-                    "type": "variable_if",
-                    "name": "typing_mode",
-                    "value": 0
-                  },
                   {
                     "type": "device_if",
                     "identifiers": [
@@ -2782,11 +2767,6 @@
                     "expression": "left_hand_press_time > system.now.milliseconds - 80"
                   },
                   {
-                    "type": "variable_if",
-                    "name": "typing_mode",
-                    "value": 0
-                  },
-                  {
                     "type": "device_if",
                     "identifiers": [
                       {
@@ -2827,11 +2807,6 @@
                   {
                     "type": "expression_if",
                     "expression": "left_hand_press_time > system.now.milliseconds - 80"
-                  },
-                  {
-                    "type": "variable_if",
-                    "name": "typing_mode",
-                    "value": 0
                   },
                   {
                     "type": "device_if",
@@ -2876,11 +2851,6 @@
                     "expression": "left_hand_press_time > system.now.milliseconds - 80"
                   },
                   {
-                    "type": "variable_if",
-                    "name": "typing_mode",
-                    "value": 0
-                  },
-                  {
                     "type": "device_if",
                     "identifiers": [
                       {
@@ -2921,11 +2891,6 @@
                   {
                     "type": "expression_if",
                     "expression": "left_hand_press_time > system.now.milliseconds - 80"
-                  },
-                  {
-                    "type": "variable_if",
-                    "name": "typing_mode",
-                    "value": 0
                   },
                   {
                     "type": "device_if",
@@ -2970,11 +2935,6 @@
                     "expression": "right_hand_press_time > system.now.milliseconds - 80"
                   },
                   {
-                    "type": "variable_if",
-                    "name": "typing_mode",
-                    "value": 0
-                  },
-                  {
                     "type": "device_if",
                     "identifiers": [
                       {
@@ -3015,11 +2975,6 @@
                   {
                     "type": "expression_if",
                     "expression": "right_hand_press_time > system.now.milliseconds - 80"
-                  },
-                  {
-                    "type": "variable_if",
-                    "name": "typing_mode",
-                    "value": 0
                   },
                   {
                     "type": "device_if",
@@ -3064,11 +3019,6 @@
                     "expression": "right_hand_press_time > system.now.milliseconds - 80"
                   },
                   {
-                    "type": "variable_if",
-                    "name": "typing_mode",
-                    "value": 0
-                  },
-                  {
                     "type": "device_if",
                     "identifiers": [
                       {
@@ -3109,11 +3059,6 @@
                   {
                     "type": "expression_if",
                     "expression": "right_hand_press_time > system.now.milliseconds - 80"
-                  },
-                  {
-                    "type": "variable_if",
-                    "name": "typing_mode",
-                    "value": 0
                   },
                   {
                     "type": "device_if",
@@ -3163,11 +3108,6 @@
                     "value": 1
                   },
                   {
-                    "type": "variable_if",
-                    "name": "typing_mode",
-                    "value": 0
-                  },
-                  {
                     "type": "device_if",
                     "identifiers": [
                       {
@@ -3208,11 +3148,6 @@
                   {
                     "type": "variable_if",
                     "name": "right_hrm",
-                    "value": 0
-                  },
-                  {
-                    "type": "variable_if",
-                    "name": "typing_mode",
                     "value": 0
                   },
                   {
@@ -3278,11 +3213,6 @@
                   {
                     "type": "variable_if",
                     "name": "hyper_caps_lock",
-                    "value": 0
-                  },
-                  {
-                    "type": "variable_if",
-                    "name": "typing_mode",
                     "value": 0
                   },
                   {
@@ -3387,11 +3317,6 @@
                     "value": 1
                   },
                   {
-                    "type": "variable_if",
-                    "name": "typing_mode",
-                    "value": 0
-                  },
-                  {
                     "type": "device_if",
                     "identifiers": [
                       {
@@ -3432,11 +3357,6 @@
                   {
                     "type": "variable_if",
                     "name": "right_hrm",
-                    "value": 0
-                  },
-                  {
-                    "type": "variable_if",
-                    "name": "typing_mode",
                     "value": 0
                   },
                   {
@@ -3497,11 +3417,6 @@
                   {
                     "type": "variable_if",
                     "name": "right_hrm",
-                    "value": 0
-                  },
-                  {
-                    "type": "variable_if",
-                    "name": "typing_mode",
                     "value": 0
                   },
                   {
@@ -3606,11 +3521,6 @@
                     "value": 1
                   },
                   {
-                    "type": "variable_if",
-                    "name": "typing_mode",
-                    "value": 0
-                  },
-                  {
                     "type": "device_if",
                     "identifiers": [
                       {
@@ -3651,11 +3561,6 @@
                   {
                     "type": "variable_if",
                     "name": "right_hrm",
-                    "value": 0
-                  },
-                  {
-                    "type": "variable_if",
-                    "name": "typing_mode",
                     "value": 0
                   },
                   {
@@ -3721,11 +3626,6 @@
                   {
                     "type": "variable_if",
                     "name": "hyper_caps_lock",
-                    "value": 0
-                  },
-                  {
-                    "type": "variable_if",
-                    "name": "typing_mode",
                     "value": 0
                   },
                   {
@@ -3830,11 +3730,6 @@
                     "value": 1
                   },
                   {
-                    "type": "variable_if",
-                    "name": "typing_mode",
-                    "value": 0
-                  },
-                  {
                     "type": "device_if",
                     "identifiers": [
                       {
@@ -3875,11 +3770,6 @@
                   {
                     "type": "variable_if",
                     "name": "left_hrm",
-                    "value": 0
-                  },
-                  {
-                    "type": "variable_if",
-                    "name": "typing_mode",
                     "value": 0
                   },
                   {
@@ -3945,11 +3835,6 @@
                   {
                     "type": "variable_if",
                     "name": "hyper_caps_lock",
-                    "value": 0
-                  },
-                  {
-                    "type": "variable_if",
-                    "name": "typing_mode",
                     "value": 0
                   },
                   {
@@ -4054,11 +3939,6 @@
                     "value": 1
                   },
                   {
-                    "type": "variable_if",
-                    "name": "typing_mode",
-                    "value": 0
-                  },
-                  {
                     "type": "device_if",
                     "identifiers": [
                       {
@@ -4099,11 +3979,6 @@
                   {
                     "type": "variable_if",
                     "name": "left_hrm",
-                    "value": 0
-                  },
-                  {
-                    "type": "variable_if",
-                    "name": "typing_mode",
                     "value": 0
                   },
                   {
@@ -4169,11 +4044,6 @@
                   {
                     "type": "variable_if",
                     "name": "hyper_caps_lock",
-                    "value": 0
-                  },
-                  {
-                    "type": "variable_if",
-                    "name": "typing_mode",
                     "value": 0
                   },
                   {
@@ -4278,11 +4148,6 @@
                     "value": 1
                   },
                   {
-                    "type": "variable_if",
-                    "name": "typing_mode",
-                    "value": 0
-                  },
-                  {
                     "type": "device_if",
                     "identifiers": [
                       {
@@ -4323,11 +4188,6 @@
                   {
                     "type": "variable_if",
                     "name": "left_hrm",
-                    "value": 0
-                  },
-                  {
-                    "type": "variable_if",
-                    "name": "typing_mode",
                     "value": 0
                   },
                   {
@@ -4393,11 +4253,6 @@
                   {
                     "type": "variable_if",
                     "name": "hyper_caps_lock",
-                    "value": 0
-                  },
-                  {
-                    "type": "variable_if",
-                    "name": "typing_mode",
                     "value": 0
                   },
                   {
@@ -4482,134 +4337,6 @@
                   "basic.to_if_held_down_threshold_milliseconds": 165,
                   "basic.to_delayed_action_delay_milliseconds": 165
                 },
-                "type": "basic"
-              }
-            ]
-          },
-          {
-            "description": "Typing mode toggle - Right Cmd + Space (with notification)",
-            "manipulators": [
-              {
-                "description": "Toggle ON with HRM k (right_command) + Space",
-                "from": {
-                  "key_code": "spacebar",
-                  "modifiers": {
-                    "mandatory": [
-                      "right_command"
-                    ]
-                  }
-                },
-                "to": [
-                  {
-                    "set_variable": {
-                      "name": "typing_mode",
-                      "value": 1
-                    }
-                  },
-                  {
-                    "set_notification_message": {
-                      "id": "typing_mode",
-                      "text": "TYPING MODE ON"
-                    }
-                  }
-                ],
-                "conditions": [
-                  {
-                    "type": "variable_if",
-                    "name": "typing_mode",
-                    "value": 0
-                  },
-                  {
-                    "type": "device_if",
-                    "identifiers": [
-                      {
-                        "is_keyboard": true
-                      }
-                    ]
-                  }
-                ],
-                "type": "basic"
-              },
-              {
-                "description": "Toggle OFF with Right Cmd + Space",
-                "from": {
-                  "key_code": "spacebar",
-                  "modifiers": {
-                    "mandatory": [
-                      "right_command"
-                    ]
-                  }
-                },
-                "to": [
-                  {
-                    "set_variable": {
-                      "name": "typing_mode",
-                      "value": 0
-                    }
-                  },
-                  {
-                    "set_notification_message": {
-                      "id": "typing_mode",
-                      "text": ""
-                    }
-                  }
-                ],
-                "conditions": [
-                  {
-                    "type": "variable_if",
-                    "name": "typing_mode",
-                    "value": 1
-                  },
-                  {
-                    "type": "device_if",
-                    "identifiers": [
-                      {
-                        "is_keyboard": true
-                      }
-                    ]
-                  }
-                ],
-                "type": "basic"
-              },
-              {
-                "description": "Toggle OFF with Left Cmd + Space (escape hatch)",
-                "from": {
-                  "key_code": "spacebar",
-                  "modifiers": {
-                    "mandatory": [
-                      "left_command"
-                    ]
-                  }
-                },
-                "to": [
-                  {
-                    "set_variable": {
-                      "name": "typing_mode",
-                      "value": 0
-                    }
-                  },
-                  {
-                    "set_notification_message": {
-                      "id": "typing_mode",
-                      "text": ""
-                    }
-                  }
-                ],
-                "conditions": [
-                  {
-                    "type": "variable_if",
-                    "name": "typing_mode",
-                    "value": 1
-                  },
-                  {
-                    "type": "device_if",
-                    "identifiers": [
-                      {
-                        "is_keyboard": true
-                      }
-                    ]
-                  }
-                ],
                 "type": "basic"
               }
             ]

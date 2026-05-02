@@ -34,6 +34,21 @@ take() {
   cd "$1" || return
 }
 
+# Show directory contents after changing directories.
+autoload -Uz add-zsh-hook
+_dotfiles_auto_ls_after_cd() {
+  emulate -L zsh
+  [[ -t 1 ]] || return 0
+
+  if (( ${+aliases[ls]} )); then
+    eval "${aliases[ls]}"
+  else
+    command ls
+  fi
+}
+add-zsh-hook -d chpwd _dotfiles_auto_ls_after_cd 2>/dev/null || true
+add-zsh-hook chpwd _dotfiles_auto_ls_after_cd
+
 # Yazi
 function y() {
   local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd

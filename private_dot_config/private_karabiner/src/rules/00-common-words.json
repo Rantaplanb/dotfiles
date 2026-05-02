@@ -29,9 +29,6 @@
                 { "key_code": "k" },
                 { "key_code": "j" },
                 { "key_code": "d" }
-            ],
-            "conditions": [
-                { "type": "variable_if", "name": "typing_mode", "value": 0 }
             ]
         },
         {
@@ -60,9 +57,6 @@
                 },
                 { "key_code": "k" },
                 { "key_code": "j" }
-            ],
-            "conditions": [
-                { "type": "variable_if", "name": "typing_mode", "value": 0 }
             ]
         },
         {
@@ -91,9 +85,6 @@
                 },
                 { "key_code": "j" },
                 { "key_code": "k" }
-            ],
-            "conditions": [
-                { "type": "variable_if", "name": "typing_mode", "value": 0 }
             ]
         }
     ]

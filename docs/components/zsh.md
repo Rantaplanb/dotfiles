@@ -137,6 +137,7 @@ _Reference: `private_dot_config/zsh/aliases.zsh:1`_
 | `extract <file>` | Universal archive extractor (tar.gz, zip, rar, 7z, etc.) |
 | `killname <name>` | Find process by name and kill it |
 | `take <dir>` | `mkdir -p` + `cd` in one step |
+| `_dotfiles_auto_ls_after_cd` | `chpwd` hook that runs `ls` after successful directory changes |
 | `y [args]` | Yazi file manager wrapper (changes cwd on exit) |
 | `ftext [query]` | Interactive ripgrep+fzf search; opens result in `$VISUAL` |
 | `ftext-widget` | ZLE widget for `Ctrl-F` keybinding (Tab inserts filename, Enter opens editor) |

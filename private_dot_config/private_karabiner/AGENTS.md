@@ -31,7 +31,6 @@ Rules sorted alphabetically by filename. Prefix with numbers for order:
 01-bilateral-cancellation.json
 02-crossover-timing.json
 03-08: HRM rules (generated from HRM_CONFIG)
-11-typing-mode-toggle.json
 ...
 15-hyper-navigation.json
 ```
@@ -96,12 +95,11 @@ Rules in this array skip the default keyboard-only `device_if` condition and wor
 
 ## Anti-Misfire Protection
 
-The config includes 5 layers of protection:
+The config includes 4 layers of protection:
 1. **Common word sequences** — `from.simultaneous` rules for rapid cross-hand patterns (e.g., "the")
 2. **Bilateral cancellation** — same-hand combos produce letters
 3. **Crossover timing** — enforces proper cross-hand timing
 4. **Typing streak detection** — disables mods during fast typing
-5. **Typing mode toggle** — manual mod disable via Caps+T
 
 ## Adding Rules
 
