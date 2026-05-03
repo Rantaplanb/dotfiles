@@ -3,7 +3,6 @@
   "table-editor-obsidian",
   "obsidian-kanban",
   "obsidian-excalidraw-plugin",
-  "obsidian-git",
   "obsidian-hider",
   "obsidian-icon-folder",
   "obsidian-linter",
@@ -16,5 +15,6 @@
   "dataview",
   "leader-hotkeys-obsidian",
   "obsidian-vimrc-support",
-  "fold-properties-by-default"
+  "fold-properties-by-default",
+  "quick-tagger"
 ]

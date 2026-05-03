@@ -10,10 +10,6 @@ nmap <C-a> :tmuxPrefix<CR>
 exmap toggleLeftSidebar obcommand app:toggle-left-sidebar
 nmap <Space>e :toggleLeftSidebar<CR>
 
-" Toggle source control view
-exmap toggleSourceControl obcommand obsidian-git:open-git-view
-nmap <Space>gg :toggleSourceControl<CR>
-
 " Navigate back/forward through file history
 exmap goBack obcommand app:go-back
 nmap <C-o> :goBack<CR>
