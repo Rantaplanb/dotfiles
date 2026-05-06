@@ -23,6 +23,14 @@ alias zsh-time="time (zsh -i -c exit)"
 alias gs="git status"
 alias g2="git add . && git commit -m"
 
+g3() {
+  if [[ -z "${*:-}" ]]; then
+    echo "g3: commit message required" >&2
+    return 1
+  fi
+  git add . && git commit -m "$*" && git push
+}
+
 # Apps
 alias c="cursor"
 alias lg="lazygit"
@@ -44,6 +52,7 @@ alias ab='abook --config "$XDG_CONFIG_HOME/abook/abookrc" --datafile "$XDG_DATA_
 # Kubernetes
 alias k="kubectl"
 alias kgp="kubectl get pods"
+alias kgpw="kubectl get pods --watch"
 alias ctx="kubectx"
 alias ns="kubens"
 
