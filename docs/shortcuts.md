@@ -216,6 +216,7 @@ Prefix: **`Ctrl-a`**
 | Key     | Action                   | Source |
 | ------- | ------------------------ | ------ |
 | `Cmd+O` | Open quick file switcher | `dev/personal/golden-vault/dot_obsidian/hotkeys.json:11` |
+| `Cmd+O` | Open quick file switcher | `dev/personal/obsidian/secondbrain/dot_obsidian/hotkeys.json:11` |
 | `Cmd+O` | Open quick file switcher | `private_Documents/NotesOfTheGods/dot_obsidian/hotkeys.json:11` |
 
 ## NeoMutt (Mail Layer)

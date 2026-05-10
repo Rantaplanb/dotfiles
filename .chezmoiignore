@@ -51,6 +51,10 @@ dev/personal/golden-vault/.obsidian/workspace.json
 dev/personal/golden-vault/.obsidian/workspace-mobile.json
 dev/personal/golden-vault/.obsidian/cache/
 dev/personal/golden-vault/.obsidian/updates.json
+dev/personal/obsidian/secondbrain/.obsidian/workspace.json
+dev/personal/obsidian/secondbrain/.obsidian/workspace-mobile.json
+dev/personal/obsidian/secondbrain/.obsidian/cache/
+dev/personal/obsidian/secondbrain/.obsidian/updates.json
 Documents/NotesOfTheGods/.obsidian/workspace.json
 Documents/NotesOfTheGods/.obsidian/workspace-mobile.json
 Documents/NotesOfTheGods/.obsidian/cache/
@@ -60,12 +64,17 @@ dev/personal/golden-vault/.obsidian/plugins/*/main.js
 dev/personal/golden-vault/.obsidian/plugins/*/styles.css
 dev/personal/golden-vault/.obsidian/plugins/*/cache/
 dev/personal/golden-vault/.obsidian/plugins/*/.cache/
+dev/personal/obsidian/secondbrain/.obsidian/plugins/*/main.js
+dev/personal/obsidian/secondbrain/.obsidian/plugins/*/styles.css
+dev/personal/obsidian/secondbrain/.obsidian/plugins/*/cache/
+dev/personal/obsidian/secondbrain/.obsidian/plugins/*/.cache/
 Documents/NotesOfTheGods/.obsidian/plugins/*/main.js
 Documents/NotesOfTheGods/.obsidian/plugins/*/styles.css
 Documents/NotesOfTheGods/.obsidian/plugins/*/cache/
 Documents/NotesOfTheGods/.obsidian/plugins/*/.cache/
 # Obsidian — trash
 dev/personal/golden-vault/.trash/
+dev/personal/obsidian/secondbrain/.trash/
 Documents/NotesOfTheGods/.trash/
 
 # Karabiner — only deploy karabiner.json, build system stays in source only

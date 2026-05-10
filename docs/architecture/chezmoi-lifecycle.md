@@ -105,7 +105,7 @@ _Reference: `.chezmoiscripts/run_onchange_after_08-mail-sync-launchagent.sh.tmpl
 
 ### 09 - Obsidian Community Plugin Bootstrap (`run`)
 
-Ensures managed vaults have the runtime files required by selected community plugins that are intentionally not tracked in the dotfiles repo (`main.js`, `styles.css`). Currently bootstraps `obsidian-kanban`, `dataview`, and `quick-tagger` into `~/dev/personal/golden-vault/.obsidian/plugins/` and `~/Documents/NotesOfTheGods/.obsidian/plugins/` when those plugins are enabled in `community-plugins.json`.
+Ensures managed vaults have the runtime files required by selected community plugins that are intentionally not tracked in the dotfiles repo (`main.js`, `styles.css`). Currently bootstraps `obsidian-kanban`, `dataview`, `quick-tagger`, and `obsidian-git` into managed vault plugin directories when those plugins are enabled in `community-plugins.json`.
 
 The script is idempotent and writes a small `.dotfiles-plugin-lock.json` stamp inside each installed plugin directory so future applies skip redundant downloads.
 

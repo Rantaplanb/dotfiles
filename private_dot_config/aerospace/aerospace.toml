@@ -27,6 +27,14 @@ if.app-name-regex-substring = 'Vivaldi'
 run = 'move-node-to-workspace a'
 
 [[on-window-detected]]
+if.app-name-regex-substring = 'Google Calendar'
+run = 'move-node-to-workspace a'
+
+[[on-window-detected]]
+if.app-name-regex-substring = 'gcalendar'
+run = 'move-node-to-workspace a'
+
+[[on-window-detected]]
 if.app-name-regex-substring = 'Comet'
 run = 'move-node-to-workspace a'
 
@@ -72,10 +80,6 @@ run = ["move-node-to-workspace o"]
 if.app-name-regex-substring = 'Obsidian'
 run = 'move-node-to-workspace e'
 
-[[on-window-detected]]
-if.app-name-regex-substring = 'Google Calendar'
-run = 'move-node-to-workspace e'
-
 # Workspace U
 
 # Communication & Work Tools (highest priority)
@@ -85,6 +89,10 @@ run = 'move-node-to-workspace u'
 
 [[on-window-detected]]
 if.app-name-regex-substring = 'Messenger'
+run = 'move-node-to-workspace u'
+
+[[on-window-detected]]
+if.app-name-regex-substring = 'messenger'
 run = 'move-node-to-workspace u'
 
 [[on-window-detected]]

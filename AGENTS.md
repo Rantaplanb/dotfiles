@@ -73,6 +73,8 @@ recipient, or maintainer token material.
 | `private_dot_config/abook/` | `~/.config/abook/`            | Abook config                 |
 | `dev/personal/golden-vault/dot_obsidian/` | `~/dev/personal/golden-vault/.obsidian/` | Obsidian vault config applied into the separate notes repo |
 | `dev/personal/golden-vault/dot_gitignore` | `~/dev/personal/golden-vault/.gitignore` | Keeps the notes repo focused on note content instead of dotfiles-owned vault config |
+| `dev/personal/obsidian/secondbrain/dot_obsidian/` | `~/dev/personal/obsidian/secondbrain/.obsidian/` | Obsidian vault config for the secondbrain notes repo |
+| `dev/personal/obsidian/secondbrain/dot_gitignore` | `~/dev/personal/obsidian/secondbrain/.gitignore` | Keeps the notes repo focused on note content instead of dotfiles-owned vault config |
 | `private_Documents/NotesOfTheGods/dot_obsidian/` | `~/Documents/NotesOfTheGods/.obsidian/` | Restores config for the legacy local vault without touching note content |
 | `private_dot_config/zsh/` | `~/.config/zsh/`                | Zsh config via `ZDOTDIR`     |
 | `private_dot_config/brew/Brewfile` | `~/.config/brew/Brewfile` | Homebrew bundle |
@@ -95,6 +97,7 @@ Supports chezmoi template conditionals for OS-specific ignores.
 - For non-interactive checks, prefer `chezmoi apply --dry-run --force`; without `--force`, changed files may trigger TTY prompts and fail in headless shells.
 - In this repo, `chezmoi diff` is most reliable with absolute target paths (for example `~/.config/git/config`) when diffing a single file.
 - `dev/personal/golden-vault/.obsidian/workspace.json` is volatile UI state (recent files/workspace layout) and should stay ignored to avoid noisy churn and accidental overwrite.
+- `dev/personal/obsidian/secondbrain/.obsidian/workspace.json` follows the same volatile UI-state rule as `golden-vault`.
 - `Documents/NotesOfTheGods/.obsidian/workspace.json` is also volatile UI state; the legacy local vault follows the same ignore rules as `golden-vault`.
 - Any new repo-only directory (like `docs/`) must be added to `.chezmoiignore` or chezmoi will deploy it to `~/`. The ignore file uses target-state paths, so `docs/` not `literal_docs/`.
 
