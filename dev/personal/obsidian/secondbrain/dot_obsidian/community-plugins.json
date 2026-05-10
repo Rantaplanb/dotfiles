@@ -17,5 +17,6 @@
   "obsidian-vimrc-support",
   "fold-properties-by-default",
   "quick-tagger",
-  "obsidian-git"
+  "obsidian-git",
+  "auto-note-mover"
 ]
