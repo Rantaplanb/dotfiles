@@ -27,7 +27,7 @@ flowchart TD
   E --> E8[macos-settings<br/>run_once]
 ```
 
-_Reference: `AGENTS.md:42`_
+_Reference: `AGENTS.md:53`_
 
 ## Before Scripts
 
@@ -47,6 +47,8 @@ After before scripts complete, chezmoi processes files alphabetically by target 
 
 1. **Render** `.tmpl` templates using chezmoi data (`.chezmoi.toml.tmpl` data section, `.chezmoidata.yaml`) and the dormant `bitwardenSecrets` function when enabled mail accounts exist.
 2. **Deploy** files, directories, and symlinks to their target paths.
+
+The deployed files include the shared `~/AGENTS.md` instructions, and `~/.claude/CLAUDE.md` is managed as a symlink back to that file.
 
 ## After Scripts
 
@@ -150,7 +152,7 @@ Hash comments use the pattern `# hash: {{ include "path" | sha256sum }}` to trac
 | `{{ value \| quote }}` | Quote value for TOML output |
 | `{{ value \| trim }}` | Trim whitespace from secrets |
 
-_Reference: `AGENTS.md:155`_
+_Reference: `AGENTS.md:171`_
 
 ## Operational Notes
 
@@ -162,9 +164,9 @@ _Reference: `AGENTS.md:155`_
 
 ## References
 
-- Apply order: `AGENTS.md:42`
-- Encryption: `AGENTS.md:62`
-- Template conventions: `AGENTS.md:155`
+- Apply order: `AGENTS.md:53`
+- Encryption: `AGENTS.md:74`
+- Template conventions: `AGENTS.md:171`
 - Config template: `.chezmoi.toml.tmpl:1`
 - Ignore rules: `.chezmoiignore:1`
 - Lifecycle scripts: `.chezmoiscripts/`

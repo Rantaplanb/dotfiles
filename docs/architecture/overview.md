@@ -31,6 +31,8 @@ Chezmoi translates source-state file names to target paths using naming conventi
 | Source (chezmoi) | Target | Notes |
 |---|---|---|
 | `.chezmoi.toml.tmpl` | `~/.config/chezmoi/chezmoi.toml` | Config, profile selection, encryption settings |
+| `AGENTS.md` | `~/AGENTS.md` | Shared agent instructions deployed into home |
+| `dot_claude/symlink_CLAUDE.md` | `~/.claude/CLAUDE.md` | Relative symlink to `~/AGENTS.md` for Claude |
 | `key.txt.age` | _(source-only)_ | Passphrase-encrypted age private key |
 | `bin/chezmoi-bws` | _(source-only)_ | BWS token wrapper script |
 | `literal_bin/` | `~/bin/` | Shell utility scripts |
@@ -58,7 +60,7 @@ Chezmoi translates source-state file names to target paths using naming conventi
 | `dot_zshenv.tmpl` | `~/.zshenv` | Zsh bootstrap (exports `ZDOTDIR`) |
 | `private_dot_config/zsh/` | `~/.config/zsh/` | Zsh entry point and module files |
 
-_Reference: `AGENTS.md:78`_
+_Reference: `AGENTS.md:80`_
 
 ## Source-Only Directories
 
@@ -86,7 +88,7 @@ The `.chezmoiignore` file uses **target-state paths** (not source-state names) a
 - **Mail-conditional:** mail LaunchAgent is ignored until at least one enabled account exists
 - **OS-conditional:** macOS-only configs (Aerospace, Karabiner, Finicky, SketchyBar, Ghostty LaunchAgent, mail LaunchAgent) excluded on Linux
 
-_Reference: `.chezmoiignore:19`, `.chezmoiignore:54`_
+_Reference: `.chezmoiignore:18`, `.chezmoiignore:48`_
 
 ## Profile System
 
@@ -110,7 +112,7 @@ keys and tokens.
 
 ## References
 
-- Root AGENTS: `AGENTS.md:78` (key paths table)
+- Root AGENTS: `AGENTS.md:80` (key paths table)
 - Chezmoi config template: `.chezmoi.toml.tmpl:1`
 - Ignore rules: `.chezmoiignore:1`
-- Encryption section: `AGENTS.md:62`
+- Encryption section: `AGENTS.md:74`

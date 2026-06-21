@@ -115,4 +115,4 @@ _Reference: `private_dot_config/brew/Brewfile`_
 - mbsync template: `private_dot_config/isyncrc.tmpl:1`
 - Ghostty config: `private_dot_config/ghostty/config:1`
 - tmux config: `private_dot_config/tmux/tmux.conf:1`
-- Key paths table: `AGENTS.md:78`
+- Key paths table: `AGENTS.md:80`
