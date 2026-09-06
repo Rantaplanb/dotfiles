@@ -90,6 +90,12 @@ keybind = ctrl+shift+t=text:\x1b[202~
 keybind = ctrl+tab=text:\x1b[27;5;9~
 keybind = ctrl+shift+tab=text:\x1b[27;6;9~
 
+# Force legacy control bytes so tmux reliably sees vim-tmux-navigator keys.
+keybind = ctrl+h=text:\x08
+keybind = ctrl+j=text:\x0a
+keybind = ctrl+k=text:\x0b
+keybind = ctrl+l=text:\x0c
+
 # Keep Cmd+Left/Right as Home/End (do not emit Ctrl-A/Ctrl-E)
 keybind = cmd+left=text:\x1b[1~
 keybind = cmd+right=text:\x1b[4~

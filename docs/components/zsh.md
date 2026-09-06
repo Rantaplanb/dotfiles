@@ -121,7 +121,7 @@ _Reference: `private_dot_config/zsh/tools.zsh:1`_
 | Navigation | `..` = `cd ..` |
 | Listing (eza) | `l`, `ls`, `ll`, `la`, `ld`, `lda`, `lgit` |
 | Shell | `cls` = `clear`, `reload`/`r` = `exec zsh`, `zsh-profile`, `zsh-time`, `gs` = `git status`, `g2 "<msg>"` = `git add . && git commit -m "<msg>"` |
-| Apps | `c` = `cursor`, `lg` = `lazygit`, `b` = `bat`, `oc` = `opencode`, `oca` = `opencode` (auto-allow all), `occ` = `opencode --continue`, `ghostty-settings` = `cursor --wait ~/.config/ghostty/config` |
+| Apps | `c` = `cursor`, `cc` = the global LiteLLM/Kimi K3 Claude launcher with permission prompts skipped, `co` = `codex --dangerously-bypass-approvals-and-sandbox`, `lg` = `lazygit`, `b` = `bat`, `oc` = `opencode`, `oca` = `opencode` (auto-allow all), `occ` = `opencode --continue`, `ghostty-settings` = `cursor --wait ~/.config/ghostty/config` |
 | Docker | `d` = `docker` |
 | Mail | `nm` = `neomutt`, `msync` = `mail-sync`, `ab` = `abook` with XDG config/data paths |
 | Tmux | `ta` = `tmux attach`, `td` = `tmux detach`, `tls` = `tmux ls` |
@@ -139,6 +139,7 @@ _Reference: `private_dot_config/zsh/aliases.zsh:1`_
 | `take <dir>` | `mkdir -p` + `cd` in one step |
 | `_dotfiles_auto_ls_after_cd` | `chpwd` hook that runs `ls` after successful directory changes |
 | `y [args]` | Yazi file manager wrapper (changes cwd on exit) |
+| `prm "<message>"` | From `main`, branch off current `origin/main`, stage all changes, commit, push, open a PR, and enable squash auto-merge |
 | `ftext [query]` | Interactive ripgrep+fzf search; opens result in `$VISUAL` |
 | `ftext-widget` | ZLE widget for `Ctrl-F` keybinding (Tab inserts filename, Enter opens editor) |
 | `brew_update` | Full Homebrew maintenance cycle |

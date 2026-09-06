@@ -18,13 +18,14 @@ flowchart TD
   D --> D2[Deploy files, dirs, symlinks]
 
   E --> E1[03 - setup tasks<br/>run_once]
-  E --> E2[05 - ghostty-tmux agent<br/>run_onchange]
-  E --> E3[06 - Ghostty Cmd+H override<br/>run_once]
-  E --> E4[07 - mail runtime dirs<br/>run_once]
-  E --> E5[07 - mail maildirs<br/>run_onchange]
-  E --> E6[08 - mail-sync LaunchAgent reload<br/>run_onchange]
-  E --> E7[09 - Obsidian plugin bootstrap<br/>run]
-  E --> E8[macos-settings<br/>run_once]
+  E --> E2[04 - tmux plugin bootstrap<br/>run]
+  E --> E3[05 - ghostty-tmux agent<br/>run_onchange]
+  E --> E4[06 - Ghostty Cmd+H override<br/>run_once]
+  E --> E5[07 - mail runtime dirs<br/>run_once]
+  E --> E6[07 - mail maildirs<br/>run_onchange]
+  E --> E7[08 - mail-sync LaunchAgent reload<br/>run_onchange]
+  E --> E8[09 - Obsidian plugin bootstrap<br/>run]
+  E --> E9[macos-settings<br/>run_once]
 ```
 
 _Reference: `AGENTS.md:53`_
@@ -35,7 +36,9 @@ Executed alphabetically before any file operations. All scripts have Darwin-only
 
 ### 02 - Install Packages (`run_onchange`)
 
-Runs `brew bundle --no-upgrade` from the Brewfile. Re-runs when Brewfile content hash changes. Self-bootstraps Homebrew if missing, explicitly taps third-party repos declared in the Brewfile before running `brew bundle`, and preflights formula/cask availability so stale or tap-missing entries fail early with a clear summary instead of producing a partial install.
+Runs `brew bundle --no-upgrade` from the Brewfile.
+Re-runs when Brewfile content hash changes.
+Self-bootstraps Homebrew if missing, explicitly taps and trusts third-party repos declared in the Brewfile before running `brew bundle`, and preflights formula/cask availability so stale or tap-missing entries fail early with a clear summary instead of producing a partial install.
 
 Detects non-interactive shells and additionally skips Mac App Store installs plus casks that prompt for sudo (`font-sf-pro`, `karabiner-elements`) to avoid blocking headless bootstrap runs.
 
@@ -48,7 +51,12 @@ After before scripts complete, chezmoi processes files alphabetically by target 
 1. **Render** `.tmpl` templates using chezmoi data (`.chezmoi.toml.tmpl` data section, `.chezmoidata.yaml`) and the dormant `bitwardenSecrets` function when enabled mail accounts exist.
 2. **Deploy** files, directories, and symlinks to their target paths.
 
-The deployed files include the shared `~/AGENTS.md` instructions, and `~/.claude/CLAUDE.md` is managed as a symlink back to that file.
+The root `AGENTS.md` is source-only project guidance for this dotfiles repository, not a deployed home file.
+The `~/.claude/CLAUDE.md` target is managed as a symlink to the separately maintained `~/AGENTS.md` file.
+Personal Agent Skills live in the separate `~/.agents/skills` Git repository.
+Chezmoi manages only `~/.claude/skills`, a symlink to that repository; it does not deploy or delete skill contents.
+Clone the skills repository separately before using the Claude skills symlink.
+The `secrets-vault` skill and its Bitwarden Secrets Manager configuration remain independently maintained.
 
 ## After Scripts
 
@@ -64,6 +72,13 @@ One-time post-deploy tasks:
 All operations use graceful degradation (`|| true`).
 
 _Reference: `.chezmoiscripts/run_once_after_03-setup.sh.tmpl:1`_
+
+### 04 - tmux Plugin Bootstrap (`run`)
+
+Ensures TPM exists under `~/.config/tmux/plugins/tpm`, runs TPM's non-interactive plugin installer for the plugins declared in `tmux.conf`, and re-sources `tmux.conf` so newly installed plugin keybindings are available immediately.
+If no tmux server is running, the script creates a temporary detached session and removes it before exiting.
+
+_Reference: `.chezmoiscripts/run_after_04-tmux-plugins.sh.tmpl:1`_
 
 ### 05 - Ghostty-tmux LaunchAgent (`run_onchange`)
 

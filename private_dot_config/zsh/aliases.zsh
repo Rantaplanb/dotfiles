@@ -33,6 +33,8 @@ g3() {
 
 # Apps
 alias c="cursor"
+alias cc="$HOME/dev/personal/llmgateway/bin/claude --dangerously-skip-permissions"
+alias co="codex --dangerously-bypass-approvals-and-sandbox"
 alias lg="lazygit"
 
 # Docker
@@ -68,6 +70,7 @@ alias td="tmux detach"
 alias tls="tmux ls"
 
 # Opencode
+[[ -f "$HOME/dev/personal/llmgateway/shell/opencode.zsh" ]] && source "$HOME/dev/personal/llmgateway/shell/opencode.zsh"
 alias oc="opencode"
 alias oca="OPENCODE_PERMISSION='{\"*\": \"allow\"}' opencode"
 alias occ="opencode --continue"

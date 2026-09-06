@@ -58,6 +58,99 @@ function y() {
   rm -f -- "$tmp"
 }
 
+# Publish all current changes from main as an auto-merge pull request.
+prm() {
+  emulate -L zsh
+
+  local message="${*:-}"
+  if [[ -z "$message" ]]; then
+    echo 'prm: commit message required (for example: prm "fix: rename label")' >&2
+    return 1
+  fi
+
+  local required_command
+  for required_command in git gh sed tr cut; do
+    if ! command -v "$required_command" &>/dev/null; then
+      echo "prm: required command not found: $required_command" >&2
+      return 1
+    fi
+  done
+
+  if ! git rev-parse --is-inside-work-tree &>/dev/null; then
+    echo "prm: not inside a Git repository" >&2
+    return 1
+  fi
+
+  local current_branch
+  current_branch=$(git branch --show-current) || return 1
+  if [[ "$current_branch" != "main" ]]; then
+    echo "prm: expected branch 'main', found '${current_branch:-detached HEAD}'" >&2
+    return 1
+  fi
+
+  if [[ -z "$(git status --porcelain)" ]]; then
+    echo "prm: no changes to publish" >&2
+    return 1
+  fi
+
+  git remote get-url origin &>/dev/null || {
+    echo "prm: remote 'origin' is not configured" >&2
+    return 1
+  }
+  gh auth status &>/dev/null || {
+    echo "prm: GitHub CLI is not authenticated; run 'gh auth login'" >&2
+    return 1
+  }
+
+  echo "prm: checking origin/main..."
+  git fetch --quiet origin main || return 1
+  if ! git merge-base --is-ancestor HEAD origin/main; then
+    echo "prm: local main is ahead of or diverged from origin/main; reconcile it before publishing" >&2
+    return 1
+  fi
+
+  if ! git diff --check; then
+    echo "prm: whitespace errors found; fix them before publishing" >&2
+    return 1
+  fi
+
+  local slug branch
+  slug=$(printf '%s' "$message" |
+    tr '[:upper:]' '[:lower:]' |
+    sed -E 's/[^a-z0-9]+/-/g; s/^-+//; s/-+$//; s/-+/-/g' |
+    cut -c1-60)
+  if [[ -z "$slug" ]]; then
+    echo "prm: commit message cannot be converted to a branch name" >&2
+    return 1
+  fi
+
+  branch="feat/$slug"
+  if git show-ref --verify --quiet "refs/heads/$branch" ||
+    git ls-remote --exit-code --heads origin "$branch" &>/dev/null; then
+    branch="${branch}-$(date +%Y%m%d-%H%M%S)"
+  fi
+
+  echo "prm: creating $branch"
+  git switch -c "$branch" origin/main || return 1
+  git add -A || return 1
+  if git diff --cached --quiet; then
+    echo "prm: no staged changes after 'git add -A'" >&2
+    return 1
+  fi
+  git commit -m "$message" || return 1
+  git push -u origin "$branch" || return 1
+
+  local pr_url
+  pr_url=$(gh pr create \
+    --base main \
+    --head "$branch" \
+    --title "$message" \
+    --body 'Created with `prm`.') || return 1
+  gh pr merge --auto --squash "$pr_url" || return 1
+
+  echo "prm: auto-merge enabled: $pr_url"
+}
+
 # Helper to open file in editor at specific line
 _ftext_open_editor() {
   local file="$1" line="$2"

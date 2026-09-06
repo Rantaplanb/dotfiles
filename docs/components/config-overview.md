@@ -2,13 +2,14 @@
 
 Summary of notable config areas managed by chezmoi, with links to dedicated docs for larger components.
 
-**Source:** `private_dot_config/` -> `~/.config/`, `private_dot_codex/` -> `~/.codex/`, `private_dot_local/private_share/` -> `~/.local/share/`
+**Source:** `private_dot_config/` -> `~/.config/`, `private_dot_codex/` -> `~/.codex/`, `dot_claude/` -> `~/.claude/`, `private_dot_local/private_share/` -> `~/.local/share/`
 
 ## Managed Components
 
 | Component | Source Path | Dedicated Doc | Description |
 |---|---|---|---|
 | **Codex** | `private_dot_codex/` | -- | OpenAI Codex CLI defaults, including full-access/no-approval mode |
+| **Claude Skills** | `dot_claude/symlink_skills` | -- | Symlink to the separate `~/.agents/skills` Git repository; skill contents are not managed by dotfiles |
 | **OpenCode** | `private_dot_config/opencode/` | [opencode.md](opencode.md) | Primary AI CLI profile with agents, commands, and skills |
 | **Karabiner** | `private_dot_config/private_karabiner/` | [karabiner.md](karabiner.md) | Keyboard remapping (generated config) |
 | **Carapace** | `private_dot_config/carapace/` | [carapace.md](carapace.md) | Shell completion framework |
@@ -57,6 +58,7 @@ Terminal multiplexer with Catppuccin theme and plugin ecosystem.
 
 - **Prefix:** `Ctrl-a`
 - **Plugins (TPM):** vim-tmux-navigator, catppuccin, tmux-smooth-scroll, tmux-yank, tmux-resurrect, tmux-continuum, tmux-floax, tmux-harpoon
+- **Plugin bootstrap:** `chezmoi apply` installs TPM plugins idempotently via `.chezmoiscripts/run_after_04-tmux-plugins.sh.tmpl`
 - **Session picker:** `prefix + s` opens a `sesh` + `gum` popup helper
 - **AI split:** `prefix + o` opens Codex in a horizontal split rooted at the current pane path
 - **Session persistence:** Resurrect + Continuum (auto-save every 15min, restore on start)
@@ -71,6 +73,8 @@ _Reference: `private_dot_config/tmux/tmux.conf:1`_
 
 OpenAI Codex CLI config is managed as a chezmoi modify script so project trust,
 plugin, and marketplace runtime state can remain in `~/.codex/config.toml`.
+Personal shared skills, including `secrets-vault`, live in the separate Git repository at `~/.agents/skills`.
+Dotfiles does not deploy or delete that repository's contents.
 
 - **Approval policy:** `never`
 - **Sandbox mode:** `danger-full-access`

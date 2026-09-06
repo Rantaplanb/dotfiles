@@ -38,7 +38,10 @@ _Reference: `private_dot_config/opencode/README.md:5`_
 
 ## Profiles
 
-- `oc` uses the exported default profile rooted at `~/.config/opencode/`. `private_dot_config/zsh/exports.zsh:25`, `private_dot_config/zsh/aliases.zsh:59`
+Interactive `opencode`, `oc`, `oca`, and `occ` commands use the launcher from `~/dev/personal/llmgateway`.
+The launcher injects the local LiteLLM provider and model catalog at runtime, while the exported `~/.config/opencode/` directory continues to supply the user's agents, commands, plugins, and other merged settings.
+
+_Reference: `private_dot_config/zsh/aliases.zsh:73`_
 
 ## Config Model
 

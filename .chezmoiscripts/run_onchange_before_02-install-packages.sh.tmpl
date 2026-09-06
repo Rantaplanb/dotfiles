@@ -123,6 +123,23 @@ pre_tap_brewfile_repos() {
     done < <(awk '$1=="tap" {if (match($0, /"[^"]+"/)) print substr($0, RSTART + 1, RLENGTH - 2)}' "$BREWFILE_PATH")
 }
 
+trust_brewfile_repos() {
+    local tap
+
+    if ! brew trust --help >/dev/null 2>&1; then
+        return 0
+    fi
+
+    while IFS= read -r tap; do
+        [[ -z "$tap" ]] && continue
+
+        log_info "Trusting Homebrew tap $tap..."
+        if ! HOMEBREW_NO_AUTO_UPDATE=1 brew trust --tap "$tap"; then
+            log_warning "Failed to trust $tap. Brewfile validation will report any affected packages."
+        fi
+    done < <(awk '$1=="tap" {if (match($0, /"[^"]+"/)) print substr($0, RSTART + 1, RLENGTH - 2)}' "$BREWFILE_PATH")
+}
+
 require_available_brewfile_entries() {
     local formula
     local cask
@@ -162,7 +179,7 @@ require_available_brewfile_entries() {
 }
 
 log_info "Installing packages from Brewfile..."
-set_bundle_defaults()
+set_bundle_defaults
 
 if ! command -v brew &>/dev/null; then
     log_info "Installing Homebrew..."
@@ -171,6 +188,7 @@ if ! command -v brew &>/dev/null; then
 fi
 
 pre_tap_brewfile_repos
+trust_brewfile_repos
 require_available_brewfile_entries
 
 if should_skip_mas_installs; then

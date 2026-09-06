@@ -62,6 +62,7 @@ Pre-push: `chezmoi apply --dry-run --force`.
    - Deploy files, directories, symlinks
 5. After scripts (alphabetical):
    03-setup                → bat cache, yazi plugins, carapace sync (run_once)
+   04-tmux-plugins         → installs TPM and tmux plugins declared in tmux.conf (run)
    05-ghostty-tmux         → installs LaunchAgent for tmux startup (run_onchange)
    06-ghostty-hide-shortcut → clears global Hide overrides, remaps Ghostty hide (run_once)
    07-mail-setup           → creates runtime directories for the mail stack (run_once)
@@ -76,14 +77,18 @@ Pre-push: `chezmoi apply --dry-run --force`.
 The `lpersonal` baseline keeps Bitwarden template support dormant for later mail
 and secret rendering, but it does not ship any live encrypted payloads, age
 recipient, or maintainer token material.
+Agent skills, including `secrets-vault`, are maintained in the separate `~/.agents/skills` Git repository.
+Dotfiles manages only the Claude skills symlink; it must not deploy or delete that repository's contents.
+The `secrets-vault` skill uses Bitwarden Secrets Manager (`bws`) and its dedicated macOS Keychain independently of dotfiles.
 
 ## Key Paths
 
 | Source (chezmoi)      | Target                              | Notes                        |
 | --------------------- | ----------------------------------- | ---------------------------- |
 | `.chezmoi.toml.tmpl`  | `~/.config/chezmoi/chezmoi.toml`    | Config, `lpersonal` profile, placeholder identity |
-| `AGENTS.md`           | `~/AGENTS.md`                       | Shared agent instructions deployed into home |
-| `dot_claude/symlink_CLAUDE.md` | `~/.claude/CLAUDE.md`       | Symlink to `~/AGENTS.md` for Claude |
+| `AGENTS.md`           | _(source-only)_                     | Project instructions for this dotfiles repo |
+| `dot_claude/symlink_CLAUDE.md` | `~/.claude/CLAUDE.md`       | Symlink to the separately managed `~/AGENTS.md` for Claude |
+| `dot_claude/symlink_skills` | `~/.claude/skills`             | Symlink to the separately maintained `~/.agents/skills` repository |
 | `bin/chezmoi-bws`     | _(ignored, source-only)_            | Dormant Bitwarden helper for future secret rendering |
 | `literal_bin/`        | `~/bin/`                            | Shell utility scripts        |
 | `private_dot_config/` | `~/.config/`                        | App configs                  |

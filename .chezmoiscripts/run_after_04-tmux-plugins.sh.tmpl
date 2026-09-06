@@ -1,0 +1,76 @@
+#!/bin/bash
+# Ensure TPM-managed tmux plugins exist after tmux.conf is deployed.
+
+{{- if ne .chezmoi.os "darwin" }}
+exit 0
+{{- end }}
+
+set -euo pipefail
+
+log_info() {
+    printf '\033[0;34m%s\033[0m\n' "$*"
+}
+
+log_warning() {
+    printf '\033[0;33mWarning: %s\033[0m\n' "$*" >&2
+}
+
+log_error() {
+    printf '\033[0;31mError: %s\033[0m\n' "$*" >&2
+}
+
+xdg_config_home="${XDG_CONFIG_HOME:-$HOME/.config}"
+tmux_conf="$xdg_config_home/tmux/tmux.conf"
+plugin_root="$xdg_config_home/tmux/plugins"
+tpm_dir="$plugin_root/tpm"
+bootstrap_session="dotfiles-plugin-bootstrap"
+created_bootstrap_session=false
+
+cleanup() {
+    if [[ "$created_bootstrap_session" == true ]]; then
+        tmux kill-session -t "$bootstrap_session" 2>/dev/null || true
+    fi
+}
+trap cleanup EXIT
+
+if [[ ! -f "$tmux_conf" ]]; then
+    log_warning "tmux config not found at $tmux_conf; skipping tmux plugin install"
+    exit 0
+fi
+
+if ! command -v tmux &>/dev/null; then
+    log_warning "tmux is not installed; skipping tmux plugin install"
+    exit 0
+fi
+
+if ! command -v git &>/dev/null; then
+    log_warning "git is not installed; skipping tmux plugin install"
+    exit 0
+fi
+
+mkdir -p "$plugin_root"
+
+if [[ ! -x "$tpm_dir/bin/install_plugins" ]]; then
+    if [[ -e "$tpm_dir" ]]; then
+        log_error "TPM exists but is missing bin/install_plugins: $tpm_dir"
+        exit 1
+    fi
+
+    log_info "Installing tmux plugin manager..."
+    git clone https://github.com/tmux-plugins/tpm "$tpm_dir"
+fi
+
+if ! tmux list-sessions &>/dev/null; then
+    log_info "Starting temporary tmux server for plugin install..."
+    tmux -f /dev/null new-session -d -s "$bootstrap_session" /bin/sh
+    created_bootstrap_session=true
+fi
+
+log_info "Installing tmux plugins..."
+tmux set-environment -g TMUX_PLUGIN_MANAGER_PATH "$plugin_root/"
+tmux source-file "$tmux_conf"
+"$tpm_dir/bin/install_plugins"
+
+# Source once more so newly installed plugin keybindings are available immediately.
+tmux source-file "$tmux_conf"
+log_info "tmux plugins ready."

@@ -100,6 +100,7 @@ AeroSpace uses the Dvorak key preset and a directional cluster of `h / t / c / n
 | `Ctrl+Shift+T`   | Send `ESC[202~` to zsh               | `private_dot_config/ghostty/config:91`  |
 | `Ctrl+Tab`       | _(pass-through to tmux)_             | `private_dot_config/ghostty/config:94`  |
 | `Ctrl+Shift+Tab` | _(pass-through to tmux)_             | `private_dot_config/ghostty/config:95`  |
+| `Ctrl+H/J/K/L`   | Force legacy control bytes for tmux pane navigation | `private_dot_config/ghostty/config:97` |
 | `Cmd+Left`       | Home (line start)                    | `private_dot_config/ghostty/config:98`  |
 | `Cmd+Right`      | End (line end)                       | `private_dot_config/ghostty/config:99`  |
 | `Cmd+Shift+E`    | Write screen to file + open          | `private_dot_config/ghostty/config:102` |

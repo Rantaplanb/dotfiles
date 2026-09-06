@@ -12,6 +12,7 @@ flowchart LR
   T --> Z
   Z --> M[Mail Stack\nNeoMutt + mbsync + msmtp + notmuch + abook]
   Z --> X[Codex CLI]
+  Z --> S[Shared Agent Skills]
   Z --> O[OpenCode CLI]
   C[chezmoi lifecycle] --> Z
   C --> M
@@ -22,7 +23,10 @@ flowchart LR
   C --> T
 ```
 
-Input flows from the physical keyboard through Karabiner (home row mods, hyper key), into Ghostty (terminal keybindings), then into tmux (prefix commands) or directly to zsh (shell keybindings). From zsh, input reaches Codex, OpenCode, NeoMutt, and other terminal tools managed by the repo. Chezmoi manages configuration for all layers, including the mail stack and its launchd automation.
+Input flows from the physical keyboard through Karabiner (home row mods, hyper key), into Ghostty (terminal keybindings), then into tmux (prefix commands) or directly to zsh (shell keybindings).
+From zsh, input reaches Codex, OpenCode, NeoMutt, and other terminal tools managed by the repo.
+Chezmoi manages workstation configuration, the mail stack, and its launchd automation.
+Agent Skills live in a separate Git repository at `~/.agents/skills`; chezmoi manages only the Claude symlink to that repository.
 
 ## Source-to-Target Mapping
 
@@ -31,8 +35,9 @@ Chezmoi translates source-state file names to target paths using naming conventi
 | Source (chezmoi) | Target | Notes |
 |---|---|---|
 | `.chezmoi.toml.tmpl` | `~/.config/chezmoi/chezmoi.toml` | Config, profile selection, encryption settings |
-| `AGENTS.md` | `~/AGENTS.md` | Shared agent instructions deployed into home |
-| `dot_claude/symlink_CLAUDE.md` | `~/.claude/CLAUDE.md` | Relative symlink to `~/AGENTS.md` for Claude |
+| `AGENTS.md` | _(source-only)_ | Project instructions for this dotfiles repo |
+| `dot_claude/symlink_CLAUDE.md` | `~/.claude/CLAUDE.md` | Relative symlink to the separately managed `~/AGENTS.md` for Claude |
+| `dot_claude/symlink_skills` | `~/.claude/skills` | Relative symlink to the separately maintained `~/.agents/skills` repository |
 | `key.txt.age` | _(source-only)_ | Passphrase-encrypted age private key |
 | `bin/chezmoi-bws` | _(source-only)_ | BWS token wrapper script |
 | `literal_bin/` | `~/bin/` | Shell utility scripts |
@@ -55,7 +60,7 @@ Chezmoi translates source-state file names to target paths using naming conventi
 | `private_Documents/NotesOfTheGods/dot_obsidian/` | `~/Documents/NotesOfTheGods/.obsidian/` | Legacy local vault config restored via dotfiles; note content remains in place |
 | `private_Library/LaunchAgents/com.lpersonal.mail-sync.plist.tmpl` | `~/Library/LaunchAgents/com.lpersonal.mail-sync.plist` | Mail sync scheduler (ignored until accounts are configured) |
 | `literal_bin/executable_mail-*` | `~/bin/mail-*` | Mail helper scripts (`mail-sync`, `mail-open`) |
-| `.chezmoiscripts/` | _(lifecycle scripts)_ | Before/after scripts (e.g. LaunchAgent reload, Ghostty-only Cmd+H override), not deployed |
+| `.chezmoiscripts/` | _(lifecycle scripts)_ | Before/after scripts (e.g. Brewfile trust/bootstrap, tmux plugin install, LaunchAgent reload, Ghostty-only Cmd+H override), not deployed |
 | `.chezmoidata.yaml` | _(template data)_ | Catppuccin Mocha color palette |
 | `dot_zshenv.tmpl` | `~/.zshenv` | Zsh bootstrap (exports `ZDOTDIR`) |
 | `private_dot_config/zsh/` | `~/.config/zsh/` | Zsh entry point and module files |
@@ -97,7 +102,7 @@ The config template (`.chezmoi.toml.tmpl`) hardcodes a single active profile:
 1. `profile = "lpersonal"`
 2. Placeholder `name` and `email` values are rendered until you replace them.
 3. Chezmoi's diff pager points to a source-only helper that uses `diffnav` when available and falls back to `cat` during first bootstrap.
-4. Bitwarden template support remains available for future secrets, but no live encrypted payloads ship in the baseline.
+4. Bitwarden template support remains available for future secret rendering; the separate skills repository maintains `secrets-vault` for agent credentials through Bitwarden Secrets Manager.
 
 The package bootstrap script pre-taps any third-party Brewfile taps before `brew bundle --no-upgrade` runs and validates every Brewfile formula/cask up front, so renamed or tap-missing entries fail fast with a clear summary instead of leaving a fresh machine partially configured.
 
@@ -105,14 +110,14 @@ _Reference: `.chezmoi.toml.tmpl:1`_
 
 ## Secrets Baseline
 
-The `lpersonal` baseline ships without the original maintainer's encrypted files,
-SSH material, mail credentials, or Bitwarden token. Reintroduce age recipients,
-encrypted files, and personal secret rendering only after generating your own
-keys and tokens.
+The `lpersonal` baseline ships without the original maintainer's encrypted files, SSH material, mail credentials, Bitwarden session, or Bitwarden token.
+The separately maintained `secrets-vault` skill uses `bws` and a dedicated macOS Keychain.
+Dotfiles does not provision, modify, or remove that vault configuration.
+Reintroduce age recipients, encrypted files, and personal secret rendering only after generating your own keys and tokens.
 
 ## References
 
-- Root AGENTS: `AGENTS.md:80` (key paths table)
+- Root AGENTS: `AGENTS.md:80` (project guidance and key paths table)
 - Chezmoi config template: `.chezmoi.toml.tmpl:1`
 - Ignore rules: `.chezmoiignore:1`
 - Encryption section: `AGENTS.md:74`

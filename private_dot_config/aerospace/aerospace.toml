@@ -23,23 +23,15 @@ if.app-name-regex-substring = 'Chrome'
 run = 'move-node-to-workspace a'
 
 [[on-window-detected]]
-if.app-name-regex-substring = 'Vivaldi'
+if.app-name-regex-substring = 'Ghostty'
 run = 'move-node-to-workspace a'
 
 [[on-window-detected]]
-if.app-name-regex-substring = 'Google Calendar'
-run = 'move-node-to-workspace a'
-
-[[on-window-detected]]
-if.app-name-regex-substring = 'gcalendar'
+if.app-name-regex-substring = 'Slack'
 run = 'move-node-to-workspace a'
 
 [[on-window-detected]]
 if.app-name-regex-substring = 'Comet'
-run = 'move-node-to-workspace a'
-
-[[on-window-detected]]
-if.app-name-regex-substring = 'Docker Desktop'
 run = 'move-node-to-workspace a'
 
 [[on-window-detected]]
@@ -68,25 +60,41 @@ if.app-name-regex-substring = 'Codex'
 run = 'move-node-to-workspace o'
 
 [[on-window-detected]]
-if.app-name-regex-substring = 'Warp'
+if.app-name-regex-substring = 'ChatGPT'
 run = 'move-node-to-workspace o'
 
 [[on-window-detected]]
-if.app-name-regex-substring = 'Ghostty'
-run = ["move-node-to-workspace o"]
+if.app-name-regex-substring = 'Vivaldi'
+run = 'move-node-to-workspace o'
+
+[[on-window-detected]]
+if.app-name-regex-substring = 'Obsidian'
+run = 'move-node-to-workspace o'
+
+[[on-window-detected]]
+if.app-name-regex-substring = 'Warp'
+run = 'move-node-to-workspace o'
 
 # Workspace E
 [[on-window-detected]]
-if.app-name-regex-substring = 'Obsidian'
+if.app-name-regex-substring = 'Docker Desktop'
+run = 'move-node-to-workspace e'
+
+[[on-window-detected]]
+if.app-name-regex-substring = 'Google Calendar'
+run = 'move-node-to-workspace e'
+
+[[on-window-detected]]
+if.app-name-regex-substring = 'gcalendar'
+run = 'move-node-to-workspace e'
+
+[[on-window-detected]]
+if.app-name-regex-substring = 'Wispr Flow'
 run = 'move-node-to-workspace e'
 
 # Workspace U
 
 # Communication & Work Tools (highest priority)
-[[on-window-detected]]
-if.app-name-regex-substring = 'Slack'
-run = 'move-node-to-workspace u'
-
 [[on-window-detected]]
 if.app-name-regex-substring = 'Messenger'
 run = 'move-node-to-workspace u'
